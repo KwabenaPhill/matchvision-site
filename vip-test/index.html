@@ -306,7 +306,10 @@ footer .brand img{position:absolute;left:50%;top:50%;width:58px;transform:transl
 /* ===== Sticky pay bar (always on) ===== */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:15;padding:10px var(--padR) calc(10px + env(safe-area-inset-bottom,0px)) var(--padL);
   background:rgba(17,17,17,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;box-shadow:0 -10px 30px #0D0D0D26;
-  animation:barIn .5s 1.4s cubic-bezier(.2,.8,.2,1) both}
+  transform:translateY(0);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.bar.hid{transform:translateY(110%)}
+body.nobar .fab{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.fab{transition:bottom .4s cubic-bezier(.2,.8,.2,1)}
 @keyframes barIn{from{transform:translateY(110%)}}
 body.lock .bar{visibility:hidden}
 .bar .in{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px}
@@ -708,7 +711,7 @@ body.lock .fab{visibility:hidden}
   </footer>
 </main>
 
-<div class="bar" id="bar">
+<div class="bar hid" id="bar">
   <div class="in">
     <button class="flag" id="barFlag" aria-label="Change Country">🇺🇸</button>
     <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 Days · United States</span></button>
@@ -928,6 +931,10 @@ document.addEventListener('click', function (e) { const b = e.target.closest('[d
 // ---------- Header line on scroll ----------
 const topbar = $('top');
 addEventListener('scroll', function () { topbar.classList.toggle('scrolled', scrollY > 24); }, { passive: true });
+// Pay bar: hidden while the top Join button is on screen (or below it), shows once they scroll past it
+(function () { const j = document.querySelector('.hero.b .join2'), bar = $('bar'); if (!j || !bar) return;
+  function chk() { const hide = j.getBoundingClientRect().bottom > 0; bar.classList.toggle('hid', hide); document.body.classList.toggle('nobar', hide); }
+  addEventListener('scroll', chk, { passive: true }); addEventListener('resize', chk); chk(); })();
 
 // ---------- Image viewer ----------
 let shots = [], vi = 0;
@@ -967,8 +974,12 @@ $('dots').addEventListener('click', function (e) { const d = e.target.closest('i
 function startAuto() {
   if (auto || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let seen = false;
-  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; }, { threshold: .4 }).observe($('rail'));
-  auto = setInterval(function () { if (seen && Date.now() > pausedUntil && document.visibilityState === 'visible' && viewer.hidden) goCard(cardAt + 1); }, 2000);
+  let kick = null;
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+    const was = seen; seen = es[0].isIntersecting;
+    if (seen && !was) { clearTimeout(kick); kick = setTimeout(function () { if (seen && Date.now() > pausedUntil && viewer.hidden) goCard(cardAt + 1); }, 500); }
+  }, { threshold: .4 }).observe($('rail'));
+  auto = setInterval(function () { if (seen && Date.now() > pausedUntil && document.visibilityState === 'visible' && viewer.hidden) goCard(cardAt + 1); }, 1500);
 }
 $('heroTicket').addEventListener('click', function () { openViewer(0); });
 
