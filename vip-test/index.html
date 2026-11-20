@@ -27,18 +27,20 @@
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;
-  padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  padding-bottom:calc(150px + env(safe-area-inset-bottom,0px))}
 body.lock{overflow:hidden}
 a{color:inherit}
 p{margin:0}
 h1,h2,h3{margin:0}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:12px}
-.wrap{max-width:520px;margin:0 auto;padding:0 var(--padR) 0 var(--padL);display:flex;flex-direction:column;gap:46px}
+.wrap{max-width:520px;margin:0 auto;padding:0 var(--padR) 0 var(--padL);display:flex;flex-direction:column;gap:58px}
 
 /* ===== Header ===== */
 .top{position:sticky;top:0;z-index:20;background:rgba(243,247,228,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
-  border-bottom:1px solid transparent;transition:border-color .2s ease,box-shadow .2s ease}
+  border-bottom:1px solid transparent;will-change:transform;
+  transition:transform .28s cubic-bezier(.2,.7,.2,1),border-color .2s ease,box-shadow .2s ease}
+.top.up{transform:translateY(-104%)}
 .top.scrolled{border-bottom-color:var(--line);box-shadow:0 8px 24px #0D0D0D0D}
 .top .in{max-width:520px;margin:0 auto;padding:10px var(--padR) 10px var(--padL);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .iconbtn{width:46px;height:46px;border-radius:14px;border:0;background:var(--dark);color:var(--lime);display:grid;place-items:center;flex:none}
@@ -69,11 +71,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 .drawer a:hover{background:var(--dark3)}
 .drawer .sep{height:1px;background:#2A2A2E;margin:10px 12px}
 .drawer a.small{font-size:15px;color:#C9C9CE;padding:11px 12px}
+/* 5.2: one screen, grouped, the part he is on is lime */
+.drawer .grp{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A8A90;margin:12px 12px 2px}
+.drawer a{padding:11px 12px;font-size:16px}
+.drawer a.on{color:var(--lime)}
+.drawer a.on::after{background-color:#DFFB5126}
+.drawer a.go2{background:var(--lime);color:var(--ink);font-family:var(--h);font-weight:800;font-size:17px;padding:15px 16px;margin-bottom:2px}
+.drawer a.go2::after{background:#0D0D0D14 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%230D0D0D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='m9 6 6 6-6 6'/%3E%3C/svg%3E") no-repeat center/16px}
+.drawer .legal{margin-top:auto;padding:14px 12px calc(6px + env(safe-area-inset-bottom,0px));border-top:1px solid #2A2A2E;display:flex;flex-wrap:wrap;gap:10px 16px}
+.drawer .legal a{color:#9A9AA0;font-size:13px;font-weight:600;padding:0;display:inline}
+.drawer .legal a::after{display:none}
 @keyframes slide{from{transform:translateX(-100%)}}
 @keyframes fade{from{opacity:0}}
 
 /* ===== Common ===== */
-section{display:flex;flex-direction:column;gap:18px}
+section{display:flex;flex-direction:column;gap:20px}
 .eyebrow{align-self:flex-start;display:inline-flex;align-items:center;gap:9px;background:var(--dark);color:var(--lime);border-radius:999px;padding:8px 15px 8px 12px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 8px 20px #0D0D0D1F}
 .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px #DFFB5133}
 .title{font-family:var(--h);font-size:clamp(26px,7.4vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
@@ -85,8 +97,8 @@ section{display:flex;flex-direction:column;gap:18px}
 .btn.lime{background:var(--lime);color:var(--ink);box-shadow:0 10px 26px #C9E63B66}
 .btn.dark{background:var(--dark);color:var(--lime);box-shadow:0 10px 26px #0D0D0D33}
 .btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor;opacity:.92}
-.btn.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,transparent,#FFFFFF8C,transparent);transform:skewX(-20deg);animation:shine 4s 1.6s ease-in-out infinite}
-@keyframes shine{0%{left:-60%}30%,100%{left:130%}}
+.btn.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,transparent,#FFFFFF8C,transparent);transform:skewX(-20deg);animation:shine 2s 1s ease-in-out infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
 .dot{position:relative;width:8px;height:8px;border-radius:50%;background:#22C55E;flex:none}
 .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.8s cubic-bezier(0,0,.2,1) infinite}
 @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
@@ -136,10 +148,10 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .vnote{position:absolute;left:50%;top:61%;transform:translateX(-50%);white-space:nowrap;background:#000000A6;color:#E5E5E7;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:600}
 .vbox.sound .vsound,.vbox.sound .vnote{display:none}
 .vsound,.vnote{z-index:2}
-.hero.b .join2{justify-content:space-between;padding:10px 10px 10px 22px;text-align:left}
+.hero.b .join2{justify-content:space-between;padding:14px;text-align:left;min-height:70px}
 .join2 .jt{display:flex;flex-direction:column;white-space:nowrap;line-height:1.2}
 .join2 .jp{font-family:var(--b,Inter),sans-serif;font-weight:700;font-size:13px;opacity:.75;margin-top:2px}
-.join2 i{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;flex:none;margin-left:10px}.join2 i svg{width:18px;height:18px}
+.join2 i{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;flex:none;margin-left:14px}.join2 i svg{width:18px;height:18px}
 .hero.b .trust svg{color:var(--lime)}
 
 /* C: headline + the latest VIP ticket */
@@ -225,7 +237,7 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .picker .flag{font-size:32px;line-height:1;flex:none}
 .picker .nm{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
 .picker .nm b{font-size:17px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.picker .nm small{color:var(--sub);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.picker .nm small{color:var(--sub);font-size:13px;line-height:1.3}
 .picker .chg{flex:none;font-size:13px;font-weight:800;background:var(--dark);color:var(--lime);border-radius:999px;padding:8px 13px}
 .price{background:var(--dark);color:#fff;padding:24px 20px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
 .price::after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#DFFB5133,transparent 70%)}
@@ -294,6 +306,13 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .socials .soc svg{width:26px;height:26px;padding:0;background:none;border-radius:0}
 .socials .soc small{color:var(--sub);font-size:13px;font-weight:600;text-align:right;margin:0}
 .socials .soc.off{display:none}
+/* 5.2: icons only (no @names). Each icon opens its own link; the name under it stays for screen readers. */
+.socials.icons{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;background:none;padding:4px 0 0}
+.socials.icons .soc{position:relative;display:grid;place-items:center;width:62px;height:62px;padding:0;border-radius:20px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0F}
+.socials.icons .soc svg{width:30px;height:30px}
+.socials.icons .soc i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.socials.icons .soc:active{transform:scale(.95)}
+.socials.icons .soc .sb{position:absolute;right:-3px;bottom:-3px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10.5px;font-weight:800;line-height:1;padding:4px 5px;border-radius:8px;border:2px solid var(--bg)}
 footer{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;color:var(--dim);font-size:12.5px;line-height:1.6;padding-bottom:10px}
 footer .flinks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px}
 footer .flinks button{border:0;background:none;padding:0;font-weight:700;color:var(--ink2);font-size:13px}
@@ -311,6 +330,15 @@ body.nobar .fab{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
 body.lock .bar{visibility:hidden}
 .bar .in{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px}
 .bar .flag{font-size:26px;line-height:1;flex:none;border:0;background:none;padding:0}
+.curbtn{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid #FFFFFF26;background:#FFFFFF14;color:#fff;border-radius:999px;padding:7px 10px 7px 9px;font-size:13px;font-weight:800;line-height:1}
+.curbtn span{font-size:17px;line-height:1}
+.curbtn svg{width:14px;height:14px;opacity:.8}
+.curbtn:active{transform:scale(.96)}
+.curlist button{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;width:100%;border:0;background:none;padding:15px 10px;border-bottom:1px solid var(--line);text-align:left;font-weight:700}
+.curlist button:last-child{border-bottom:0}
+.curlist button.on{background:#DFFB5133;border-radius:14px}
+.curlist .f{font-size:22px}
+.curlist .c{font-weight:800;font-variant-numeric:tabular-nums}
 .bar .p{flex:1;display:flex;flex-direction:column;line-height:1.2;min-width:0;border:0;background:none;padding:0;text-align:left;color:#fff}
 .bar .p b{font-family:var(--h);font-size:19px;font-weight:800;color:var(--lime);font-variant-numeric:tabular-nums;white-space:nowrap}
 .bar .p span{font-size:12px;color:#C8C8CC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -405,7 +433,7 @@ body.lock .fab{visibility:hidden}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}
   .rv,.cal button,.lg img{opacity:1!important;transform:none!important;clip-path:none!important}}
 .join2 .jl{display:inline-flex;align-items:center;gap:8px}.join2 .cr{width:22px;height:22px;flex:none}
-.join2 .jt{position:relative;padding-left:30px}
+.join2 .jt{position:relative;padding-left:34px;margin-left:4px}
 .join2 .jt .cr{position:absolute;left:-12px;top:1px;bottom:1px;height:calc(100% - 2px);width:auto;aspect-ratio:30/34}
 .vsound{background:#F4F6EA;color:#0D0D0D;box-shadow:0 8px 22px #00000073}
 .vsound i{background:#0D0D0D;color:#F4F6EA}
@@ -477,18 +505,19 @@ body.lock .fab{visibility:hidden}
   <div class="shade" data-close></div>
   <nav class="panel" aria-label="Menu">
     <div class="head"><img src="logo.png" alt="Match Vision"><button class="x" data-close aria-label="Close Menu">✕</button></div>
-    <a href="#join">Join Vision Premium</a>
-    <a href="#results">Recent VIP Wins</a>
-    <a href="#record">Our VIP Record</a>
-    <a href="#why">What You Get</a>
-    <a href="#how">How It Works</a>
-    <a href="#faq">Questions And Answers</a>
-    <a href="#contact">Follow And Contact Us</a>
-    <div class="sep"></div>
-    <a class="small" href="#terms" data-open="t-terms">Terms And Conditions</a>
-    <a class="small" href="#terms" data-open="t-refund">Refund Policy</a>
-    <a class="small" href="#terms" data-open="t-play">Responsible Play (18+)</a>
-    <a class="small" href="#terms" data-open="t-privacy">Privacy</a>
+    <a class="go2" href="#join">Join Vision Premium</a>
+    <div class="grp">Results</div>
+    <a href="#results">Recent VIP wins</a>
+    <a href="#record">Our VIP record</a>
+    <div class="grp">About</div>
+    <a href="#why">What you get</a>
+    <a href="#how">How it works</a>
+    <a href="#faq">Questions and answers</a>
+    <div class="grp">Contact</div>
+    <a href="#contact">Follow and contact us</a>
+    <div class="legal">
+      <a href="#terms" data-open="t-terms">Terms</a><a href="#terms" data-open="t-refund">Refunds</a><a href="#terms" data-open="t-play">Responsible play (18+)</a><a href="#terms" data-open="t-privacy">Privacy</a>
+    </div>
   </nav>
 </div>
 
@@ -554,7 +583,7 @@ body.lock .fab{visibility:hidden}
       <div class="t"><b id="calRange">Loading…</b></div>
       <div class="cal" id="cal"></div>
       <div class="key"><span><i style="background:var(--win)"></i>All Picks Won</span><span><i style="background:var(--part)"></i>Some Picks Won</span><span><i style="background:var(--loss)"></i>None Won</span></div>
-      <div class="dayinfo hint" id="dayinfo"><span id="dayText">Tap Any Day To See Its Real VIP Card</span><button id="dayOpen" hidden>See Card</button></div>
+      <div class="dayinfo hint" id="dayinfo"><span id="dayText">Tap any day to see its real VIP card</span></div>
     </div>
   </section>
 
@@ -684,14 +713,14 @@ body.lock .fab{visibility:hidden}
 
   <!-- Contact -->
   <section id="contact">
-    <h2 class="title">Follow And Contact Us</h2>
-    <div class="socials">
-      <a class="soc" href="https://t.me/MatchVision707Bot" target="_blank" rel="noopener"><svg viewBox="0 0 100 74" aria-hidden="true"><path fill="#0D0D0D" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#0D0D0D"/></svg>VIP Help<small>@MatchVision707Bot</small></a>
-      <a class="soc" href="https://t.me/matchvision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg>Telegram<small>Free Channel</small></a>
-      <a class="soc" href="https://www.youtube.com/@MatchVision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg>YouTube<small>@MatchVision707</small></a>
-      <a class="soc" href="https://www.tiktok.com/@matchvision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>TikTok<small>@matchvision707</small></a>
-      <a class="soc" href="https://www.tiktok.com/@scorevision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#6B8A0E" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>Score Vision<small>@scorevision707</small></a>
-      <a class="soc off" id="wa" href="#" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>WhatsApp<small>Add Number</small></a>
+    <h2 class="title">Follow and contact us</h2>
+    <div class="socials icons">
+      <a class="soc" href="https://t.me/MatchVision707Bot" target="_blank" rel="noopener" aria-label="VIP Help on Telegram"><svg viewBox="0 0 100 74" aria-hidden="true"><path fill="#0D0D0D" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#0D0D0D"/></svg><i>VIP Help</i></a>
+      <a class="soc" href="https://t.me/matchvision707" target="_blank" rel="noopener" aria-label="Match Vision free channel on Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg><i>Telegram</i></a>
+      <a class="soc" href="https://www.youtube.com/@MatchVision707" target="_blank" rel="noopener" aria-label="Match Vision on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg><i>YouTube</i></a>
+      <a class="soc" href="https://www.tiktok.com/@matchvision707" target="_blank" rel="noopener" aria-label="Match Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><i>TikTok</i></a>
+      <a class="soc sv" href="https://www.tiktok.com/@scorevision707" target="_blank" rel="noopener" aria-label="Score Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><b class="sb">SV</b><i>Score Vision</i></a>
+      <a class="soc off" id="wa" href="#" aria-disabled="true" aria-label="Match Vision on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg><i>WhatsApp</i></a>
     </div>
   </section>
 
@@ -699,14 +728,14 @@ body.lock .fab{visibility:hidden}
     <a class="brand" href="#" aria-label="Back To Top"><img src="logo.png" alt="Match Vision"></a>
     <div class="flinks"><button data-goto="t-terms">Terms</button><button data-goto="t-refund">Refunds</button><button data-goto="t-play">Responsible Play</button><button data-goto="t-privacy">Privacy</button><button data-goto="faq">FAQ</button></div>
     <div>18+ Only. Predictions Are Based On Data And Analysis. No Outcome Is Guaranteed.</div>
-    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.1</div>
+    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.2</div>
   </footer>
 </main>
 
 <div class="bar hid" id="bar">
   <div class="in">
-    <button class="flag" id="barFlag" aria-label="Change Country">🇺🇸</button>
-    <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 Days · United States</span></button>
+    <button class="curbtn" id="curbtn" aria-haspopup="dialog" aria-label="Change Currency"><span id="curflag">🇺🇸</span><b id="curcode">USD</b><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button>
+    <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 Days · USD</span></button>
     <a class="btn lime" id="barPay" href="#join">Pay Now</a>
   </div>
 </div>
@@ -719,6 +748,15 @@ body.lock .fab{visibility:hidden}
     <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       <input id="q" type="search" placeholder="Search Your Country" autocomplete="off" aria-label="Search Your Country"></label>
     <div class="list" id="list"></div>
+  </div>
+</div>
+
+<div class="sheet" id="cursheet" hidden role="dialog" aria-modal="true" aria-labelledby="cur-t">
+  <div class="shade" data-close></div>
+  <div class="box">
+    <div class="grab"></div>
+    <div class="sh"><b id="cur-t">Choose your currency</b><button data-close aria-label="Close">✕</button></div>
+    <div class="list curlist" id="curlist"></div>
   </div>
 </div>
 
@@ -750,8 +788,14 @@ body.lock .fab{visibility:hidden}
 <script>
 /* ===== SETTINGS PHILIP CAN CHANGE ===== */
 const MVA = 'https://kwabenaphill.github.io/matchvision-app/';   // live data (results, pictures) comes from the Match Vision app site
-const USD_PRICE = 20;                        // price for everyone outside Ghana, in US dollars
-const FIXED = {};                    // countries with their own fixed price in their own money (Ghana GH₵ 250)
+const USD_PRICE = 20;                        // the one price: 20 US dollars for 30 days
+// 5.2 (Philip 20 Nov): HIS OWN round price per currency. No live rate, no messy decimals. Change a number here
+// and the whole page follows it (big price, bar, Join button, chat answers). A currency that is NOT in this list
+// still follows today's rate and is rounded.
+const PRICES = { USD: 20, NGN: 30000, GHS: 250, KES: 2600, ZAR: 360, GBP: 16, EUR: 18 };
+// The small currency switcher next to the price in the bottom bar (first one = the default for a new visitor).
+const SWITCH = [['US', 'USD'], ['NG', 'NGN'], ['GH', 'GHS'], ['KE', 'KES'], ['ZA', 'ZAR'], ['GB', 'GBP'], ['EU', 'EUR']];
+const FIXED = {};                    // one country, one fixed price (not used now: PRICES does it per currency)
 const BOT = 'https://t.me/MatchVision707Bot';
 const HERO = 'b';                             // default hero style: 'a' light, 'b' dark card, 'c' latest VIP ticket
 // Payment methods. live: true = can be used now. link: '' = the payment goes through the VIP bot for now.
@@ -777,7 +821,7 @@ $('yr').textContent = new Date().getFullYear();
 // ---------- Countries and money ----------
 const C = [
  ['US','United States','USD',1,'p'],['GB','United Kingdom','GBP',0.79,'p'],['GH','Ghana','GHS',15,'p'],['NG','Nigeria','NGN',1500,'p'],
- ['KE','Kenya','KES',130,'p'],['ZA','South Africa','ZAR',18,'p'],['CA','Canada','CAD',1.4,'p'],
+ ['KE','Kenya','KES',130,'p'],['ZA','South Africa','ZAR',18,'p'],['EU','Europe','EUR',0.9,'p'],['CA','Canada','CAD',1.4,'p'],
  ['DZ','Algeria','DZD',135],['AO','Angola','AOA',910],['AR','Argentina','ARS',1400],['AU','Australia','AUD',1.53],['AT','Austria','EUR',0.9],
  ['BH','Bahrain','BHD',0.376],['BD','Bangladesh','BDT',122],['BE','Belgium','EUR',0.9],['BJ','Benin','XOF',590],['BW','Botswana','BWP',13.6],
  ['BR','Brazil','BRL',5.5],['BF','Burkina Faso','XOF',590],['BI','Burundi','BIF',2950],['CM','Cameroon','XAF',590],['CN','China','CNY',7.2],
@@ -826,6 +870,7 @@ function money(v, cur) {
 }
 function priceOf(c) {
   if (FIXED[c[0]] !== undefined) return { text: money(FIXED[c[0]], c[2]), fixed: true };
+  if (PRICES[c[2]] !== undefined) return { text: money(PRICES[c[2]], c[2]), fixed: true };   // 5.2: his own round price
   const v = c[2] === 'USD' ? USD_PRICE : nice(USD_PRICE * (rates[c[2]] || 1));
   return { text: money(v, c[2]), fixed: false };
 }
@@ -839,14 +884,17 @@ const ICON = {
 function payLink() { const m = method && METHODS[method]; return (m && m.link) || BOT; }
 function render() {
   const p = priceOf(cur);
-  $('p-flag').textContent = flag(cur[0]); $('barFlag').textContent = flag(cur[0]);
+  $('p-flag').textContent = flag(cur[0]);
   $('p-name').textContent = cur[1];
-  $('p-cur').textContent = cur[2] === 'USD' ? 'Price In US Dollars' : 'About ' + p.text + ' In ' + curName(cur[2]);
-  const amt = $('amt'); amt.textContent = '$' + USD_PRICE; amt.classList.remove('flip'); void amt.offsetWidth; amt.classList.add('flip');
-  if ($('heroPrice')) $('heroPrice').textContent = '$' + USD_PRICE + ' / Month';
-  $('usd').textContent = cur[2] !== 'USD' ? '≈ ' + p.text + ' In ' + curName(cur[2]) + ' Today' : p.fixed ? 'Ghana Price, In Ghana Cedis' : (cur[2] === 'USD' ? 'In US Dollars' : 'About $' + USD_PRICE + ' USD, Shown In ' + curName(cur[2]));
-  $('fine').textContent = cur[2] !== 'USD' ? 'One Price For Everyone: $' + USD_PRICE + '. Your Amount Follows Today\'s Rate And Is Shown Before You Confirm.' : p.fixed ? 'One Fixed Price For Everyone In Ghana.' : cur[2] === 'USD' ? 'One Price For 30 Days Of Vision Premium.' : 'Rounded To A Friendly Number. The Exact Amount Is Shown Before You Confirm.';
-  $('baramt').textContent = '$' + USD_PRICE; $('barsub').textContent = '30 Days · ' + cur[1];
+  $('p-cur').textContent = cur[2] === 'USD' ? 'Price in US dollars' : p.text + ' in ' + curName(cur[2]);
+  const amt = $('amt'); amt.textContent = p.text; amt.classList.remove('flip'); void amt.offsetWidth; amt.classList.add('flip');
+  if ($('heroPrice')) $('heroPrice').textContent = p.text + ' / 30 days';
+  $('usd').textContent = cur[2] === 'USD' ? 'In US dollars' : '≈ $' + USD_PRICE + ' USD';
+  $('fine').textContent = cur[2] === 'USD' ? 'One price for 30 days of Vision Premium.'
+    : p.fixed ? 'One price for everyone: $' + USD_PRICE + ', shown here in your own money.'
+    : 'One price for everyone: $' + USD_PRICE + '. Your amount follows today\'s rate and is shown before you confirm.';
+  $('baramt').textContent = p.text; $('barsub').textContent = '30 Days · ' + cur[2];
+  $('curflag').textContent = flag(cur[0]); $('curcode').textContent = cur[2];
   const list = methodsFor(cur[0]);
   if (!method || list.indexOf(method) < 0 || !METHODS[method].live) method = list.filter(function (k) { return METHODS[k].live; })[0] || null;
   $('methods').innerHTML = list.map(function (k) {
@@ -856,7 +904,7 @@ function render() {
       (m.live ? '<span class="rd"></span>' : '<span class="tag">Soon</span>') + '</button>';
   }).join('');
   const m = method && METHODS[method];
-  $('paytext').textContent = m ? 'Pay $' + USD_PRICE + ' With ' + (method === 'card' ? 'Card' : m.name) : 'Pay $' + USD_PRICE;
+  $('paytext').textContent = m ? 'Pay ' + p.text + ' With ' + (method === 'card' ? 'Card' : m.name) : 'Pay ' + p.text;
   $('paybtn').href = payLink();
   $('safetext').textContent = (m && m.link) ? 'Secure Checkout. Your Private VIP Link Comes Right After Payment.' : 'You Finish This Payment With Our VIP Assistant. Your Private Link Comes Right After It Is Confirmed.';
   try { localStorage.setItem('vp-cc', cur[0]); } catch (e) {}
@@ -900,7 +948,26 @@ function fill() {
 }
 function openSheet() { fill(); sheet.hidden = false; lock(true); }
 function closeSheet() { if (sheet.hidden) return; sheet.hidden = true; lock(false); q.value = ''; }
-[$('picker'), $('barFlag'), $('barPrice')].forEach(function (b) { b.addEventListener('click', openSheet); });
+[$('picker'), $('barPrice')].forEach(function (b) { b.addEventListener('click', openSheet); });
+
+// ---------- 5.2: the small currency switcher (7 currencies, his own prices) ----------
+const cursheet = $('cursheet');
+function fillCur() {
+  $('curlist').innerHTML = SWITCH.map(function (x) {
+    const c = C.find(function (y) { return y[0] === x[0]; }); if (!c) return '';
+    return '<button type="button" data-cc="' + c[0] + '"' + (c[2] === cur[2] ? ' class="on"' : '') + '>' +
+      '<span class="f">' + flag(c[0]) + '</span><span class="n">' + c[2] + ' · ' + curName(c[2]) + '</span>' +
+      '<span class="c">' + priceOf(c).text + '</span></button>';
+  }).join('');
+}
+function openCur() { fillCur(); cursheet.hidden = false; lock(true); }
+function closeCur() { if (cursheet.hidden) return; cursheet.hidden = true; lock(false); }
+$('curbtn').addEventListener('click', openCur);
+cursheet.addEventListener('click', function (e) {
+  if (e.target.closest('[data-close]') || e.target === cursheet) return closeCur();
+  const b = e.target.closest('button[data-cc]'); if (!b) return;
+  cur = C.find(function (c) { return c[0] === b.dataset.cc; }) || C[0]; method = null; render(); closeCur();
+});
 q.addEventListener('input', fill);
 $('list').addEventListener('click', function (e) {
   const b = e.target.closest('button[data-cc]'); if (!b) return;
@@ -911,7 +978,25 @@ sheet.addEventListener('click', function (e) { if (e.target.closest('[data-close
 // ---------- Menu ----------
 const drawer = $('drawer'), menu = $('menu');
 function setMenu(open) { if (drawer.hidden === !open) return; drawer.hidden = !open; menu.setAttribute('aria-expanded', String(open)); lock(open); }
-menu.addEventListener('click', function () { setMenu(true); });
+menu.addEventListener('click', function () { setMenu(true); markMenu(); });
+// 5.2: swipe the menu to the left to close it
+(function () { let x0 = null;
+  drawer.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  drawer.addEventListener('touchend', function (e) {
+    if (x0 !== null && e.changedTouches[0].clientX - x0 < -55) setMenu(false);
+    x0 = null;
+  }, { passive: true });
+})();
+// 5.2: the part of the page he is on is lime in the menu
+function markMenu() {
+  const links = [].slice.call(drawer.querySelectorAll('a[href^="#"]:not(.go2)'));
+  let on = null;
+  links.forEach(function (a) {
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el && el.getBoundingClientRect().top <= 140) on = a;
+  });
+  links.forEach(function (a) { a.classList.toggle('on', a === on); });
+}
 drawer.addEventListener('click', function (e) {
   if (e.target.closest('[data-close]')) return setMenu(false);
   const a = e.target.closest('a'); if (!a) return;
@@ -928,10 +1013,22 @@ document.addEventListener('click', function (e) { const b = e.target.closest('[d
 
 // ---------- Header line on scroll ----------
 const topbar = $('top');
-addEventListener('scroll', function () { topbar.classList.toggle('scrolled', scrollY > 24); }, { passive: true });
+let lastY = 0, hideOn = 140;                      // 5.2: more room on the screen, the header comes back at once
+addEventListener('scroll', function () {
+  const y = Math.max(0, scrollY);
+  topbar.classList.toggle('scrolled', y > 24);
+  if (y < hideOn || !drawer.hidden) topbar.classList.remove('up');
+  else if (y > lastY + 6) topbar.classList.add('up');
+  else if (y < lastY - 6) topbar.classList.remove('up');
+  lastY = y;
+}, { passive: true });
 // Pay bar: hidden while the top Join button is on screen (or below it), shows once they scroll past it
-(function () { const j = document.querySelector('.hero.b .join2'), bar = $('bar'); if (!j || !bar) return;
-  function chk() { const hide = j.getBoundingClientRect().bottom > 0; bar.classList.toggle('hid', hide); document.body.classList.toggle('nobar', hide); }
+(function () { const j = document.querySelector('.hero.b .join2'), joinSec = $('join'), bar = $('bar'); if (!bar) return;
+  function seen(el) { if (!el) return false; const r = el.getBoundingClientRect(); return r.top < innerHeight - 40 && r.bottom > 70; }
+  function chk() {                                  // 5.2: no double pay button - the bar goes while a payment is in view
+    const hide = (j && j.getBoundingClientRect().bottom > 0) || seen(joinSec);
+    bar.classList.toggle('hid', hide); document.body.classList.toggle('nobar', hide);
+  }
   addEventListener('scroll', chk, { passive: true }); addEventListener('resize', chk); chk(); })();
 
 // ---------- Image viewer ----------
@@ -965,10 +1062,10 @@ function markCard() {
   [].slice.call(document.querySelectorAll('#dots i')).forEach(function (d, i) { d.classList.toggle('on', i === best); });
 }
 let rq = 0; $('rail').addEventListener('scroll', function () { cancelAnimationFrame(rq); rq = requestAnimationFrame(markCard); }, { passive: true });
-['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { $('rail').addEventListener(ev, function () { pausedUntil = Date.now() + 7000; }, { passive: true }); });
-$('railPrev').addEventListener('click', function () { pausedUntil = Date.now() + 7000; goCard(cardAt - 1); });
-$('railNext').addEventListener('click', function () { pausedUntil = Date.now() + 7000; goCard(cardAt + 1); });
-$('dots').addEventListener('click', function (e) { const d = e.target.closest('i'); if (d) { pausedUntil = Date.now() + 7000; goCard(+d.dataset.i); } });
+['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { $('rail').addEventListener(ev, function () { pausedUntil = Date.now() + 4000; }, { passive: true }); });
+$('railPrev').addEventListener('click', function () { pausedUntil = Date.now() + 4000; goCard(cardAt - 1); });
+$('railNext').addEventListener('click', function () { pausedUntil = Date.now() + 4000; goCard(cardAt + 1); });
+$('dots').addEventListener('click', function (e) { const d = e.target.closest('i'); if (d) { pausedUntil = Date.now() + 4000; goCard(+d.dataset.i); } });
 function startAuto() {
   if (auto || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let seen = false;
@@ -1037,18 +1134,15 @@ function showRecord(list) {
   $('cal').addEventListener('click', function (e) {
     const b = e.target.closest('button[data-i]'); if (!b) return;
     const r = days[+b.dataset.i];
-    $('dayinfo').hidden = false; $('dayinfo').classList.remove('hint');
-    $('dayText').textContent = words(r.date) + ': ' + r.won + ' Of ' + r.of + ' VIP Picks Won' + (r.odds ? ' · Total Odds ' + r.odds.toFixed(2) : '');
-    const si = shots.findIndex(function (s) { return s.date === r.date; });
-    $('dayOpen').hidden = si < 0; $('dayOpen').onclick = function () { openViewer(si); };
-    if (si >= 0) openViewer(si);
+    const si = shots.findIndex(function (s) { return s.date === r.date; });   // 5.2: the card opens straight away,
+    if (si >= 0) openViewer(si);                                             // and the hint box never changes
   });
   const wins = withImg.map(function (r, v) { return { r: r, v: v }; }).filter(function (x) { return x.r.won === x.r.of; });
   $('rail').innerHTML = wins.map(function (x, i) { const r = x.r;
     const c = r.won === r.of ? '' : r.won === 0 ? 'll' : 'pp';  // green, red or amber
     return '<button type="button" class="shot" data-s="' + i + '" data-v="' + x.v + '"><img loading="lazy" src="' + MVA + r.img + '" alt="Vision Premium ' + words(r.date) + '"><div>' + words(r.date) + '<span class="' + c + '">' + r.won + '/' + r.of + ' Won</span></div></button>';
   }).join('') || '<p class="lead">Our Recent VIP Wins Show Here.</p>';
-  $('rail').onclick = function (e) { const b = e.target.closest('.shot'); if (!b) return; if (+b.dataset.s !== cardAt) { pausedUntil = Date.now() + 7000; goCard(+b.dataset.s); } else openViewer(+b.dataset.v); };
+  $('rail').onclick = function (e) { const b = e.target.closest('.shot'); if (!b) return; if (+b.dataset.s !== cardAt) { pausedUntil = Date.now() + 4000; goCard(+b.dataset.s); } else openViewer(+b.dataset.v); };
   $('dots').innerHTML = wins.map(function (_, i) { return '<i data-i="' + i + '"></i>'; }).join('');
   setTimeout(function () { goCard(0, false); markCard(); startAuto(); }, 60);
   recDays = days;
