@@ -72,7 +72,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .drawer .sep{height:1px;background:#2A2A2E;margin:10px 12px}
 .drawer a.small{font-size:15px;color:#C9C9CE;padding:11px 12px}
 /* 5.2: one screen, grouped, the part he is on is lime */
-.drawer .grp{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A8A90;margin:12px 12px 2px}
+.drawer .grp{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A8A90;margin:12px 12px 4px}
+/* D2 (his pick 20 Nov): every group in its own rounded card with thin lines between the rows */
+.drawer .gcard{background:#FFFFFF0A;border:1px solid #FFFFFF14;border-radius:14px;overflow:hidden}
+.drawer .gcard a{border-radius:0}
+.drawer .gcard a+a{border-top:1px solid #FFFFFF14}
 .drawer a{padding:11px 12px;font-size:16px}
 .drawer a.on{color:var(--lime)}
 .drawer a.on::after{background-color:#DFFB5126}
@@ -202,8 +206,11 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .honest b{display:block;font-family:var(--h);font-size:16.5px;font-weight:800;letter-spacing:-.01em}
 .honest span{display:block;color:var(--ink2);font-size:14px;line-height:1.5;margin-top:2px}
 .dayinfo{margin-top:14px;background:#FFFFFF0D;border:1px solid #FFFFFF14;border-radius:14px;padding:12px 14px;font-size:14px;color:#E4E4E7;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.dayinfo.hint{justify-content:flex-start;color:#C8C8CC;font-weight:600}
-.dayinfo.hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px #DFFB5126;flex:none}
+.dayinfo.hint{display:inline-flex;align-self:flex-start;width:auto;justify-content:flex-start;color:#D4D4D8;
+  font-weight:600;border-radius:999px;padding:9px 15px;background:#FFFFFF0D;border:1px solid #FFFFFF1A}
+.dayinfo.hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;
+  animation:hintdot 1.9s ease-in-out infinite}                      /* A2, his pick 20 Nov */
+@keyframes hintdot{0%,100%{box-shadow:0 0 0 4px #DFFB5126}50%{box-shadow:0 0 0 9px #DFFB510F}}
 .dayinfo button{border:0;background:var(--lime);color:var(--ink);font-weight:800;font-size:13px;border-radius:10px;padding:8px 12px;flex:none}
 
 /* ===== Latest results gallery ===== */
@@ -241,6 +248,10 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .picker .chg{flex:none;font-size:13px;font-weight:800;background:var(--dark);color:var(--lime);border-radius:999px;padding:8px 13px}
 .price{background:var(--dark);color:#fff;padding:24px 20px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
 .price::after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#DFFB5133,transparent 70%)}
+/* B3 (his pick 20 Nov): the glow sits behind the price, with a small VIP badge over it */
+.price::before{content:"";position:absolute;left:-40px;bottom:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,#DFFB5140,transparent 68%)}
+.price>*{position:relative}
+.price .vip{align-self:flex-start;background:var(--lime);color:var(--ink);font-family:var(--h);font-weight:800;font-size:11px;letter-spacing:.12em;border-radius:999px;padding:4px 11px;margin-bottom:2px}
 .price .lbl{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA0}
 .price .row1{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .price .big{font-family:var(--h);font-size:clamp(42px,12vw,56px);font-weight:800;letter-spacing:-.035em;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums}
@@ -307,13 +318,16 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .socials .soc small{color:var(--sub);font-size:13px;font-weight:600;text-align:right;margin:0}
 .socials .soc.off{display:none}
 /* 5.2: icons only (no @names). Each icon opens its own link; the name under it stays for screen readers. */
-.socials.icons{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:14px;background:none;padding:4px 0 0}
-.socials.icons .soc{position:relative;display:grid;place-items:center;width:62px;height:62px;padding:0;border-radius:20px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0F}
-.socials.icons .soc svg{width:30px;height:30px}
-.socials.icons .soc i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.socials.icons .soc:active{transform:scale(.95)}
+/* C3 (his pick 20 Nov): a clean grid of small cards, icon with a short name under it, no @names */
+.socials.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:none;padding:2px 0 0}
+.socials.icons .soc{position:relative;display:grid;justify-items:center;align-content:center;gap:7px;width:auto;height:auto;
+  padding:15px 8px;border-radius:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0D;
+  font-size:12.5px;font-weight:800;color:var(--ink);text-align:center}
+.socials.icons .soc svg{width:28px;height:28px}
+.socials.icons .soc i{font-style:normal;line-height:1.2}
+.socials.icons .soc:active{transform:scale(.97)}
 .socials.icons .soc.off{display:none}
-.socials.icons .soc .sb{position:absolute;right:-3px;bottom:-3px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10.5px;font-weight:800;line-height:1;padding:4px 5px;border-radius:8px;border:2px solid var(--bg)}
+.socials.icons .soc .sb{position:absolute;right:8px;top:8px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10px;font-weight:800;line-height:1;padding:3px 5px;border-radius:7px}
 footer{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;color:var(--dim);font-size:12.5px;line-height:1.6;padding-bottom:10px}
 footer .flinks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px}
 footer .flinks button{border:0;background:none;padding:0;font-weight:700;color:var(--ink2);font-size:13px}
@@ -400,6 +414,10 @@ body.lock .fab{visibility:hidden}
 .chat .who small{display:flex;align-items:center;gap:6px;color:#4ADE80;font-size:12px;font-weight:600}
 .chat .who small i{width:7px;height:7px;border-radius:50%;background:#22C55E}
 .chat .cx{width:36px;height:36px;border-radius:11px;border:0;background:#FFFFFF12;color:#fff;font-size:16px}
+.chat .lang{display:inline-flex;align-items:center;gap:4px;border:1px solid #FFFFFF1F;background:#FFFFFF0A;color:#fff;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700;flex:none}
+.langbox{position:absolute;right:56px;top:58px;z-index:3;background:#17181A;border:1px solid #FFFFFF1F;border-radius:14px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;box-shadow:0 18px 40px #00000073}
+.langbox button{border:0;background:none;color:#fff;text-align:left;padding:9px 10px;border-radius:9px;font-size:13px;font-weight:600}
+.langbox button:hover{background:#FFFFFF14}
 .msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:radial-gradient(#FFFFFF08 1px,transparent 1px) 0 0/18px 18px}
 .msg{max-width:86%;padding:11px 14px;border-radius:16px;font-size:14px;line-height:1.5;animation:up .3s ease}
 .msg.bot{align-self:flex-start;background:#1C1D1F;border:1px solid #FFFFFF12;border-bottom-left-radius:6px}
@@ -508,14 +526,11 @@ body.lock .fab{visibility:hidden}
     <div class="head"><img src="logo.png" alt="Match Vision"><button class="x" data-close aria-label="Close Menu">✕</button></div>
     <a class="go2" href="#join">Join Vision Premium</a>
     <div class="grp">Results</div>
-    <a href="#results">Recent VIP wins</a>
-    <a href="#record">Our VIP record</a>
+    <div class="gcard"><a href="#results">Recent VIP wins</a><a href="#record">Our VIP record</a></div>
     <div class="grp">About</div>
-    <a href="#why">What you get</a>
-    <a href="#how">How it works</a>
-    <a href="#faq">Questions and answers</a>
+    <div class="gcard"><a href="#why">What you get</a><a href="#how">How it works</a><a href="#faq">Questions and answers</a></div>
     <div class="grp">Contact</div>
-    <a href="#contact">Follow and contact us</a>
+    <div class="gcard"><a href="#contact">Follow and contact us</a></div>
     <div class="legal">
       <a href="#terms" data-open="t-terms">Terms</a><a href="#terms" data-open="t-refund">Refunds</a><a href="#terms" data-open="t-play">Responsible play (18+)</a><a href="#terms" data-open="t-privacy">Privacy</a>
     </div>
@@ -602,6 +617,7 @@ body.lock .fab{visibility:hidden}
         </button>
       </div>
       <div class="price">
+        <span class="vip">VIP</span>
         <div class="lbl">Step 2 · Your Price</div>
         <div class="row1"><div class="big" id="amt">$20</div><div class="per">For 30 Days</div></div>
         <div class="usd" id="usd">In US Dollars</div>
@@ -729,7 +745,7 @@ body.lock .fab{visibility:hidden}
     <a class="brand" href="#" aria-label="Back To Top"><img src="logo.png" alt="Match Vision"></a>
     <div class="flinks"><button data-goto="t-terms">Terms</button><button data-goto="t-refund">Refunds</button><button data-goto="t-play">Responsible Play</button><button data-goto="t-privacy">Privacy</button><button data-goto="faq">FAQ</button></div>
     <div>18+ Only. Predictions Are Based On Data And Analysis. No Outcome Is Guaranteed.</div>
-    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.2</div>
+    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.3</div>
   </footer>
 </main>
 
@@ -773,10 +789,11 @@ body.lock .fab{visibility:hidden}
 
 <button class="fab" id="fab" aria-label="Ask Us A Question"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg><span class="badge">1</span></button>
 <div class="chat" id="chat" hidden role="dialog" aria-label="Vision Premium Help">
-  <div class="ch"><span class="av"><img src="logo.png" alt=""></span><div class="who"><b>Vision Premium Help</b><small><i></i>Online · Answers In Seconds</small></div><button class="cx" id="chatX" aria-label="Close Chat">✕</button></div>
+  <div class="ch"><span class="av"><img src="logo.png" alt=""></span><div class="who"><b>Vision Premium Help</b><small><i></i>Online · Answers In Seconds</small></div><button class="lang" id="langbtn" aria-label="Change Language">🌐 <b id="langcode">EN</b> ▾</button><button class="cx" id="chatX" aria-label="Close Chat">✕</button></div>
+  <div class="langbox" id="langbox" hidden></div>
   <div class="msgs" id="msgs"></div>
   <div class="chips" id="chips"></div>
-  <form class="cin" id="cform"><input id="cq" autocomplete="off" placeholder="Ask Anything About Vision Premium" aria-label="Your Question"><button aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12l-11.5 1.9z"/></svg></button></form>
+  <form class="cin" id="cform"><input id="cq" autocomplete="off" placeholder="Ask me anything…" aria-label="Your Question"><button aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12l-11.5 1.9z"/></svg></button></form>
 </div>
 
 <div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="VIP Result">
@@ -1186,49 +1203,482 @@ $('faqMore').addEventListener('click', function () {
   this.textContent = all ? 'Show Fewer Questions' : 'Show All Questions';
 });
 
-// ---------- Help chat: answers from this page, or hands over to the team ----------
+// ---------- Help chat 5.2 (Philip 20 Nov, #1795169729980): many more answers, grouped by topic,
+// word matching that forgives typos and extra words, 12 languages (it answers in the language he writes in),
+// and the pick time in GMT plus his own country. Nothing here posts or pays: it only answers. ----------
 const chat = $('chat'), fab = $('fab');
-const ANS = [
-  [/price|cost|how much|pay how much|\$|cedi|naira|pound|euro|amount|fee/i, function () { const p = priceOf(cur); return 'Vision Premium Is $' + USD_PRICE + ' For 30 Days' + (cur[2] === 'USD' ? '.' : ', About ' + p.text + ' In ' + cur[1] + ' Today.') + ' Change Your Country In Step 1 To See Your Own Money.'; }, 'pay'],
-  [/how (do|can) i pay|payment|momo|mobile money|card|visa|mastercard|google pay|apple pay|bank|mpesa|m-pesa/i, function () { return 'Select Your Country, Choose How To Pay And Tap Pay. In Ghana You Pay By Mobile Money; Elsewhere By Card. Google Pay, Apple Pay And Bank Transfer Are Coming Soon.'; }, 'pay'],
-  [/when|time|morning|what time|kick/i, function () { return 'The VIP Picks Are Posted In The Room Every Day Around 05:00 Ghana Time (GMT), Before Kick-Off.'; }],
-  [/guarantee|sure|100|fixed|never lose|always win|lose|loss/i, function () { return 'No Prediction Is Ever Guaranteed And Losing Days Can Happen. We Post Our Strongest Picks And Show Every Result Honestly, Wins And Losses. See Our VIP Record Above.'; }, 'record'],
-  [/refund|money back/i, function () { return 'Ask Within 24 Hours Of Paying If You Have Not Joined The Room Yet, And We Refund In Full. After You Join, Payments Are Not Refunded, But If A Problem Is On Our Side We Add Free Days.'; }, 'refund'],
-  [/link|join link|not work|expired|invite/i, function () { return 'Your Private Join Link Comes As Soon As Your Payment Is Confirmed (Usually Within 30 Minutes). It Works Once, For You Only. If It Does Not Work, Message Us And We Send A New One.'; }, 'talk'],
-  [/long|days|month|renew|one.?time|cancel/i, function () { return 'One Payment Gives You 30 Days In The Room. Nothing Renews By Itself: We Remind You Before It Ends And You Pay Again To Stay.'; }],
-  [/what do i get|picks|how many|odds|games|leagues/i, function () { return 'Every Day You Get Our Safest VIP Picks: 1 To 7 Short Games, Usually About 2 To 4 Total Odds, Posted In A Private Room Before Kick-Off.'; }],
-  [/record|result|win rate|proof|won/i, function () { let W = 0, N = 0; recDays.forEach(function (r) { W += r.won; N += r.of; }); return N ? 'So Far ' + W + ' Of ' + N + ' VIP Picks Won (' + Math.round(W * 100 / N) + '%) Over ' + recDays.length + ' Days. Every Day Is In Our Record, Wins And Losses.' : 'Every VIP Day Is In Our Record Above, Wins And Losses.'; }, 'record'],
-  [/telegram|need telegram|app/i, function () { return 'Yes, Vision Premium Is A Private Telegram Room, So You Need Telegram (Free) To Join.'; }],
-  [/safe|scam|trust|real|legit/i, function () { return 'Vision Premium Is Run By The Match Vision Team, The Same Team Behind Our Daily YouTube Predictions. Every VIP Result Is Shown Above, And Every Payment Is Recorded With Its Reference.'; }, 'record'],
-  [/human|person|admin|talk|speak|contact|help|message/i, function () { return 'Of Course. Tap Below To Message The Match Vision Team Directly. We Reply As Soon As We Can.'; }, 'talk']
+const LANGS = [['en', 'EN', 'English'], ['fr', 'FR', 'Français'], ['es', 'ES', 'Español'], ['pt', 'PT', 'Português'],
+  ['ar', 'AR', 'العربية'], ['sw', 'SW', 'Kiswahili'], ['ha', 'HA', 'Hausa'], ['yo', 'YO', 'Yorùbá'],
+  ['ig', 'IG', 'Igbo'], ['pcm', 'PCM', 'Pidgin'], ['de', 'DE', 'Deutsch'], ['hi', 'HI', 'हिन्दी']];
+let lang = 'en', chatCC = null;
+try { const s = localStorage.getItem('vp-lang'); if (s && LANGS.some(function (l) { return l[0] === s; })) lang = s; } catch (e) {}
+
+// Time zones for the countries people ask about most (real zones, so summer time is handled).
+const TZ = { NG: 'Africa/Lagos', GH: 'Africa/Accra', KE: 'Africa/Nairobi', ZA: 'Africa/Johannesburg', TZ: 'Africa/Dar_es_Salaam',
+  UG: 'Africa/Kampala', RW: 'Africa/Kigali', ZM: 'Africa/Lusaka', ZW: 'Africa/Harare', MW: 'Africa/Blantyre',
+  MZ: 'Africa/Maputo', BW: 'Africa/Gaborone', NA: 'Africa/Windhoek', CM: 'Africa/Douala', CI: 'Africa/Abidjan',
+  SN: 'Africa/Dakar', ML: 'Africa/Bamako', BF: 'Africa/Ouagadougou', NE: 'Africa/Niamey', TG: 'Africa/Lome',
+  BJ: 'Africa/Porto-Novo', GN: 'Africa/Conakry', SL: 'Africa/Freetown', LR: 'Africa/Monrovia', GM: 'Africa/Banjul',
+  CD: 'Africa/Kinshasa', ET: 'Africa/Addis_Ababa', EG: 'Africa/Cairo', MA: 'Africa/Casablanca', DZ: 'Africa/Algiers',
+  TN: 'Africa/Tunis', GB: 'Europe/London', IE: 'Europe/Dublin', FR: 'Europe/Paris', DE: 'Europe/Berlin',
+  ES: 'Europe/Madrid', IT: 'Europe/Rome', PT: 'Europe/Lisbon', NL: 'Europe/Amsterdam', BE: 'Europe/Brussels',
+  CH: 'Europe/Zurich', AT: 'Europe/Vienna', SE: 'Europe/Stockholm', NO: 'Europe/Oslo', DK: 'Europe/Copenhagen',
+  FI: 'Europe/Helsinki', PL: 'Europe/Warsaw', RO: 'Europe/Bucharest', GR: 'Europe/Athens', TR: 'Europe/Istanbul',
+  UA: 'Europe/Kyiv', US: 'America/New_York', CA: 'America/Toronto', MX: 'America/Mexico_City', BR: 'America/Sao_Paulo',
+  AR: 'America/Argentina/Buenos_Aires', CO: 'America/Bogota', JM: 'America/Jamaica', TT: 'America/Port_of_Spain',
+  IN: 'Asia/Kolkata', PK: 'Asia/Karachi', BD: 'Asia/Dhaka', PH: 'Asia/Manila', ID: 'Asia/Jakarta', MY: 'Asia/Kuala_Lumpur',
+  SG: 'Asia/Singapore', CN: 'Asia/Shanghai', JP: 'Asia/Tokyo', KR: 'Asia/Seoul', HK: 'Asia/Hong_Kong',
+  AE: 'Asia/Dubai', SA: 'Asia/Riyadh', QA: 'Asia/Qatar', KW: 'Asia/Kuwait', BH: 'Asia/Bahrain', OM: 'Asia/Muscat',
+  IL: 'Asia/Jerusalem', LB: 'Asia/Beirut', AU: 'Australia/Sydney', NZ: 'Pacific/Auckland' };
+
+function pickTime(code) {                              // 05:00 GMT shown in that country's own clock
+  const tz = TZ[code]; if (!tz) return null;
+  const d = new Date(); d.setUTCHours(5, 0, 0, 0);
+  try { return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: tz, hour12: false }).format(d); }
+  catch (e) { return null; }
+}
+const CC_WORDS = { NG: ['nigeria', 'naija', 'lagos', 'abuja'], GH: ['ghana', 'accra', 'kumasi'], KE: ['kenya', 'nairobi'],
+  ZA: ['south africa', 'joburg', 'johannesburg', 'cape town'], TZ: ['tanzania'], UG: ['uganda'], RW: ['rwanda'],
+  ZM: ['zambia'], ZW: ['zimbabwe'], MW: ['malawi'], MZ: ['mozambique'], CM: ['cameroon', 'cameroun'],
+  CI: ['ivory coast', "cote d'ivoire", 'cote divoire'], SN: ['senegal'], CD: ['congo'], ET: ['ethiopia'],
+  EG: ['egypt'], MA: ['morocco', 'maroc'], DZ: ['algeria'], GB: ['uk', 'england', 'britain', 'london', 'united kingdom', 'scotland'],
+  US: ['usa', 'united states', 'america', 'new york'], CA: ['canada'], FR: ['france', 'paris'], DE: ['germany', 'deutschland'],
+  ES: ['spain', 'espana'], IT: ['italy', 'italia'], PT: ['portugal'], NL: ['netherlands', 'holland'], BE: ['belgium'],
+  SE: ['sweden'], NO: ['norway'], TR: ['turkey', 'turkiye'], IN: ['india'], PK: ['pakistan'], BD: ['bangladesh'],
+  PH: ['philippines'], ID: ['indonesia'], MY: ['malaysia'], AE: ['dubai', 'uae', 'emirates'], SA: ['saudi'],
+  QA: ['qatar'], BR: ['brazil', 'brasil'], MX: ['mexico'], AU: ['australia'], JM: ['jamaica'] };
+
+const T = {   // every button and line of the chat, in each language
+  en: { greet: 'Hi 👋 Welcome to Vision Premium. Ask me anything about the price, payment, picks or your join link.',
+    ph: 'Ask me anything…', none: 'I do not have that one yet. Tap below and the Match Vision team will answer you.',
+    pay: 'Go to payment', rec: 'See our VIP record', ref: 'Refund policy', talk: 'Message the team', human: 'Talk to a human',
+    chips: ['How much is it?', 'How do I pay?', 'When do the picks come?', 'Are the picks guaranteed?', 'Can I get a refund?', 'Talk to a human'] },
+  fr: { greet: 'Bonjour 👋 Bienvenue dans Vision Premium. Posez vos questions sur le prix, le paiement, les pronostics ou votre lien.',
+    ph: 'Posez votre question…', none: "Je n'ai pas encore cette réponse. Touchez ci-dessous, l'équipe Match Vision vous répondra.",
+    pay: 'Aller au paiement', rec: 'Voir notre historique VIP', ref: 'Politique de remboursement', talk: "Écrire à l'équipe", human: 'Parler à une personne',
+    chips: ['Quel est le prix ?', 'Comment payer ?', 'À quelle heure arrivent les pronostics ?', 'Les pronostics sont-ils garantis ?', 'Puis-je être remboursé ?', 'Parler à une personne'] },
+  es: { greet: 'Hola 👋 Bienvenido a Vision Premium. Pregúntame por el precio, el pago, los pronósticos o tu enlace.',
+    ph: 'Pregúntame lo que quieras…', none: 'Todavía no tengo esa respuesta. Toca abajo y el equipo de Match Vision te responde.',
+    pay: 'Ir al pago', rec: 'Ver nuestro historial VIP', ref: 'Política de reembolso', talk: 'Escribir al equipo', human: 'Hablar con una persona',
+    chips: ['¿Cuánto cuesta?', '¿Cómo pago?', '¿A qué hora llegan los pronósticos?', '¿Están garantizados?', '¿Puedo pedir reembolso?', 'Hablar con una persona'] },
+  pt: { greet: 'Olá 👋 Bem-vindo ao Vision Premium. Pergunte sobre o preço, o pagamento, os palpites ou o seu link.',
+    ph: 'Pergunte o que quiser…', none: 'Ainda não tenho essa resposta. Toque abaixo e a equipa Match Vision responde.',
+    pay: 'Ir para o pagamento', rec: 'Ver o nosso histórico VIP', ref: 'Política de reembolso', talk: 'Falar com a equipa', human: 'Falar com uma pessoa',
+    chips: ['Quanto custa?', 'Como pago?', 'A que horas chegam os palpites?', 'São garantidos?', 'Posso ser reembolsado?', 'Falar com uma pessoa'] },
+  ar: { greet: 'مرحبا 👋 أهلا بك في Vision Premium. اسألني عن السعر أو الدفع أو التوقعات أو رابط الدخول.',
+    ph: 'اسألني أي شيء…', none: 'ليس لدي هذا الجواب بعد. اضغط بالأسفل وفريق Match Vision سيرد عليك.',
+    pay: 'الذهاب إلى الدفع', rec: 'سجل نتائجنا', ref: 'سياسة الاسترجاع', talk: 'مراسلة الفريق', human: 'التحدث مع شخص',
+    chips: ['كم السعر؟', 'كيف أدفع؟', 'متى تصل التوقعات؟', 'هل التوقعات مضمونة؟', 'هل يمكن استرجاع المال؟', 'التحدث مع شخص'] },
+  sw: { greet: 'Habari 👋 Karibu Vision Premium. Niulize kuhusu bei, malipo, utabiri au kiungo chako.',
+    ph: 'Niulize chochote…', none: 'Sina jibu hilo bado. Bonyeza hapa chini na timu ya Match Vision itakujibu.',
+    pay: 'Nenda kwenye malipo', rec: 'Ona rekodi yetu ya VIP', ref: 'Sera ya kurudishiwa pesa', talk: 'Tuma ujumbe kwa timu', human: 'Ongea na mtu',
+    chips: ['Bei ni kiasi gani?', 'Nalipaje?', 'Utabiri unakuja saa ngapi?', 'Je, utabiri una uhakika?', 'Naweza kurudishiwa pesa?', 'Ongea na mtu'] },
+  ha: { greet: 'Sannu 👋 Barka da zuwa Vision Premium. Tambaye ni game da kudi, biya, hasashe ko hanyar shiga.',
+    ph: 'Tambaye ni komai…', none: 'Ban san wannan ba tukuna. Danna kasa, tawagar Match Vision za ta amsa maka.',
+    pay: 'Je zuwa biya', rec: 'Duba tarihin VIP', ref: 'Dokar mayar da kudi', talk: 'Aika sako ga tawaga', human: 'Yi magana da mutum',
+    chips: ['Nawa ne kudin?', 'Yaya zan biya?', 'Yaushe hasashe ke zuwa?', 'Hasashe tabbatacce ne?', 'Ana iya mayar min da kudi?', 'Yi magana da mutum'] },
+  yo: { greet: 'Pẹlẹ o 👋 Kaabo si Vision Premium. Bi mi nipa owo, isanwo, asọtẹlẹ tabi ọna abawọle rẹ.',
+    ph: 'Bi mi ni ohunkohun…', none: 'Mi o ni idahun yẹn sibẹsibẹ. Tẹ ni isalẹ, ẹgbẹ Match Vision yoo dahun fun ọ.',
+    pay: 'Lọ si isanwo', rec: 'Wo akọọlẹ VIP wa', ref: 'Eto ipadabọ owo', talk: 'Fi ifiranṣẹ ranṣẹ si ẹgbẹ', human: 'Ba eniyan sọrọ',
+    chips: ['Elo ni?', 'Bawo ni mo ṣe le san?', 'Igba wo ni asọtẹlẹ de?', 'Ṣe asọtẹlẹ daju?', 'Ṣe mo le gba owo mi pada?', 'Ba eniyan sọrọ'] },
+  ig: { greet: 'Ndewo 👋 Nnọọ na Vision Premium. Jụọ m gbasara ọnụahịa, ịkwụ ụgwọ, amụma ma ọ bụ njikọ gị.',
+    ph: 'Jụọ m ihe ọbụla…', none: 'Enwebeghị m azịza ahụ. Pịa n’okpuru, ndị otu Match Vision ga-aza gị.',
+    pay: 'Gaa na ịkwụ ụgwọ', rec: 'Lee ndekọ VIP anyị', ref: 'Iwu nkweghachi ego', talk: 'Zigara ndị otu ozi', human: 'Gwa mmadụ okwu',
+    chips: ['Ego ole ka ọ bụ?', 'Kedu ka m ga-esi kwụọ?', 'Kedu mgbe amụma na-abịa?', 'Amụma ọ bụ ihe ejisiri ike?', 'Enwere m ike ịnata ego m?', 'Gwa mmadụ okwu'] },
+  pcm: { greet: 'How far 👋 Welcome to Vision Premium. Ask me anything about price, payment, picks or your join link.',
+    ph: 'Ask me anything…', none: 'I no get that one yet. Tap below make Match Vision team answer you.',
+    pay: 'Go pay', rec: 'See our VIP record', ref: 'Refund policy', talk: 'Message the team', human: 'Talk to person',
+    chips: ['How much be the price?', 'How I go pay?', 'Wetin time picks dey come?', 'The picks sure?', 'I fit collect my money back?', 'Talk to person'] },
+  de: { greet: 'Hallo 👋 Willkommen bei Vision Premium. Frag mich zu Preis, Zahlung, Tipps oder deinem Link.',
+    ph: 'Frag mich alles…', none: 'Diese Antwort habe ich noch nicht. Tippe unten, das Match-Vision-Team meldet sich.',
+    pay: 'Zur Zahlung', rec: 'Unsere VIP-Bilanz ansehen', ref: 'Rückerstattung', talk: 'Team anschreiben', human: 'Mit einem Menschen sprechen',
+    chips: ['Was kostet es?', 'Wie bezahle ich?', 'Wann kommen die Tipps?', 'Sind die Tipps garantiert?', 'Bekomme ich Geld zurück?', 'Mit einem Menschen sprechen'] },
+  hi: { greet: 'नमस्ते 👋 Vision Premium में आपका स्वागत है। कीमत, भुगतान, टिप्स या अपने लिंक के बारे में पूछें।',
+    ph: 'कुछ भी पूछें…', none: 'यह जवाब अभी मेरे पास नहीं है। नीचे दबाएं, Match Vision टीम आपको जवाब देगी।',
+    pay: 'भुगतान पर जाएं', rec: 'हमारा VIP रिकॉर्ड देखें', ref: 'रिफंड नीति', talk: 'टीम को संदेश भेजें', human: 'किसी व्यक्ति से बात करें',
+    chips: ['कीमत कितनी है?', 'मैं कैसे भुगतान करूं?', 'टिप्स कब आते हैं?', 'क्या टिप्स की गारंटी है?', 'क्या रिफंड मिलेगा?', 'किसी व्यक्ति से बात करें'] }
+};
+
+// Every answer, by topic. {P} = the price in his money, {U} = 20, {T} = the pick time line.
+const KB = [
+  { id: 'price', act: 'pay', w: ['price', 'cost', 'how much', 'fee', 'amount', 'charge', 'much is', 'pay how much', 'prix', 'combien', 'precio', 'cuanto', 'preco', 'quanto', 'سعر', 'كم', 'bei', 'kiasi', 'nawa', 'kudin', 'elo', 'ego ole', 'preis', 'kostet', 'कीमत', 'कितना', 'naira', 'cedi', 'shilling', 'rand', 'pound', 'euro', 'dollar'],
+    a: { en: 'Vision Premium is {P} for 30 days (that is ${U} USD). One price for everyone, shown in your own money.',
+      fr: 'Vision Premium coûte {P} pour 30 jours (soit {U} $ US). Un seul prix pour tous, affiché dans votre monnaie.',
+      es: 'Vision Premium cuesta {P} por 30 días (unos {U} $ USD). Un precio para todos, en tu propia moneda.',
+      pt: 'O Vision Premium custa {P} por 30 dias (cerca de {U} $ USD). Um preço para todos, na sua moeda.',
+      ar: 'اشتراك Vision Premium هو {P} لمدة 30 يوما (حوالي {U} دولار). سعر واحد للجميع بعملتك.',
+      sw: 'Vision Premium ni {P} kwa siku 30 (sawa na dola {U}). Bei moja kwa kila mtu, kwa pesa yako.',
+      ha: 'Vision Premium shine {P} na kwana 30 (kusan dala {U}). Kudi daya ga kowa, da kudin ka.',
+      yo: 'Vision Premium jẹ {P} fun ọjọ 30 (nkan bi {U} dọla). Owo kan naa fun gbogbo eniyan.',
+      ig: 'Vision Premium bụ {P} maka ụbọchị 30 (ihe dị ka dollar {U}). Otu ọnụahịa maka onye ọbụla.',
+      pcm: 'Vision Premium na {P} for 30 days (na about ${U}). Na one price for everybody, for your own money.',
+      de: 'Vision Premium kostet {P} für 30 Tage (rund {U} USD). Ein Preis für alle, in deiner Währung.',
+      hi: 'Vision Premium 30 दिनों के लिए {P} है (लगभग {U} USD)। सबके लिए एक ही कीमत, आपकी मुद्रा में।' } },
+  { id: 'currency', w: ['currency', 'my money', 'change money', 'monnaie', 'moneda', 'moeda', 'عملة', 'sarafu', 'kudin kasata', 'währung', 'मुद्रा', 'switch currency', 'convert'],
+    a: { en: 'Tap the currency button next to the price and pick yours. The price stays the same, ${U} for 30 days.',
+      fr: 'Touchez le bouton de devise à côté du prix et choisissez la vôtre. Le prix reste {U} $ pour 30 jours.',
+      es: 'Toca el botón de moneda junto al precio y elige la tuya. El precio sigue siendo {U} $ por 30 días.',
+      pt: 'Toque no botão de moeda ao lado do preço e escolha a sua. O preço continua {U} $ por 30 dias.',
+      ar: 'اضغط زر العملة بجانب السعر واختر عملتك. السعر يبقى {U} دولار لمدة 30 يوما.',
+      sw: 'Bonyeza kitufe cha sarafu kando ya bei na uchague yako. Bei ni ile ile, dola {U} kwa siku 30.',
+      ha: 'Danna maballin kudi kusa da farashin ka zabi naka. Kudin ya kasance dala {U} na kwana 30.',
+      yo: 'Tẹ bọtini owo nitosi idiyele ki o yan tirẹ. Owo naa ko yipada, {U} dọla fun ọjọ 30.',
+      ig: 'Pịa bọtịnụ ego dị n’akụkụ ọnụahịa ma họrọ nke gị. Ọnụahịa ka bụ dollar {U} maka ụbọchị 30.',
+      pcm: 'Tap the currency button near the price pick your own. The price still be ${U} for 30 days.',
+      de: 'Tippe auf den Währungsknopf neben dem Preis und wähle deine. Der Preis bleibt {U} USD für 30 Tage.',
+      hi: 'कीमत के पास मुद्रा बटन दबाएं और अपनी चुनें। कीमत वही रहती है, {U} USD 30 दिनों के लिए।' } },
+  { id: 'discount', w: ['discount', 'cheaper', 'promo', 'coupon', 'free trial', 'trial', 'reduction', 'descuento', 'desconto', 'خصم', 'punguzo', 'rangwame', 'ẹdinwo', 'mbelata', 'rabatt', 'छूट'],
+    a: { en: 'The price is the same for everyone, ${U} for 30 days. We do not run discount codes or free trials.',
+      fr: "Le prix est le même pour tous, {U} $ pour 30 jours. Pas de code promo ni d'essai gratuit.",
+      es: 'El precio es igual para todos, {U} $ por 30 días. No hay códigos de descuento ni pruebas gratis.',
+      pt: 'O preço é igual para todos, {U} $ por 30 dias. Não temos códigos de desconto nem testes grátis.',
+      ar: 'السعر واحد للجميع، {U} دولار لمدة 30 يوما. لا توجد أكواد خصم ولا تجربة مجانية.',
+      sw: 'Bei ni sawa kwa wote, dola {U} kwa siku 30. Hakuna punguzo wala majaribio ya bure.',
+      ha: 'Kudin daya ne ga kowa, dala {U} na kwana 30. Babu rangwame ko gwaji kyauta.',
+      yo: 'Owo naa jẹ kanna fun gbogbo eniyan, {U} dọla fun ọjọ 30. A ko ni ẹdinwo tabi idanwo ọfẹ.',
+      ig: 'Ọnụahịa bụ otu maka onye ọbụla, dollar {U} maka ụbọchị 30. Anyị enweghị mbelata ma ọ bụ nnwale n’efu.',
+      pcm: 'The price na the same for everybody, ${U} for 30 days. We no dey do discount or free trial.',
+      de: 'Der Preis ist für alle gleich, {U} USD für 30 Tage. Keine Rabattcodes, keine Gratis-Tests.',
+      hi: 'कीमत सबके लिए एक जैसी है, {U} USD 30 दिनों के लिए। कोई छूट कोड या फ्री ट्रायल नहीं है।' } },
+  { id: 'howpay', act: 'pay', w: ['how do i pay', 'how to pay', 'payment', 'pay', 'momo', 'mobile money', 'card', 'visa', 'mastercard', 'google pay', 'apple pay', 'bank', 'mpesa', 'm-pesa', 'transfer', 'payer', 'paiement', 'pagar', 'pago', 'pagamento', 'دفع', 'الدفع', 'lipa', 'malipo', 'biya', 'san owo', 'ịkwụ ụgwọ', 'bezahlen', 'zahlung', 'भुगतान'],
+    a: { en: 'Pick your country, choose how to pay, then tap Pay. Card works everywhere, mobile money in Ghana, M-Pesa in Kenya. Google Pay, Apple Pay and bank transfer are coming.',
+      fr: 'Choisissez votre pays, le moyen de paiement, puis touchez Payer. La carte marche partout, mobile money au Ghana, M-Pesa au Kenya.',
+      es: 'Elige tu país, el método de pago y toca Pagar. La tarjeta funciona en todas partes, mobile money en Ghana, M-Pesa en Kenia.',
+      pt: 'Escolha o seu país, a forma de pagamento e toque em Pagar. O cartão funciona em todo o lado, mobile money no Gana, M-Pesa no Quénia.',
+      ar: 'اختر بلدك ثم طريقة الدفع واضغط ادفع. البطاقة تعمل في كل مكان، والمحفظة في غانا، وM-Pesa في كينيا.',
+      sw: 'Chagua nchi yako, njia ya malipo, kisha bonyeza Lipa. Kadi inafanya kazi kila mahali, M-Pesa Kenya.',
+      ha: 'Zabi kasarka, zabi hanyar biya, sannan ka danna Biya. Katin yana aiki ko’ina, mobile money a Ghana.',
+      yo: 'Yan orilẹ-ede rẹ, yan ọna isanwo, lẹhinna tẹ San. Kaadi n ṣiṣẹ nibi gbogbo, mobile money ni Ghana.',
+      ig: 'Họrọ obodo gị, họrọ otu ị ga-esi kwụọ, pịa Kwụọ. Kaadị na-arụ ọrụ ebe niile, mobile money na Ghana.',
+      pcm: 'Pick your country, choose how you wan pay, then tap Pay. Card dey work everywhere, momo for Ghana, M-Pesa for Kenya.',
+      de: 'Wähle dein Land, die Zahlungsart und tippe auf Bezahlen. Karte geht überall, Mobile Money in Ghana, M-Pesa in Kenia.',
+      hi: 'अपना देश चुनें, भुगतान का तरीका चुनें और Pay दबाएं। कार्ड हर जगह चलता है।' } },
+  { id: 'payfail', act: 'talk', w: ['failed', 'did not work', 'not work', 'declined', 'error', 'problem paying', 'echec', 'echoue', 'fallo', 'falhou', 'فشل', 'imeshindwa', 'bai yi aiki ba', 'ko ṣiṣẹ', 'adaghị', 'fehler', 'विफल'],
+    a: { en: 'If your payment did not go through, nothing was taken from you. Try again, or send us the payment message and we check it for you.',
+      fr: "Si le paiement n'est pas passé, rien ne vous a été prélevé. Réessayez ou envoyez-nous le message de paiement.",
+      es: 'Si el pago no se completó, no se te cobró nada. Inténtalo otra vez o envíanos el mensaje del pago.',
+      pt: 'Se o pagamento não passou, nada lhe foi cobrado. Tente de novo ou envie-nos a mensagem do pagamento.',
+      ar: 'إذا لم تتم عملية الدفع فلم يُخصم منك شيء. أعد المحاولة أو أرسل لنا رسالة الدفع.',
+      sw: 'Kama malipo hayakufanikiwa, hukukatwa chochote. Jaribu tena au tutumie ujumbe wa malipo.',
+      ha: 'Idan biyan bai yi nasara ba, ba a dauki komai daga gare ka ba. Sake gwadawa ko ka aiko mana sakon biya.',
+      yo: 'Ti isanwo ko ba ṣaṣeyọri, won ko gba owo kankan lọwọ rẹ. Gbiyanju lẹẹkansi tabi fi ifiranṣẹ isanwo ranṣẹ si wa.',
+      ig: 'Ọ bụrụ na ịkwụ ụgwọ agaghị nke ọma, e wepụghị ego ọbụla. Nwaa ọzọ ma ọ bụ zitere anyị ozi ịkwụ ụgwọ.',
+      pcm: 'If your payment no enter, dem no collect anything from you. Try again or send us the payment message.',
+      de: 'Wenn die Zahlung nicht durchging, wurde dir nichts abgebucht. Versuche es erneut oder schick uns die Zahlungsnachricht.',
+      hi: 'अगर भुगतान पूरा नहीं हुआ तो आपसे कुछ नहीं लिया गया। फिर कोशिश करें या हमें भुगतान संदेश भेजें।' } },
+  { id: 'proof', act: 'talk', w: ['proof', 'screenshot', 'receipt', 'sent money', 'i paid', 'have paid', 'preuve', 'recu', 'comprobante', 'pague', 'comprovativo', 'إثبات', 'دفعت', 'uthibitisho', 'nimelipa', 'shaida', 'na biya', 'ẹri', 'mo ti san', 'akwụkwọ', 'akwụọla m', 'nachweis', 'bezahlt', 'प्रमाण', 'भुगतान कर दिया'],
+    a: { en: 'After paying, send the payment screenshot to our VIP assistant. We confirm it, usually within 30 minutes, and your private link follows.',
+      fr: "Après le paiement, envoyez la capture à notre assistant VIP. Nous confirmons, en général sous 30 minutes, puis vous recevez votre lien privé.",
+      es: 'Después de pagar, envía la captura a nuestro asistente VIP. Lo confirmamos, normalmente en 30 minutos, y llega tu enlace privado.',
+      pt: 'Depois de pagar, envie o comprovativo ao nosso assistente VIP. Confirmamos, normalmente em 30 minutos, e o seu link privado chega.',
+      ar: 'بعد الدفع أرسل صورة الإيصال إلى مساعد VIP. نؤكدها عادة خلال 30 دقيقة ثم يصلك رابطك الخاص.',
+      sw: 'Baada ya kulipa, tuma picha ya malipo kwa msaidizi wetu wa VIP. Tunathibitisha ndani ya dakika 30 na kiungo chako kinafuata.',
+      ha: 'Bayan biya, aika hoton biyan zuwa mataimakin VIP dinmu. Muna tabbatarwa cikin minti 30 sannan hanyar shiga ta zo.',
+      yo: 'Lẹhin isanwo, fi aworan isanwo ranṣẹ si oluranlọwọ VIP wa. A fọwọsi laarin iṣẹju 30 ati ọna abawọle rẹ yoo de.',
+      ig: 'Mgbe ị kwụchara, zitere onye enyemaka VIP anyị foto ịkwụ ụgwọ. Anyị na-akwado ya n’ime nkeji 30.',
+      pcm: 'After you pay, send the payment screenshot to our VIP assistant. We go confirm am, normally within 30 minutes.',
+      de: 'Schicke nach der Zahlung den Beleg an unseren VIP-Assistenten. Wir bestätigen meist innerhalb von 30 Minuten.',
+      hi: 'भुगतान के बाद स्क्रीनशॉट हमारे VIP सहायक को भेजें। हम आमतौर पर 30 मिनट में पुष्टि करते हैं।' } },
+  { id: 'join', act: 'talk', w: ['join link', 'link', 'invite', 'how do i join', 'get in', 'entry', 'lien', 'rejoindre', 'enlace', 'unirme', 'entrar', 'رابط', 'انضمام', 'kiungo', 'kujiunga', 'hanyar shiga', 'shiga', 'ọna abawọle', 'darapọ', 'njikọ', 'sonye', 'beitreten', 'लिंक', 'शामिल'],
+    a: { en: 'Your private join link comes as soon as your payment is confirmed, usually within 30 minutes. It works for you only.',
+      fr: 'Votre lien privé arrive dès que le paiement est confirmé, en général sous 30 minutes. Il ne marche que pour vous.',
+      es: 'Tu enlace privado llega en cuanto se confirma el pago, normalmente en 30 minutos. Solo funciona para ti.',
+      pt: 'O seu link privado chega assim que o pagamento é confirmado, normalmente em 30 minutos. Funciona só para si.',
+      ar: 'يصلك رابطك الخاص فور تأكيد الدفع، عادة خلال 30 دقيقة، ويعمل لك وحدك.',
+      sw: 'Kiungo chako binafsi kinakuja mara malipo yanapothibitishwa, kwa kawaida ndani ya dakika 30. Ni chako peke yako.',
+      ha: 'Hanyar shiga taka na zuwa da zarar an tabbatar da biya, yawanci cikin minti 30. Naka kadai ne.',
+      yo: 'Ọna abawọle aladani rẹ de ni kete ti a ba fọwọsi isanwo, nigbagbogbo laarin iṣẹju 30. O ṣiṣẹ fun ọ nikan.',
+      ig: 'Njikọ nzuzo gị na-abịa ozugbo akwadoro ịkwụ ụgwọ gị, ọtụtụ mgbe n’ime nkeji 30.',
+      pcm: 'Your private join link dey come once dem confirm your payment, normally within 30 minutes. Na you alone e dey work for.',
+      de: 'Dein privater Link kommt, sobald die Zahlung bestätigt ist, meist innerhalb von 30 Minuten. Er gilt nur für dich.',
+      hi: 'भुगतान की पुष्टि होते ही आपका निजी लिंक आ जाता है, आमतौर पर 30 मिनट में। यह केवल आपके लिए काम करता है।' } },
+  { id: 'nolink', act: 'talk', w: ['no link', 'did not get', 'not received', 'expired', 'link not working', 'pas recu', 'no recibi', 'nao recebi', 'لم يصل', 'sijapata', 'ban samu ba', 'ko gba', 'enwetaghị', 'nicht erhalten', 'नहीं मिला'],
+    a: { en: 'If your link did not arrive or does not open, message us and we send a new one straight away.',
+      fr: "Si votre lien n'est pas arrivé ou ne s'ouvre pas, écrivez-nous et nous en envoyons un nouveau tout de suite.",
+      es: 'Si tu enlace no llegó o no abre, escríbenos y te enviamos uno nuevo enseguida.',
+      pt: 'Se o link não chegou ou não abre, escreva-nos e enviamos um novo de imediato.',
+      ar: 'إذا لم يصلك الرابط أو لم يفتح، راسلنا وسنرسل رابطا جديدا فورا.',
+      sw: 'Kama kiungo hakikufika au hakifunguki, tuandikie na tutakutumia kipya mara moja.',
+      ha: 'Idan hanyar shiga ba ta zo ba ko ba ta budewa, ka aiko mana sako mu tura sabuwa nan take.',
+      yo: 'Ti ọna abawọle rẹ ko ba de tabi ko ṣii, kọ si wa a o fi tuntun ranṣẹ lẹsẹkẹsẹ.',
+      ig: 'Ọ bụrụ na njikọ gị erughị ma ọ bụ emeghereghị, zitere anyị ozi, anyị ezitere gị nke ọhụrụ ozugbo.',
+      pcm: 'If your link no land or e no dey open, message us we go send new one sharp sharp.',
+      de: 'Wenn dein Link nicht ankam oder nicht öffnet, schreib uns, wir schicken sofort einen neuen.',
+      hi: 'अगर लिंक नहीं आया या नहीं खुलता, हमें संदेश करें, हम तुरंत नया भेजेंगे।' } },
+  { id: 'telegram', w: ['telegram', 'need telegram', 'app', 'whatsapp', 'where do i get', 'room', 'groupe', 'grupo', 'تيليجرام', 'programu', 'manhaja', 'ohun elo', 'ngwa', 'दूत'],
+    a: { en: 'Vision Premium is a private room. Telegram is free and takes a minute to set up, and after joining you choose where you want the picks.',
+      fr: 'Vision Premium est un salon privé. Telegram est gratuit et prêt en une minute, et après vous choisissez où recevoir les pronostics.',
+      es: 'Vision Premium es una sala privada. Telegram es gratis y se configura en un minuto; luego eliges dónde recibir los pronósticos.',
+      pt: 'O Vision Premium é uma sala privada. O Telegram é grátis e leva um minuto a instalar; depois escolhe onde quer receber os palpites.',
+      ar: 'Vision Premium غرفة خاصة. تيليجرام مجاني ويجهز خلال دقيقة، وبعد الانضمام تختار أين تستلم التوقعات.',
+      sw: 'Vision Premium ni chumba binafsi. Telegram ni bure na inachukua dakika moja, kisha unachagua mahali pa kupokea utabiri.',
+      ha: 'Vision Premium daki ne na sirri. Telegram kyauta ne kuma minti daya kawai, sannan ka zabi inda kake son hasashen.',
+      yo: 'Vision Premium jẹ yara aladani. Telegram jẹ ọfẹ ati iṣẹju kan ni, lẹhinna o yan ibi ti o fẹ gba asọtẹlẹ.',
+      ig: 'Vision Premium bụ ụlọ nzuzo. Telegram bụ n’efu, nkeji otu ka ọ na-ewe, mgbe ahụ ị na-ahọrọ ebe ị chọrọ amụma.',
+      pcm: 'Vision Premium na private room. Telegram dey free and e take one minute, after you join you go choose where you want the picks.',
+      de: 'Vision Premium ist ein privater Raum. Telegram ist kostenlos und in einer Minute eingerichtet; danach wählst du, wo du die Tipps bekommst.',
+      hi: 'Vision Premium एक निजी रूम है। Telegram मुफ्त है और एक मिनट में तैयार हो जाता है।' } },
+  { id: 'when', w: ['when', 'what time', 'time do', 'morning', 'kick off', 'kickoff', 'hour', 'quand', 'heure', 'cuando', 'hora', 'quando', 'متى', 'الساعة', 'lini', 'saa ngapi', 'yaushe', 'lokaci', 'igba wo', 'akoko', 'mgbe', 'oge', 'wann', 'uhrzeit', 'कब', 'समय'],
+    a: { en: 'VIP picks are posted every day around 05:00 GMT, before kick-off. Tell me your country and I will show you the time where you are.',
+      fr: "Les pronostics VIP sont publiés chaque jour vers 05:00 GMT, avant le coup d'envoi. Dites-moi votre pays et je vous donne l'heure chez vous.",
+      es: 'Los pronósticos VIP se publican cada día sobre las 05:00 GMT, antes del inicio. Dime tu país y te digo la hora donde estás.',
+      pt: 'Os palpites VIP são publicados todos os dias por volta das 05:00 GMT, antes do início. Diga-me o seu país e digo-lhe a hora aí.',
+      ar: 'تنشر توقعات VIP يوميا حوالي الساعة 05:00 بتوقيت جرينتش قبل المباريات. أخبرني ببلدك لأقول لك الوقت عندك.',
+      sw: 'Utabiri wa VIP huwekwa kila siku saa 05:00 GMT, kabla ya mechi. Niambie nchi yako nikuambie saa ya kwako.',
+      ha: 'Ana saka hasashen VIP kowace rana kusan 05:00 GMT, kafin wasa. Gaya mini kasarka in gaya maka lokacin ku.',
+      yo: 'A n fi asọtẹlẹ VIP sita lojoojumọ ni nkan bi 05:00 GMT, ṣaaju ere. Sọ orilẹ-ede rẹ fun mi ki n sọ akoko ibẹ.',
+      ig: 'A na-etinye amụma VIP kwa ụbọchị n’ihe dị ka 05:00 GMT, tupu egwuregwu. Gwa m obodo gị ka m gwa gị oge.',
+      pcm: 'VIP picks dey drop every day around 05:00 GMT, before kick-off. Tell me your country make I give you the time for your side.',
+      de: 'VIP-Tipps kommen täglich gegen 05:00 GMT, vor Anpfiff. Sag mir dein Land, dann nenne ich dir die Uhrzeit bei dir.',
+      hi: 'VIP टिप्स हर दिन लगभग 05:00 GMT पर आते हैं, मैच से पहले। अपना देश बताएं, मैं आपके यहां का समय बता दूंगा।' } },
+  { id: 'howmany', w: ['how many picks', 'how many games', 'number of picks', 'combien de pronostics', 'cuantos', 'quantos', 'كم توقع', 'utabiri mangapi', 'hasashe nawa', 'melo', 'ole', 'wie viele', 'कितने'],
+    a: { en: '1 to 7 picks a day, our safest ones only. Fewer picks, longer checks.',
+      fr: '1 à 7 pronostics par jour, uniquement les plus sûrs. Moins de pronostics, plus de vérifications.',
+      es: 'De 1 a 7 pronósticos al día, solo los más seguros. Menos pronósticos, más comprobaciones.',
+      pt: 'De 1 a 7 palpites por dia, só os mais seguros. Menos palpites, mais verificações.',
+      ar: 'من 1 إلى 7 توقعات يوميا، الأكثر أمانا فقط. توقعات أقل وفحص أطول.',
+      sw: 'Utabiri 1 hadi 7 kwa siku, salama zaidi tu. Utabiri mchache, ukaguzi mrefu.',
+      ha: 'Hasashe 1 zuwa 7 a rana, mafi aminci kawai. Kadan amma an duba sosai.',
+      yo: 'Asọtẹlẹ 1 si 7 lojumọ, eyi ti o ni aabo julọ nikan.',
+      ig: 'Amụma 1 ruo 7 kwa ụbọchị, naanị nke kacha dị mma.',
+      pcm: '1 to 7 picks per day, na only the safest ones. Small picks, plenty checking.',
+      de: '1 bis 7 Tipps am Tag, nur die sichersten. Weniger Tipps, längere Prüfung.',
+      hi: 'दिन में 1 से 7 टिप्स, केवल सबसे सुरक्षित। कम टिप्स, ज्यादा जांच।' } },
+  { id: 'odds', w: ['odds', 'total odds', 'cote', 'cuota', 'odd', 'probabilidade', 'احتمال', 'الاحتمالات', 'odds gani', 'quote', 'ऑड्स'],
+    a: { en: 'Total odds are usually about 2 to 4. Never huge odds, because the aim is to win, not to dream.',
+      fr: 'La cote totale est en général entre 2 et 4. Jamais de grosses cotes: le but est de gagner.',
+      es: 'La cuota total suele estar entre 2 y 4. Nunca cuotas enormes: el objetivo es ganar.',
+      pt: 'As odds totais costumam estar entre 2 e 4. Nunca odds enormes: o objetivo é ganhar.',
+      ar: 'مجموع الاحتمالات عادة بين 2 و4. لا نلعب احتمالات ضخمة لأن الهدف هو الربح.',
+      sw: 'Jumla ya odds huwa kati ya 2 na 4. Hatuchezi odds kubwa, lengo ni kushinda.',
+      ha: 'Jimillar odds yawanci tsakanin 2 zuwa 4. Ba babban odds ba, manufa ita ce nasara.',
+      yo: 'Apapọ odds maa n wa laarin 2 si 4. A ko lo odds nla, ete ni lati jere.',
+      ig: 'Ngụkọta odds na-abụkarị n’etiti 2 na 4. Anyị anaghị eji nnukwu odds egwu.',
+      pcm: 'Total odds dey usually between 2 and 4. We no dey chase big odds, we wan win.',
+      de: 'Die Gesamtquote liegt meist zwischen 2 und 4. Keine Riesenquoten, das Ziel ist zu gewinnen.',
+      hi: 'कुल ऑड्स आमतौर पर 2 से 4 के बीच होते हैं। बहुत बड़े ऑड्स नहीं, लक्ष्य जीतना है।' } },
+  { id: 'markets', w: ['market', 'what kind of picks', 'type of pick', 'over', 'under', 'btts', 'handicap', 'marche', 'mercado', 'سوق', 'soko', 'kasuwa', 'ọja', 'ahia', 'markt', 'बाजार'],
+    a: { en: 'A pick can be any market the bookmakers price: team to win, over or under goals, win either half, handicaps and more. We pick the safest one of each match.',
+      fr: 'Un pronostic peut être tout marché proposé: victoire, plus ou moins de buts, gagner une mi-temps, handicaps. Nous prenons le plus sûr de chaque match.',
+      es: 'Un pronóstico puede ser cualquier mercado disponible: victoria, más o menos goles, ganar alguna parte, hándicaps. Elegimos el más seguro de cada partido.',
+      pt: 'Um palpite pode ser qualquer mercado disponível: vitória, mais ou menos golos, vencer uma parte, handicaps. Escolhemos o mais seguro de cada jogo.',
+      ar: 'يمكن أن يكون التوقع أي سوق متاح: الفوز، أكثر أو أقل من الأهداف، الفوز بشوط، الهانديكاب. نختار الأكثر أمانا في كل مباراة.',
+      sw: 'Utabiri unaweza kuwa soko lolote: timu kushinda, magoli zaidi au chini, kushinda kipindi, handicap. Tunachagua salama zaidi.',
+      ha: 'Hasashe na iya zama kowane kasuwa: nasara, kwallaye sama ko kasa, nasara a rabi, handicap. Muna zabar mafi aminci.',
+      yo: 'Asọtẹlẹ le jẹ ọja eyikeyi: iṣẹgun, goolu ju tabi din, iṣẹgun ni idaji, handicap. A yan eyi ti o ni aabo julọ.',
+      ig: 'Amụma nwere ike ịbụ ahịa ọbụla: mmeri, goolu karịrị ma ọ bụ erughị, mmeri na ọkara, handicap.',
+      pcm: 'Any market wey bookies price fit be the pick: team to win, over or under goals, win either half, handicap. We dey pick the safest one.',
+      de: 'Ein Tipp kann jeder angebotene Markt sein: Sieg, über/unter Tore, Halbzeitsieg, Handicap. Wir nehmen den sichersten pro Spiel.',
+      hi: 'टिप कोई भी मार्केट हो सकता है: जीत, ओवर/अंडर गोल, कोई हाफ जीतना, हैंडिकैप। हम हर मैच का सबसे सुरक्षित चुनते हैं।' } },
+  { id: 'record', act: 'record', w: ['record', 'result', 'results', 'win rate', 'proof', 'won', 'history', 'historique', 'resultat', 'resultado', 'historial', 'نتائج', 'سجل', 'matokeo', 'rekodi', 'sakamako', 'tarihi', 'abajade', 'akọọlẹ', 'nsonaazụ', 'ndekọ', 'bilanz', 'ergebnisse', 'रिकॉर्ड', 'नतीजे'],
+    a: { en: 'So far {W} of {N} VIP picks won ({R}%) over {D} days. Every VIP day is in our record, wins and losses.',
+      fr: 'Jusqu\'ici {W} pronostics VIP gagnés sur {N} ({R}%) en {D} jours. Chaque journée est dans notre historique, victoires et défaites.',
+      es: 'Hasta ahora {W} de {N} pronósticos VIP ganados ({R}%) en {D} días. Cada día está en nuestro historial, ganados y perdidos.',
+      pt: 'Até agora {W} de {N} palpites VIP ganhos ({R}%) em {D} dias. Cada dia está no nosso histórico, ganhos e perdidos.',
+      ar: 'حتى الآن {W} من {N} توقعات VIP ناجحة ({R}%) خلال {D} يوما. كل يوم مسجل عندنا، الربح والخسارة.',
+      sw: 'Hadi sasa utabiri {W} kati ya {N} umeshinda ({R}%) kwa siku {D}. Kila siku iko kwenye rekodi yetu.',
+      ha: 'Zuwa yanzu {W} daga {N} na hasashen VIP sun yi nasara ({R}%) cikin kwana {D}. Kowace rana tana cikin tarihinmu.',
+      yo: 'Titi di isisiyi {W} ninu {N} asọtẹlẹ VIP ti jere ({R}%) ni ọjọ {D}. Gbogbo ọjọ wa ninu akọọlẹ wa.',
+      ig: 'Ruo ugbu a {W} n’ime {N} amụma VIP emeriela ({R}%) n’ime ụbọchị {D}. Ụbọchị ọbụla dị na ndekọ anyị.',
+      pcm: 'Till now {W} out of {N} VIP picks don win ({R}%) for {D} days. Every day dey our record, win or loss.',
+      de: 'Bisher {W} von {N} VIP-Tipps gewonnen ({R}%) in {D} Tagen. Jeder Tag steht in unserer Bilanz, Siege und Niederlagen.',
+      hi: 'अब तक {D} दिनों में {N} में से {W} VIP टिप्स जीते ({R}%)। हर दिन हमारे रिकॉर्ड में है।' } },
+  { id: 'guarantee', act: 'record', w: ['guarantee', 'guaranteed', 'sure', '100', 'fixed', 'never lose', 'always win', 'lose', 'loss', 'garanti', 'garantizado', 'garantido', 'مضمون', 'uhakika', 'tabbaci', 'daju', 'ejisiri ike', 'garantie', 'गारंटी'],
+    a: { en: 'No prediction is ever guaranteed and losing days happen. We post our strongest picks and show every result honestly, wins and losses.',
+      fr: "Aucun pronostic n'est garanti et il y a des jours perdants. Nous publions nos meilleurs pronostics et montrons tous les résultats.",
+      es: 'Ningún pronóstico está garantizado y hay días perdedores. Publicamos nuestros mejores pronósticos y mostramos todos los resultados.',
+      pt: 'Nenhum palpite é garantido e há dias perdidos. Publicamos os nossos melhores palpites e mostramos todos os resultados.',
+      ar: 'لا يوجد توقع مضمون وهناك أيام خاسرة. ننشر أقوى توقعاتنا ونعرض كل النتائج بصدق.',
+      sw: 'Hakuna utabiri wenye uhakika na siku za kupoteza zipo. Tunaweka utabiri bora na kuonyesha matokeo yote.',
+      ha: 'Babu hasashe da yake da cikakken tabbaci, akwai ranakun rashin nasara. Muna nuna dukkan sakamako a gaskiya.',
+      yo: 'Ko si asọtẹlẹ ti o daju patapata, ọjọ ipadanu wa. A n fi gbogbo abajade han ni otitọ.',
+      ig: 'Ọ dịghị amụma ejisiri ike, ụbọchị mfu na-adị. Anyị na-egosi nsonaazụ niile n’eziokwu.',
+      pcm: 'No prediction dey 100% sure, losing days dey happen. We dey post our strongest picks and show every result, win or loss.',
+      de: 'Keine Prognose ist garantiert, Verlusttage gibt es. Wir posten unsere stärksten Tipps und zeigen jedes Ergebnis ehrlich.',
+      hi: 'कोई भी भविष्यवाणी गारंटी नहीं है और हारने वाले दिन आते हैं। हम हर नतीजा ईमानदारी से दिखाते हैं।' } },
+  { id: 'refund', act: 'refund', w: ['refund', 'money back', 'remboursement', 'rembourser', 'reembolso', 'استرجاع', 'استرداد', 'kurudishiwa', 'mayar da kudi', 'owo pada', 'nkweghachi', 'rückerstattung', 'वापसी', 'रिफंड'],
+    a: { en: 'Ask within 24 hours of paying if you have not joined the room yet and we refund in full. After you join, payments are not refunded, but if the problem is on our side we add free days.',
+      fr: "Demandez dans les 24 heures après le paiement, si vous n'avez pas encore rejoint le salon, et nous remboursons tout. Après, pas de remboursement, mais si l'erreur vient de nous, nous ajoutons des jours gratuits.",
+      es: 'Pídelo dentro de 24 horas tras pagar, si aún no has entrado en la sala, y devolvemos todo. Después no hay reembolso, pero si el fallo es nuestro añadimos días gratis.',
+      pt: 'Peça nas 24 horas após o pagamento, se ainda não entrou na sala, e devolvemos tudo. Depois não há reembolso, mas se a falha for nossa damos dias grátis.',
+      ar: 'اطلب خلال 24 ساعة من الدفع إذا لم تدخل الغرفة بعد ونعيد المبلغ كاملا. بعد الدخول لا يوجد استرجاع، لكن إذا كان الخطأ منا نضيف أياما مجانية.',
+      sw: 'Omba ndani ya saa 24 baada ya kulipa, kama bado hujajiunga na chumba, nasi turudisha pesa zote. Baada ya kujiunga hakuna marejesho, lakini tukikosea tunaongeza siku za bure.',
+      ha: 'Ka nema cikin sa’o’i 24 bayan biya, idan ba ka shiga dakin ba tukuna, mu mayar da kudin duka. Bayan shiga babu mayarwa, amma idan kuskurenmu ne mukan kara kwanaki kyauta.',
+      yo: 'Beere laarin wakati 24 lẹhin isanwo, ti o ko ba ti wọ yara naa, a o da owo pada ni kikun.',
+      ig: 'Rịọ n’ime awa 24 mgbe ị kwụchara ụgwọ, ma ọ bụrụ na ị banyebeghị n’ụlọ ahụ, anyị ga-enyeghachi ego niile.',
+      pcm: 'Ask within 24 hours after you pay, if you never enter the room, we go refund everything. After you join, no refund, but if na our fault we go add free days.',
+      de: 'Melde dich innerhalb von 24 Stunden nach der Zahlung, wenn du dem Raum noch nicht beigetreten bist, dann erstatten wir voll. Danach keine Erstattung, bei unserem Fehler gibt es Gratis-Tage.',
+      hi: 'भुगतान के 24 घंटे के भीतर कहें, अगर आप अभी तक रूम में नहीं आए हैं, तो पूरा रिफंड मिलेगा।' } },
+  { id: 'trust', act: 'record', w: ['safe', 'scam', 'trust', 'real', 'legit', 'fake', 'who are you', 'arnaque', 'fiable', 'estafa', 'confiar', 'golpe', 'نصب', 'موثوق', 'udanganyifu', 'kuaminika', 'yaudara', 'amintacce', 'igbekele', 'ntụkwasị obi', 'betrug', 'seriös', 'भरोसा', 'धोखा'],
+    a: { en: 'Vision Premium is run by the Match Vision team, the same team behind the daily YouTube predictions. Every payment is recorded with its reference and every VIP day is shown above.',
+      fr: "Vision Premium est géré par l'équipe Match Vision, celle des pronostics quotidiens sur YouTube. Chaque paiement est enregistré et chaque journée VIP est affichée.",
+      es: 'Vision Premium lo lleva el equipo de Match Vision, el mismo de los pronósticos diarios en YouTube. Cada pago queda registrado y cada día VIP se muestra arriba.',
+      pt: 'O Vision Premium é gerido pela equipa Match Vision, a mesma dos palpites diários no YouTube. Cada pagamento fica registado e cada dia VIP está acima.',
+      ar: 'يدير Vision Premium فريق Match Vision نفسه صاحب توقعات يوتيوب اليومية. كل عملية دفع مسجلة وكل يوم VIP معروض أعلاه.',
+      sw: 'Vision Premium inaendeshwa na timu ya Match Vision, hiyo hiyo ya utabiri wa kila siku YouTube. Kila malipo yanarekodiwa.',
+      ha: 'Tawagar Match Vision ce ke gudanar da Vision Premium, su ne ke yin hasashen YouTube na kullum. Ana rubuta kowane biya.',
+      yo: 'Ẹgbẹ Match Vision ni o n ṣakoso Vision Premium, ẹgbẹ kanna ti o n ṣe asọtẹlẹ YouTube lojoojumọ.',
+      ig: 'Ndị otu Match Vision na-elekọta Vision Premium, otu ndị ahụ na-eme amụma YouTube kwa ụbọchị.',
+      pcm: 'Na Match Vision team dey run Vision Premium, the same team wey dey do the daily YouTube predictions. Every payment get reference.',
+      de: 'Vision Premium wird vom Match-Vision-Team betrieben, demselben Team der täglichen YouTube-Prognosen. Jede Zahlung wird mit Referenz erfasst.',
+      hi: 'Vision Premium को Match Vision टीम चलाती है, वही टीम जो रोज YouTube पर भविष्यवाणी करती है।' } },
+  { id: 'renew', w: ['renew', 'how long', 'days left', 'subscription', 'cancel', 'expire', 'renouveler', 'duree', 'renovar', 'cuanto dura', 'renovar assinatura', 'تجديد', 'كم يوم', 'kuongeza', 'muda gani', 'sabuntawa', 'kwana nawa', 'tunse', 'ogologo', 'verlängern', 'wie lange', 'नवीनीकरण', 'कितने दिन'],
+    a: { en: 'One payment gives you 30 days in the room. Nothing renews by itself: we remind you before it ends and you pay again to stay.',
+      fr: 'Un paiement vous donne 30 jours dans le salon. Rien ne se renouvelle tout seul: nous vous prévenons avant la fin.',
+      es: 'Un pago te da 30 días en la sala. Nada se renueva solo: te avisamos antes de que termine.',
+      pt: 'Um pagamento dá 30 dias na sala. Nada se renova sozinho: avisamos antes de acabar.',
+      ar: 'دفعة واحدة تعطيك 30 يوما في الغرفة. لا يوجد تجديد تلقائي، ونذكرك قبل الانتهاء.',
+      sw: 'Malipo moja yanakupa siku 30 chumbani. Hakuna kujirudia: tunakukumbusha kabla ya kuisha.',
+      ha: 'Biya daya na ba ka kwana 30 a daki. Babu sabuntawa ta atomatik, muna tunatar da kai kafin ya kare.',
+      yo: 'Isanwo kan fun ọ ni ọjọ 30 ninu yara naa. Ko si isọdọtun laifọwọyi, a o ranti ọ ṣaaju ki o to pari.',
+      ig: 'Otu ịkwụ ụgwọ na-enye gị ụbọchị 30 n’ụlọ ahụ. Ọ dịghị ihe na-emeghachi onwe ya.',
+      pcm: 'One payment give you 30 days inside the room. Nothing dey renew by itself, we go remind you before e finish.',
+      de: 'Eine Zahlung gibt dir 30 Tage im Raum. Nichts verlängert sich automatisch, wir erinnern dich vorher.',
+      hi: 'एक भुगतान आपको रूम में 30 दिन देता है। कुछ भी अपने आप रिन्यू नहीं होता।' } },
+  { id: 'human', act: 'talk', w: ['human', 'person', 'admin', 'talk', 'speak', 'contact', 'help', 'support', 'message', 'humain', 'parler', 'persona', 'hablar', 'pessoa', 'falar', 'شخص', 'تحدث', 'mtu', 'ongea', 'mutum', 'magana', 'eniyan', 'sọrọ', 'mmadụ', 'okwu', 'mensch', 'sprechen', 'व्यक्ति', 'बात'],
+    a: { en: 'Of course. Tap below to message the Match Vision team. We reply as soon as we can.',
+      fr: "Bien sûr. Touchez ci-dessous pour écrire à l'équipe Match Vision. Nous répondons dès que possible.",
+      es: 'Claro. Toca abajo para escribir al equipo de Match Vision. Respondemos lo antes posible.',
+      pt: 'Claro. Toque abaixo para falar com a equipa Match Vision. Respondemos assim que possível.',
+      ar: 'بالتأكيد. اضغط بالأسفل لمراسلة فريق Match Vision وسنرد في أقرب وقت.',
+      sw: 'Bila shaka. Bonyeza hapa chini kutuma ujumbe kwa timu ya Match Vision.',
+      ha: 'Hakika. Danna kasa don aika sako ga tawagar Match Vision.',
+      yo: 'Dajudaju. Tẹ ni isalẹ lati fi ifiranṣẹ ranṣẹ si ẹgbẹ Match Vision.',
+      ig: 'N’ezie. Pịa n’okpuru iji zitere ndị otu Match Vision ozi.',
+      pcm: 'No wahala. Tap below make you message the Match Vision team.',
+      de: 'Klar. Tippe unten, um dem Match-Vision-Team zu schreiben.',
+      hi: 'बिल्कुल। नीचे दबाकर Match Vision टीम को संदेश भेजें।' } }
 ];
-const CHIPS = [['How Much Is It?', 'How much is it?'], ['How Do I Pay?', 'How do I pay?'], ['When Do Picks Come?', 'When do the picks come?'], ['Are Picks Guaranteed?', 'Are the picks guaranteed?'], ['Refunds', 'Can I get a refund?'], ['Talk To The Team', 'I want to talk to a person']];
+
+function norm(t) {
+  return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+}
+function near(a, b) {                                  // one typo is still a match (short words must be exact)
+  if (a === b) return true;
+  if (a.length < 5 || Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, bad = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++bad > 1) return false;
+    if (a.length > b.length) i++; else if (a.length < b.length) j++; else { i++; j++; }
+  }
+  return bad + (a.length - i) + (b.length - j) <= 1;
+}
+function hits(text, words) {
+  const t = ' ' + norm(text) + ' ', ws = t.trim().split(' ');
+  let n = 0;
+  words.forEach(function (w) {
+    const k = norm(w);
+    if (!k) return;
+    if (k.indexOf(' ') >= 0) { if (t.indexOf(' ' + k + ' ') >= 0) n += 2; return; }
+    if (t.indexOf(' ' + k + ' ') >= 0) { n += 1; return; }
+    if (ws.some(function (x) { return near(x, k); })) n += 0.5;
+  });
+  return n;
+}
+const LANGHINT = { fr: ['combien', 'comment', 'je', 'vous', 'quand', 'prix', 'paiement', 'pronostic', 'bonjour', 'merci'],
+  es: ['cuanto', 'como', 'puedo', 'cuando', 'precio', 'pago', 'gracias', 'hola'],
+  pt: ['quanto', 'como', 'posso', 'quando', 'preco', 'pagamento', 'obrigado', 'ola'],
+  sw: ['bei', 'naweza', 'lini', 'asante', 'habari', 'malipo', 'kiasi'],
+  ha: ['nawa', 'yaya', 'yaushe', 'nagode', 'sannu', 'kudin', 'biya'],
+  yo: ['elo', 'bawo', 'igba', 'ese', 'pele', 'owo', 'san'],
+  ig: ['ego', 'kedu', 'mgbe', 'daalu', 'ndewo', 'ugwo'],
+  pcm: ['abeg', 'wetin', 'dey', 'wahala', 'sabi', 'na', 'make', 'fit'],
+  de: ['wie', 'viel', 'kostet', 'wann', 'danke', 'hallo', 'bezahlen', 'kann'] };
+function detect(text) {
+  const t = norm(text);
+  if (/[؀-ۿ]/.test(text)) return 'ar';
+  if (/[ऀ-ॿ]/.test(text)) return 'hi';
+  let best = null, score = 0;
+  Object.keys(LANGHINT).forEach(function (k) {
+    const n = hits(t, LANGHINT[k]);
+    if (n > score) { score = n; best = k; }
+  });
+  return score >= 1 ? best : null;
+}
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('vp-lang', l); } catch (e) {}
+  const L = LANGS.find(function (x) { return x[0] === l; });
+  $('langcode').textContent = L ? L[1] : 'EN';
+  $('cq').placeholder = T[l].ph;
+  $('chips').innerHTML = T[l].chips.map(function (c) { return '<button type="button" data-q="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
+}
+function fill(s) {
+  const p = priceOf(cur);
+  let W = 0, N = 0;
+  recDays.forEach(function (r) { W += r.won; N += r.of; });
+  return String(s).replace('{P}', p.text).replace(/\{U\}/g, USD_PRICE)
+    .replace('{W}', W).replace('{N}', N).replace('{R}', N ? Math.round(W * 100 / N) : 0).replace('{D}', recDays.length);
+}
 function action(kind) {
-  if (kind === 'pay') return '<button class="act" data-act="pay">Go To Payment</button>';
-  if (kind === 'record') return '<button class="act" data-act="record">See Our VIP Record</button>';
-  if (kind === 'refund') return '<button class="act" data-act="refund">Refund Policy</button>';
-  if (kind === 'talk') return '<a class="act" href="' + BOT + '" target="_blank" rel="noopener">Message The Team</a>' + (WA ? '<a class="act" href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>' : '');
+  const t = T[lang];
+  if (kind === 'pay') return '<button class="act" data-act="pay">' + esc(t.pay) + '</button>';
+  if (kind === 'record') return '<button class="act" data-act="record">' + esc(t.rec) + '</button>';
+  if (kind === 'refund') return '<button class="act" data-act="refund">' + esc(t.ref) + '</button>';
+  if (kind === 'talk') return '<a class="act" href="' + BOT + '" target="_blank" rel="noopener">' + esc(t.talk) + '</a>' +
+    (WA ? '<a class="act" href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>' : '');
   return '';
 }
 function say(html, who) { const m = document.createElement('div'); m.className = 'msg ' + (who || 'bot'); m.innerHTML = html; $('msgs').appendChild(m); $('msgs').scrollTop = 1e9; return m; }
 function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function countryIn(text) {
+  const t = ' ' + norm(text) + ' ';
+  let found = null;
+  Object.keys(CC_WORDS).forEach(function (cc) {
+    CC_WORDS[cc].forEach(function (w) { if (t.indexOf(' ' + norm(w) + ' ') >= 0) found = cc; });
+  });
+  if (!found) {
+    C.forEach(function (c) { if (c[0] !== 'XX' && t.indexOf(' ' + norm(c[1]) + ' ') >= 0) found = c[0]; });
+  }
+  return found;
+}
 function ask(text) {
-  text = String(text || '').trim(); if (!text) return;
+  text = String(text || '').trim();
+  if (!text) return;
   say(esc(text), 'me');
+  const d = detect(text);
+  if (d && d !== lang) setLang(d);
   const t = say('<span class="typing"><i></i><i></i><i></i></span>');
   setTimeout(function () {
-    const hit = ANS.find(function (a) { return a[0].test(text); });
-    t.innerHTML = hit ? esc(hit[1]()) + '<br>' + action(hit[2]) : 'I Do Not Have An Answer For That Yet. Tap Below And The Match Vision Team Will Reply To You Directly.<br>' + action('talk');
+    const cc = countryIn(text);
+    if (cc) chatCC = cc;
+    let best = null, score = 0;
+    KB.forEach(function (k) { const n = hits(text, k.w); if (n > score) { score = n; best = k; } });
+    // a country on its own, right after the "when" answer: just give the time there
+    if (cc && (!best || score < 1 || best.id === 'when')) {
+      const hm = pickTime(cc), name = (C.find(function (c) { return c[0] === cc; }) || [,''])[1] || '';
+      if (hm) {
+        t.innerHTML = esc(fill(KB.find(function (k) { return k.id === 'when'; }).a[lang])) +
+          '<br><b>' + esc(hm + ' ' + (lang === 'fr' ? 'chez vous' : lang === 'es' ? 'en ' + name : lang === 'pt' ? 'em ' + name :
+            lang === 'de' ? 'bei dir' : lang === 'sw' ? name : 'in ' + name)) + '</b>';
+        $('msgs').scrollTop = 1e9;
+        return;
+      }
+    }
+    if (best && score >= 1) {
+      let a = fill(best.a[lang] || best.a.en);
+      if (best.id === 'when' && chatCC) {
+        const hm = pickTime(chatCC);
+        if (hm) a += ' — ' + hm + ' ' + ((C.find(function (c) { return c[0] === chatCC; }) || [,''])[1] || '');
+      }
+      t.innerHTML = esc(a) + (best.act ? '<br>' + action(best.act) : '');
+    } else {
+      t.innerHTML = esc(T[lang].none) + '<br>' + action('talk');
+    }
     $('msgs').scrollTop = 1e9;
-  }, 650);
+  }, 600);
 }
 let greeted = false;
 function openChat() {
   chat.hidden = false; fab.querySelector('.badge').hidden = true;
   if (!greeted) {
     greeted = true;
-    say('Hi 👋 Welcome To <b>Vision Premium</b>. Ask Me Anything About The Price, Payment, Picks Or Your Join Link.');
-    $('chips').innerHTML = CHIPS.map(function (c) { return '<button type="button" data-q="' + esc(c[1]) + '">' + c[0] + '</button>'; }).join('');
+    const b = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (LANGS.some(function (l) { return l[0] === b; })) lang = b;
+    setLang(lang);
+    say(esc(T[lang].greet));
   }
   if (matchMedia('(min-width: 700px)').matches) $('cq').focus();
 }
@@ -1237,6 +1687,19 @@ fab.addEventListener('click', function () { chat.hidden ? openChat() : closeChat
 $('chatX').addEventListener('click', closeChat);
 $('chips').addEventListener('click', function (e) { const b = e.target.closest('button'); if (b) ask(b.dataset.q); });
 $('cform').addEventListener('submit', function (e) { e.preventDefault(); ask($('cq').value); $('cq').value = ''; });
+$('langbtn').addEventListener('click', function () {
+  const box = $('langbox');
+  if (!box.innerHTML) {
+    box.innerHTML = LANGS.map(function (l) { return '<button type="button" data-l="' + l[0] + '">' + l[2] + '</button>'; }).join('');
+  }
+  box.hidden = !box.hidden;
+});
+$('langbox').addEventListener('click', function (e) {
+  const b = e.target.closest('button[data-l]'); if (!b) return;
+  setLang(b.dataset.l); $('langbox').hidden = true;
+  say(esc(T[lang].greet));
+});
+
 $('msgs').addEventListener('click', function (e) {
   const b = e.target.closest('[data-act]'); if (!b) return;
   closeChat();
