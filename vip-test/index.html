@@ -736,7 +736,7 @@ body.lock .fab{visibility:hidden}
       <a class="soc" href="https://t.me/matchvision707" target="_blank" rel="noopener" aria-label="Match Vision free channel on Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg><i>Telegram</i></a>
       <a class="soc" href="https://www.youtube.com/@MatchVision707" target="_blank" rel="noopener" aria-label="Match Vision on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg><i>YouTube</i></a>
       <a class="soc" href="https://www.tiktok.com/@matchvision707" target="_blank" rel="noopener" aria-label="Match Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><i>TikTok</i></a>
-      <a class="soc sv" href="https://www.tiktok.com/@scorevision707" target="_blank" rel="noopener" aria-label="Score Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><b class="sb">SV</b><i>Score Vision</i></a>
+      <a class="soc sv" href="https://www.tiktok.com/@scorevision707" target="_blank" rel="noopener" aria-label="Score Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#6B8A0E" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><i>Score Vision</i></a>
       <a class="soc off" id="wa" href="#" aria-disabled="true" aria-label="Match Vision on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg><i>WhatsApp</i></a>
     </div>
   </section>
@@ -1593,7 +1593,7 @@ function detect(text) {
   if (/[ऀ-ॿ]/.test(text)) return 'hi';
   let best = null, score = 0;
   Object.keys(LANGHINT).forEach(function (k) {
-    const n = hits(t, LANGHINT[k]) * (k === 'en' ? 0.9 : 1);      // a local word beats a plain English one
+    const n = hits(t, LANGHINT[k]) * (k === 'en' ? 0.5 : 1);      // a local word beats a plain English one
     if (n > score) { score = n; best = k; }
   });
   return score >= 1 ? best : null;
