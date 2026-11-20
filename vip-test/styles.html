@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vision Premium · Pick your styles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap">
+<style>
+:root{
+  --bg:#F3F7E4; --paper:#FFFFFF; --ink:#0D0D0D; --sub:#55594B; --line:#0D0D0D17;
+  --dark:#111111; --dark2:#1B1B1D; --dark3:#26262A; --lime:#DFFB51; --win:#16A34A; --part:#F2B544;
+  --f:"Inter",system-ui,sans-serif; --h:"Sora","Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;padding:0 18px 70px}
+h1{font-family:var(--h);font-size:27px;letter-spacing:-.03em;margin:22px 0 4px}
+h2{font-family:var(--h);font-size:21px;letter-spacing:-.02em;margin:34px 0 2px}
+.note{color:var(--sub);font-size:14.5px;margin:0 0 14px}
+.wrap{max-width:520px;margin:0 auto}
+.opt{margin:16px 0 0;border-radius:20px;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+.opt>.lab{display:flex;align-items:center;gap:8px;padding:11px 14px;font-family:var(--h);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--dark);color:#fff}
+.opt>.lab .pick{margin-left:auto;background:var(--lime);color:var(--ink);border-radius:999px;padding:4px 9px;font-size:10.5px;letter-spacing:.06em}
+.opt>.in{padding:16px 14px}
+.dk{background:var(--dark);color:#fff}
+.sub{color:var(--sub);font-size:13.5px;padding:0 14px 14px}
+.dk .sub{color:#9A9AA0}
+
+/* ---- A. tap hint ---- */
+.board{background:var(--dark);border-radius:20px;padding:14px}
+.calmini{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.calmini i{display:grid;place-items:center;height:34px;border-radius:9px;background:var(--part);color:#0D0D0D;font-style:normal;font-weight:800;font-size:12px}
+.calmini i.w{background:var(--win);color:#fff}
+.calmini i.t{box-shadow:0 0 0 3px #DFFB5159;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px #DFFB5126}}
+.h1{margin-top:12px;color:#C8C8CC;font-size:13.5px;display:flex;align-items:center;gap:7px}
+.h2x{margin-top:12px;display:inline-flex;align-items:center;gap:8px;background:#FFFFFF0D;border:1px solid #FFFFFF1A;border-radius:999px;padding:8px 13px;color:#E4E4E7;font-size:13.5px;font-weight:600}
+.h2x .d{width:8px;height:8px;border-radius:50%;background:var(--lime);animation:ping 1.6s ease-out infinite}
+@keyframes ping{70%{box-shadow:0 0 0 7px #DFFB5100}0%{box-shadow:0 0 0 0 #DFFB5166}}
+.h3x{color:#9A9AA0;font-size:13px;margin:2px 0 10px}
+.h4x{margin-top:12px;display:flex;align-items:center;gap:10px;border:1px solid #FFFFFF26;border-radius:12px;padding:10px 12px;color:#E4E4E7;font-size:13.5px}
+.h5x{margin-top:10px;text-align:center;color:#9A9AA0;font-size:12.5px}
+.ttl{font-family:var(--h);font-weight:800;font-size:19px;color:#fff}
+
+/* ---- B. price panel ---- */
+.p1{background:var(--dark);color:#fff;border-radius:20px;padding:18px}
+.p1 .lbl{font-size:11px;letter-spacing:.16em;color:#9A9AA0;font-weight:800;text-transform:uppercase}
+.p1 .big{font-family:var(--h);font-size:42px;font-weight:800;color:var(--lime);line-height:1.05}
+.p1 .per{color:#C8C8CC;font-size:14px}
+.p1 .div{height:1px;background:#FFFFFF1F;margin:12px 0}
+.p1 .fine{color:#9A9AA0;font-size:13px}
+.p2{background:var(--paper);border:1px solid var(--line);border-left:7px solid var(--lime);border-radius:18px;padding:16px 18px}
+.p2 .big{font-family:var(--h);font-size:40px;font-weight:800;line-height:1.05}
+.p2 .per{color:var(--sub);font-size:14px}
+.p3{position:relative;background:var(--dark);color:#fff;border-radius:20px;padding:20px 18px;overflow:hidden}
+.p3::before{content:"";position:absolute;left:-30px;top:-40px;width:200px;height:200px;background:radial-gradient(circle,#DFFB5147,transparent 70%)}
+.p3 .vip{position:relative;display:inline-block;background:var(--lime);color:#0D0D0D;font-family:var(--h);font-weight:800;font-size:11px;letter-spacing:.1em;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+.p3 .big{position:relative;font-family:var(--h);font-size:44px;font-weight:800;color:var(--lime)}
+.p4{background:var(--paper);border:1px dashed #0D0D0D33;border-radius:18px;padding:6px 16px 14px}
+.p4 .r{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed #0D0D0D1F;font-size:14.5px}
+.p4 .r:last-child{border-bottom:0;font-family:var(--h);font-weight:800;font-size:19px;padding-top:13px}
+.p5{display:flex;align-items:center;gap:14px;background:var(--dark);color:#fff;border-radius:20px;padding:18px}
+.p5 .big{font-family:var(--h);font-size:38px;font-weight:800;color:var(--lime);line-height:1}
+.p5 ul{margin:0;padding:0;list-style:none;font-size:13.5px;color:#D4D4D8}
+.p5 li{display:flex;gap:7px;align-items:center;padding:2px 0}
+.p5 li::before{content:"✓";color:var(--lime);font-weight:800}
+
+/* ---- C. follow row ---- */
+.s1{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.s1 a{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 8px 18px #0D0D0D0F}
+.s2{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.s2 a{width:58px;height:58px;border-radius:18px;background:var(--dark);display:grid;place-items:center}
+.s2 svg{color:var(--lime)}
+.s3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.s3 a{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 6px;display:grid;justify-items:center;gap:6px;text-decoration:none;color:inherit;font-size:12px;font-weight:700}
+.s4{display:flex;justify-content:center}
+.s4 .dock{display:flex;gap:16px;background:var(--dark);border-radius:999px;padding:12px 20px}
+.s5{border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:center;gap:20px}
+.s5 svg{opacity:.45}
+.sv{position:relative}
+.sv b{position:absolute;right:-4px;bottom:-4px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10px;font-weight:800;border-radius:7px;padding:3px 5px;border:2px solid var(--bg)}
+svg.i{width:26px;height:26px}
+
+/* ---- D. menu ---- */
+.m{background:var(--dark);border-radius:18px;padding:14px;color:#fff}
+.m .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:var(--h);font-weight:800}
+.m .x{width:30px;height:30px;border-radius:9px;background:var(--dark3);display:grid;place-items:center;font-size:14px}
+.m .grp{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8A90;margin:10px 4px 3px;font-weight:800}
+.m .it{display:flex;justify-content:space-between;align-items:center;padding:9px 10px;border-radius:10px;font-size:14.5px;font-weight:600}
+.m .it.on{color:var(--lime)}
+.m .go{background:var(--lime);color:var(--ink);font-family:var(--h);font-weight:800;border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;font-size:15px}
+.m .card{background:#FFFFFF0A;border:1px solid #FFFFFF14;border-radius:14px;padding:4px 6px;margin-top:6px}
+.m .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.m .tiles div{background:#FFFFFF0D;border-radius:12px;padding:12px 10px;font-size:13px;font-weight:700}
+.m .big{display:grid;gap:10px;text-align:center;padding:14px 0;font-family:var(--h);font-size:19px;font-weight:700}
+.m .legal{margin-top:12px;border-top:1px solid #2A2A2E;padding-top:10px;display:flex;flex-wrap:wrap;gap:8px 14px;color:#9A9AA0;font-size:12px}
+.m .fold{margin-top:10px;background:#FFFFFF0D;border-radius:10px;padding:10px;font-size:13.5px;color:#C8C8CC;display:flex;justify-content:space-between}
+.tip{background:#DFFB5147;border:1px solid #0D0D0D14;border-radius:14px;padding:12px 14px;font-size:14px;margin-top:12px}
+.end{margin:34px 0 0;font-size:14px;color:var(--sub);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Pick your styles</h1>
+<p class="note">Four things to choose. Tell me the number for each, like: <b>A2, B4, C1, D1</b>. The one I would pick is marked.</p>
+
+<h2>A · The "tap any day" hint</h2>
+<p class="note">Under the Last 28 VIP days calendar.</p>
+
+<div class="opt"><div class="lab">Style A1</div><div class="in dk"><div class="board">
+  <div class="ttl">Last 28 VIP days</div>
+  <div class="calmini" style="margin-top:10px"><i>16<br></i><i class="w">17</i><i>18</i><i class="w">19</i><i>20</i><i>21</i><i class="w">22</i></div>
+  <div class="h1">👆 Tap any day to see its real VIP card</div>
+</div></div><div class="sub dk" style="background:var(--dark)">Plain grey line with a tap hand. No box.</div></div>
+
+<div class="opt"><div class="lab">Style A2 <span class="pick">My pick</span></div><div class="in dk"><div class="board">
+  <div class="ttl">Last 28 VIP days</div>
+  <div class="calmini" style="margin-top:10px"><i>16</i><i class="w">17</i><i>18</i><i class="w">19</i><i>20</i><i>21</i><i class="w">22</i></div>
+  <div class="h2x"><span class="d"></span>Tap any day to see its real VIP card</div>
+</div></div><div class="sub dk" style="background:var(--dark)">Small pill with a lime dot that breathes. Close to what you have now, cleaner.</div></div>
+
+<div class="opt"><div class="lab">Style A3</div><div class="in dk"><div class="board">
+  <div class="ttl">Last 28 VIP days</div>
+  <div class="h3x">Tap any day to see its real VIP card</div>
+  <div class="calmini"><i>16</i><i class="w">17</i><i>18</i><i class="w">19</i><i>20</i><i>21</i><i class="w">22</i></div>
+</div></div><div class="sub dk" style="background:var(--dark)">The hint sits under the title, above the squares. Nothing below the calendar.</div></div>
+
+<div class="opt"><div class="lab">Style A4</div><div class="in dk"><div class="board">
+  <div class="ttl">Last 28 VIP days</div>
+  <div class="calmini" style="margin-top:10px"><i>16</i><i class="w">17</i><i>18</i><i class="w">19</i><i>20</i><i>21</i><i class="w">22</i></div>
+  <div class="h4x">👆<span>Tap any day to see its real VIP card</span></div>
+</div></div><div class="sub dk" style="background:var(--dark)">Thin bordered banner, icon left, words right.</div></div>
+
+<div class="opt"><div class="lab">Style A5</div><div class="in dk"><div class="board">
+  <div class="ttl">Last 28 VIP days</div>
+  <div class="calmini" style="margin-top:10px"><i>16</i><i class="w">17</i><i>18</i><i class="w">19</i><i>20</i><i>21</i><i class="w t">22</i></div>
+  <div class="h5x">Tap any day to see its real VIP card</div>
+</div></div><div class="sub dk" style="background:var(--dark)">No box. The newest day pulses once, small caption under the calendar.</div></div>
+
+<h2>B · Step 2, your price</h2>
+<p class="note">Prices shown with Nigeria picked, so you can see your own money in the big number.</p>
+
+<div class="opt"><div class="lab">Style B1</div><div class="in"><div class="p1">
+  <div class="lbl">Step 2 · Your price</div>
+  <div style="display:flex;align-items:baseline;gap:10px"><div class="big">₦30,000</div><div class="per">for 30 days</div></div>
+  <div class="div"></div><div class="fine">≈ $20 USD · one price for everyone</div>
+</div></div><div class="sub">Clean dark card. Big price, thin line, one short note.</div></div>
+
+<div class="opt"><div class="lab">Style B2</div><div class="in"><div class="p2">
+  <div style="font-size:11px;letter-spacing:.16em;color:var(--sub);font-weight:800">STEP 2 · YOUR PRICE</div>
+  <div style="display:flex;align-items:baseline;gap:10px"><div class="big">₦30,000</div><div class="per">for 30 days</div></div>
+  <div style="color:var(--sub);font-size:13.5px;margin-top:6px">≈ $20 USD · one price for everyone</div>
+</div></div><div class="sub">Light card with a lime bar on the left, price in black.</div></div>
+
+<div class="opt"><div class="lab">Style B3 <span class="pick">My pick</span></div><div class="in"><div class="p3">
+  <span class="vip">VIP</span>
+  <div style="display:flex;align-items:baseline;gap:10px"><div class="big">₦30,000</div><div class="per" style="color:#C8C8CC;font-size:14px">for 30 days</div></div>
+  <div style="position:relative;color:#9A9AA0;font-size:13px;margin-top:6px">≈ $20 USD · one price for everyone</div>
+</div></div><div class="sub">Dark card, soft lime glow behind the price, small VIP badge. Premium, still your colours.</div></div>
+
+<div class="opt"><div class="lab">Style B4</div><div class="in"><div class="p4">
+  <div class="r"><span>Vision Premium</span><span>30 days</span></div>
+  <div class="r"><span>Your country</span><span>Nigeria</span></div>
+  <div class="r"><span>Price</span><span>₦30,000</span></div>
+  <div class="r"><span>Total today</span><span>₦30,000</span></div>
+</div></div><div class="sub">Ticket style: neat rows with the total at the bottom.</div></div>
+
+<div class="opt"><div class="lab">Style B5</div><div class="in"><div class="p5">
+  <div><div class="big">₦30,000</div><div style="color:#C8C8CC;font-size:13px">for 30 days</div></div>
+  <ul><li>Daily picks</li><li>Every result shown</li><li>30 days access</li></ul>
+</div></div><div class="sub">Price on the left, three short ticks on the right.</div></div>
+
+<h2>C · Follow and contact us</h2>
+<p class="note">Icons only, no @names. Score Vision gets its own mark so it is not mixed up with TikTok.</p>
+
+<div class="opt"><div class="lab">Style C1 <span class="pick">My pick</span></div><div class="in"><div class="s1">
+  <a><svg class="i" viewBox="0 0 100 74"><path fill="#0D0D0D" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#0D0D0D"/></svg></a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg></a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg></a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg></a>
+  <a class="sv"><svg class="i" viewBox="0 0 24 24"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><b>SV</b></a>
+</div></div><div class="sub">Round white buttons, each app in its own colour. Easy to know at a glance.</div></div>
+
+<div class="opt"><div class="lab">Style C2</div><div class="in"><div class="s2">
+  <a><svg class="i" viewBox="0 0 100 74"><path fill="#DFFB51" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#DFFB51"/></svg></a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#DFFB51" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg></a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#DFFB51" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#111" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg></a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#DFFB51" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg></a>
+  <a class="sv"><svg class="i" viewBox="0 0 24 24"><path fill="#DFFB51" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><b>SV</b></a>
+</div></div><div class="sub">Black tiles with lime icons. Most "Match Vision", least colour.</div></div>
+
+<div class="opt"><div class="lab">Style C3</div><div class="in"><div class="s3">
+  <a><svg class="i" viewBox="0 0 100 74"><path fill="#0D0D0D" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#0D0D0D"/></svg>VIP help</a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg>Telegram</a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg>YouTube</a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>TikTok</a>
+  <a><svg class="i" viewBox="0 0 24 24"><path fill="#6B8A0E" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>Score Vision</a>
+</div></div><div class="sub">Small cards with a short name under each icon. Clearest, takes more room.</div></div>
+
+<div class="opt"><div class="lab">Style C4</div><div class="in"><div class="s4"><div class="dock">
+  <svg class="i" viewBox="0 0 100 74"><path fill="#fff" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#fff"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#111" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#fff" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#DFFB51" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>
+</div></div></div><div class="sub">One dark pill holding all the icons.</div></div>
+
+<div class="opt"><div class="lab">Style C5</div><div class="in"><div class="s5">
+  <svg class="i" viewBox="0 0 100 74"><path fill="#0D0D0D" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#0D0D0D"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#0D0D0D" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#0D0D0D" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>
+  <svg class="i" viewBox="0 0 24 24"><path fill="#6B8A0E" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>
+</div></div><div class="sub">Quiet grey outline icons above a thin line, brand colour on tap.</div></div>
+
+<h2>D · The side menu</h2>
+<p class="note">Everything on one screen, no scrolling.</p>
+
+<div class="opt"><div class="lab">Style D1 <span class="pick">My pick</span></div><div class="in"><div class="m">
+  <div class="hd"><span style="color:var(--lime)">MV.</span><span class="x">✕</span></div>
+  <div class="grp">Results</div><div class="it on">Recent VIP wins ›</div><div class="it">Our VIP record ›</div>
+  <div class="grp">About</div><div class="it">What you get ›</div><div class="it">How it works ›</div><div class="it">Questions and answers ›</div>
+  <div class="grp">Contact</div><div class="it">Follow and contact us ›</div>
+  <div style="margin-top:10px"><div class="go">Join Vision Premium ›</div></div>
+  <div class="legal"><span>Terms</span><span>Refunds</span><span>Responsible play (18+)</span><span>Privacy</span></div>
+</div></div><div class="sub">Grouped list, grey group names, lime Join button, legal small at the bottom. The part you are on is lime.</div></div>
+
+<div class="opt"><div class="lab">Style D2</div><div class="in"><div class="m">
+  <div class="hd"><span style="color:var(--lime)">MV.</span><span class="x">✕</span></div>
+  <div class="go">Join Vision Premium ›</div>
+  <div class="grp">Results</div><div class="card"><div class="it">Recent VIP wins ›</div><div class="it" style="border-top:1px solid #FFFFFF14">Our VIP record ›</div></div>
+  <div class="grp">About</div><div class="card"><div class="it">What you get ›</div><div class="it" style="border-top:1px solid #FFFFFF14">How it works ›</div><div class="it" style="border-top:1px solid #FFFFFF14">Questions and answers ›</div></div>
+  <div class="legal"><span>Terms</span><span>Refunds</span><span>18+</span><span>Privacy</span></div>
+</div></div><div class="sub">Each group in its own dark card with thin lines between.</div></div>
+
+<div class="opt"><div class="lab">Style D3</div><div class="in"><div class="m">
+  <div class="hd"><span style="color:var(--lime)">MV.</span><span class="x">✕</span></div>
+  <div class="go">Join Vision Premium ›</div>
+  <div class="tiles"><div>🏆 Recent VIP wins</div><div>📅 Our VIP record</div><div>👑 What you get</div><div>⚙️ How it works</div><div>❓ Questions</div><div>📣 Follow us</div></div>
+  <div class="legal"><span>Terms</span><span>Refunds</span><span>18+</span><span>Privacy</span></div>
+</div></div><div class="sub">Two columns of tiles with small icons.</div></div>
+
+<div class="opt"><div class="lab">Style D4</div><div class="in"><div class="m">
+  <div class="hd"><span style="color:var(--lime)">MV.</span><span class="x">✕</span></div>
+  <div class="big"><span>Recent VIP wins</span><span>Our VIP record</span><span>What you get</span><span>How it works</span><span>Questions</span><span style="color:var(--lime)">Join Vision Premium</span></div>
+  <div class="legal" style="justify-content:center"><span>Terms</span><span>Refunds</span><span>18+</span><span>Privacy</span></div>
+</div></div><div class="sub">Full screen, big centred words.</div></div>
+
+<div class="opt"><div class="lab">Style D5</div><div class="in"><div class="m">
+  <div class="hd"><span style="color:var(--lime)">MV.</span><span class="x">✕</span></div>
+  <div class="go">Join Vision Premium ›</div>
+  <div class="it">🏆 Recent VIP wins</div><div class="it">📅 Our VIP record</div><div class="it">👑 What you get</div><div class="it">⚙️ How it works</div><div class="it">❓ Questions and answers</div><div class="it">📣 Follow and contact us</div>
+  <div class="fold"><span>Legal and policies</span><span>⌄</span></div>
+</div></div><div class="sub">Shortest list, the four legal links folded under one row.</div></div>
+
+<div class="tip">My picks together: <b>A2, B3, C1, D1</b>. Send me the four you want, or just say "your picks".</div>
+<p class="end">Match Vision · Vision Premium · style picker</p>
+</div>
+</body>
+</html>

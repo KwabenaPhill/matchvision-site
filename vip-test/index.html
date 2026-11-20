@@ -307,11 +307,12 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .socials .soc small{color:var(--sub);font-size:13px;font-weight:600;text-align:right;margin:0}
 .socials .soc.off{display:none}
 /* 5.2: icons only (no @names). Each icon opens its own link; the name under it stays for screen readers. */
-.socials.icons{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;background:none;padding:4px 0 0}
+.socials.icons{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:14px;background:none;padding:4px 0 0}
 .socials.icons .soc{position:relative;display:grid;place-items:center;width:62px;height:62px;padding:0;border-radius:20px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0F}
 .socials.icons .soc svg{width:30px;height:30px}
 .socials.icons .soc i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .socials.icons .soc:active{transform:scale(.95)}
+.socials.icons .soc.off{display:none}
 .socials.icons .soc .sb{position:absolute;right:-3px;bottom:-3px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10.5px;font-weight:800;line-height:1;padding:4px 5px;border-radius:8px;border:2px solid var(--bg)}
 footer{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;color:var(--dim);font-size:12.5px;line-height:1.6;padding-bottom:10px}
 footer .flinks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px}
