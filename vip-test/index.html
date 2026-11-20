@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#F3F7E4">
 <link rel="icon" href="../icons/icon-192.png">
 <title>Vision Premium · Match Vision</title>
+<link rel="preload" as="image" href="logo.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap">
@@ -47,7 +48,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .iconbtn svg{width:22px;height:22px}
 .top .mid{flex:1;min-width:0;text-align:center;font-family:var(--h);font-weight:700;font-size:15px;letter-spacing:-.01em;opacity:0;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease}
 .top.scrolled .mid{opacity:1;transform:none}
-.brand{position:relative;display:block;width:86px;height:46px;border-radius:14px;background:var(--dark);flex:none;overflow:hidden}
+.brand{position:relative;display:grid;place-items:center;width:86px;height:46px;border-radius:14px;background:var(--dark);flex:none;overflow:hidden}
+.lw{font-family:var(--h);font-weight:800;font-size:21px;color:var(--lime);letter-spacing:-.03em}
 .brand .lg{position:absolute;left:50%;top:50%;width:54px;height:30px;transform:translate(-50%,-50%)}
 .brand .lg img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 /* The MV logo builds itself once: M wipes in, V slides into place, the dot drops in and bounces */
@@ -152,10 +154,10 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .vnote{position:absolute;left:50%;top:61%;transform:translateX(-50%);white-space:nowrap;background:#000000A6;color:#E5E5E7;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:600}
 .vbox.sound .vsound,.vbox.sound .vnote{display:none}
 .vsound,.vnote{z-index:2}
-.hero.b .join2{justify-content:space-between;padding:14px;text-align:left;min-height:70px}
+.hero.b .join2{justify-content:space-between;padding:16px 20px;text-align:left;min-height:74px;gap:14px}
 .join2 .jt{display:flex;flex-direction:column;white-space:nowrap;line-height:1.2}
 .join2 .jp{font-family:var(--b,Inter),sans-serif;font-weight:700;font-size:13px;opacity:.75;margin-top:2px}
-.join2 i{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;flex:none;margin-left:14px}.join2 i svg{width:18px;height:18px}
+.join2 i{width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;flex:none;margin:0}.join2 i svg{width:18px;height:18px}
 .hero.b .trust svg{color:var(--lime)}
 
 /* C: headline + the latest VIP ticket */
@@ -318,14 +320,13 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .socials .soc small{color:var(--sub);font-size:13px;font-weight:600;text-align:right;margin:0}
 .socials .soc.off{display:none}
 /* 5.2: icons only (no @names). Each icon opens its own link; the name under it stays for screen readers. */
-/* C3 (his pick 20 Nov): a clean grid of small cards, icon with a short name under it, no @names */
-.socials.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:none;padding:2px 0 0}
-.socials.icons .soc{position:relative;display:grid;justify-items:center;align-content:center;gap:7px;width:auto;height:auto;
-  padding:15px 8px;border-radius:18px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0D;
-  font-size:12.5px;font-weight:800;color:var(--ink);text-align:center}
+/* 5.4 (his word 20 Nov 15:20): JUST THE LOGOS, one row, nothing else */
+.socials.icons{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;gap:10px;background:none;padding:2px 0 0}
+.socials.icons .soc{position:relative;display:grid;place-items:center;width:60px;height:60px;padding:0;
+  border-radius:50%;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0D}
 .socials.icons .soc svg{width:28px;height:28px}
-.socials.icons .soc i{font-style:normal;line-height:1.2}
-.socials.icons .soc:active{transform:scale(.97)}
+.socials.icons .soc i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.socials.icons .soc:active{transform:scale(.95)}
 .socials.icons .soc.off{display:none}
 .socials.icons .soc .sb{position:absolute;right:8px;top:8px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10px;font-weight:800;line-height:1;padding:3px 5px;border-radius:7px}
 footer{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;color:var(--dim);font-size:12.5px;line-height:1.6;padding-bottom:10px}
@@ -355,8 +356,8 @@ body.lock .bar{visibility:hidden}
 .curlist .f{font-size:22px}
 .curlist .c{font-weight:800;font-variant-numeric:tabular-nums}
 .bar .p{flex:1;display:flex;flex-direction:column;line-height:1.2;min-width:0;border:0;background:none;padding:0;text-align:left;color:#fff}
-.bar .p b{font-family:var(--h);font-size:19px;font-weight:800;color:var(--lime);font-variant-numeric:tabular-nums;white-space:nowrap}
-.bar .p span{font-size:12px;color:#C8C8CC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .p b{font-family:var(--h);font-size:27px;font-weight:800;color:var(--lime);font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.02}
+.bar .p span{display:block;font-size:12px;color:#C8C8CC;white-space:nowrap;margin-top:1px}
 .bar .btn{min-height:50px;padding:0 22px;font-size:16px;flex:none;box-shadow:none}
 
 /* ===== Sheets and viewer ===== */
@@ -523,7 +524,7 @@ body.lock .fab{visibility:hidden}
 <div class="drawer" id="drawer" hidden>
   <div class="shade" data-close></div>
   <nav class="panel" aria-label="Menu">
-    <div class="head"><img src="logo.png" alt="Match Vision"><button class="x" data-close aria-label="Close Menu">✕</button></div>
+    <div class="head"><img src="logo.png" alt="Match Vision" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'lw',textContent:'MV.'}))"><button class="x" data-close aria-label="Close Menu">✕</button></div>
     <a class="go2" href="#join">Join Vision Premium</a>
     <div class="grp">Results</div>
     <div class="gcard"><a href="#results">Recent VIP wins</a><a href="#record">Our VIP record</a></div>
@@ -556,7 +557,7 @@ body.lock .fab{visibility:hidden}
       <div class="chip"><span class="dot"></span>Vision Premium · Private VIP Room</div>
       <h1>Stop Guessing. <em>Get Our Top Safest Picks</em> Every Day.</h1>
       <div class="vbox" id="vbox">
-        <video id="vvid" muted autoplay loop playsinline preload="metadata" poster="video/poster.jpg"><source src="video/vision-premium.mp4" type="video/mp4"></video>
+        <video id="vvid" muted autoplay loop playsinline preload="none" poster="video/poster.jpg" data-src="video/vision-premium.mp4"></video>
         <button class="vsound" id="vsound" type="button"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4Z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></i>Tap For Sound</button>
         <div class="vnote" id="vnote">Playing On Mute · Starts Over With Sound</div>
       </div>
@@ -742,17 +743,17 @@ body.lock .fab{visibility:hidden}
   </section>
 
   <footer>
-    <a class="brand" href="#" aria-label="Back To Top"><img src="logo.png" alt="Match Vision"></a>
+    <a class="brand" href="#" aria-label="Back To Top"><img src="logo.png" alt="Match Vision" fetchpriority="high" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'lw',textContent:'MV.'}))"></a>
     <div class="flinks"><button data-goto="t-terms">Terms</button><button data-goto="t-refund">Refunds</button><button data-goto="t-play">Responsible Play</button><button data-goto="t-privacy">Privacy</button><button data-goto="faq">FAQ</button></div>
     <div>18+ Only. Predictions Are Based On Data And Analysis. No Outcome Is Guaranteed.</div>
-    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.3</div>
+    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.4</div>
   </footer>
 </main>
 
 <div class="bar hid" id="bar">
   <div class="in">
     <button class="curbtn" id="curbtn" aria-haspopup="dialog" aria-label="Change Currency"><span id="curflag">🇺🇸</span><b id="curcode">USD</b><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button>
-    <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 Days · USD</span></button>
+    <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 days</span></button>
     <a class="btn lime" id="barPay" href="#join">Pay Now</a>
   </div>
 </div>
@@ -911,7 +912,7 @@ function render() {
   $('fine').textContent = cur[2] === 'USD' ? 'One price for 30 days of Vision Premium.'
     : p.fixed ? 'One price for everyone: $' + USD_PRICE + ', shown here in your own money.'
     : 'One price for everyone: $' + USD_PRICE + '. Your amount follows today\'s rate and is shown before you confirm.';
-  $('baramt').textContent = p.text; $('barsub').textContent = '30 Days · ' + cur[2];
+  $('baramt').textContent = p.text; $('barsub').textContent = '30 days';
   $('curflag').textContent = flag(cur[0]); $('curcode').textContent = cur[2];
   const list = methodsFor(cur[0]);
   if (!method || list.indexOf(method) < 0 || !METHODS[method].live) method = list.filter(function (k) { return METHODS[k].live; })[0] || null;
@@ -929,15 +930,22 @@ function render() {
 }
 
 (function () { const box = $('vbox'), v = $('vvid'); if (!box || !v) return;
-  let inView = true;
-  function on() { box.classList.add('sound'); v.loop = false; v.muted = false; v.controls = true; try { v.currentTime = 0; } catch (e) {} v.play().catch(function () {}); }
+  let inView = true, loaded = false;
+  function load() {                              // 5.4: the film only downloads when he reaches it (882 KB saved)
+    if (loaded || !v.dataset.src) return;
+    loaded = true;
+    const s = document.createElement('source');
+    s.src = v.dataset.src; s.type = 'video/mp4';
+    v.appendChild(s); v.load();
+  }
+  function on() { load(); box.classList.add('sound'); v.loop = false; v.muted = false; v.controls = true; try { v.currentTime = 0; } catch (e) {} v.play().catch(function () {}); }
   $('vsound').addEventListener('click', on);
   v.addEventListener('click', function () { if (!box.classList.contains('sound')) on(); });
   v.addEventListener('ended', function () { box.classList.remove('sound'); v.controls = false; v.muted = true; v.loop = true; if (inView) v.play().catch(function () {}); });
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
     inView = es[0].isIntersecting;
     if (!inView) v.pause();
-    else if (!box.classList.contains('sound')) v.play().catch(function () {});
+    else if (!box.classList.contains('sound')) { load(); v.play().catch(function () {}); }
   }, { threshold: .25 }).observe(box);
   document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); });
 })();
@@ -1710,13 +1718,31 @@ $('msgs').addEventListener('click', function (e) {
 });
 addEventListener('scroll', function () { fab.classList.toggle('show', scrollY > 500); }, { passive: true });
 
-// The laptop sends the record inside feed.json every day (vip_record). Until then, vip.json next to this page is used.
-fetch(MVA + 'feed.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (f) {
-  if (f && Array.isArray(f.vip_record) && f.vip_record.length) return f.vip_record;
-  throw new Error('no vip record in the feed');
-}).catch(function () {
-  return fetch(MVA + 'join/vip.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { return j.days; });
-}).then(showRecord).catch(function () { $('calRange').textContent = 'Shows When You Are Online'; });
+// 5.4: the record FIRST from join/vip.json (2 KB), so the days, the cards and the numbers are there in a second
+// even on phone data. feed.json (about 700 KB) is only read afterwards, quietly, in case it is newer.
+function newest(d) { return (d && d.length) ? String(d[0].date || '') : ''; }
+let shown = '';
+fetch(MVA + 'join/vip.json', { cache: 'no-store' })
+  .then(function (r) { return r.json(); })
+  .then(function (j) {
+    const d = (j && j.days) || [];
+    if (!d.length) throw new Error('empty');
+    shown = newest(d);
+    showRecord(d);
+  })
+  .catch(function () { $('calRange').textContent = 'Loading…'; })
+  .finally(function () {
+    const later = function () {
+      fetch(MVA + 'feed.json', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (f) {
+          const d = (f && f.vip_record) || [];
+          if (d.length && newest(d) !== shown) { shown = newest(d); showRecord(d); }
+        })
+        .catch(function () { if (!shown) $('calRange').textContent = 'Shows When You Are Online'; });
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(later, { timeout: 6000 }); else setTimeout(later, 3000);
+  });
 </script>
 </body>
 </html>
