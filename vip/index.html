@@ -26,25 +26,28 @@
 [hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip;
-  padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  padding-bottom:calc(150px + env(safe-area-inset-bottom,0px))}
 body.lock{overflow:hidden}
 a{color:inherit}
 p{margin:0}
 h1,h2,h3{margin:0}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:12px}
-.wrap{max-width:520px;margin:0 auto;padding:0 var(--padR) 0 var(--padL);display:flex;flex-direction:column;gap:64px}
+.wrap{max-width:520px;margin:0 auto;padding:0 var(--padR) 0 var(--padL);display:flex;flex-direction:column;gap:58px}
 
 /* ===== Header ===== */
 .top{position:sticky;top:0;z-index:20;background:rgba(243,247,228,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
-  border-bottom:1px solid transparent;transition:border-color .2s ease,box-shadow .2s ease}
+  border-bottom:1px solid transparent;will-change:transform;
+  transition:transform .28s cubic-bezier(.2,.7,.2,1),border-color .2s ease,box-shadow .2s ease}
+.top.up{transform:translateY(-104%)}
 .top.scrolled{border-bottom-color:var(--line);box-shadow:0 8px 24px #0D0D0D0D}
 .top .in{max-width:520px;margin:0 auto;padding:10px var(--padR) 10px var(--padL);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .iconbtn{width:46px;height:46px;border-radius:14px;border:0;background:var(--dark);color:var(--lime);display:grid;place-items:center;flex:none}
 .iconbtn svg{width:22px;height:22px}
 .top .mid{flex:1;min-width:0;text-align:center;font-family:var(--h);font-weight:700;font-size:15px;letter-spacing:-.01em;opacity:0;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease}
 .top.scrolled .mid{opacity:1;transform:none}
-.brand{position:relative;display:block;width:86px;height:46px;border-radius:14px;background:var(--dark);flex:none;overflow:hidden}
+.brand{position:relative;display:grid;place-items:center;width:86px;height:46px;border-radius:14px;background:var(--dark);flex:none;overflow:hidden}
+.lw{font-family:var(--h);font-weight:800;font-size:21px;color:var(--lime);letter-spacing:-.03em}
 .brand .lg{position:absolute;left:50%;top:50%;width:54px;height:30px;transform:translate(-50%,-50%)}
 .brand .lg img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 /* The MV logo builds itself once: M wipes in, V slides into place, the dot drops in and bounces */
@@ -68,11 +71,25 @@ button{font:inherit;color:inherit;cursor:pointer}
 .drawer a:hover{background:var(--dark3)}
 .drawer .sep{height:1px;background:#2A2A2E;margin:10px 12px}
 .drawer a.small{font-size:15px;color:#C9C9CE;padding:11px 12px}
+/* 5.2: one screen, grouped, the part he is on is lime */
+.drawer .grp{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A8A90;margin:12px 12px 4px}
+/* D2 (his pick 20 Nov): every group in its own rounded card with thin lines between the rows */
+.drawer .gcard{background:#FFFFFF0A;border:1px solid #FFFFFF14;border-radius:14px;overflow:hidden}
+.drawer .gcard a{border-radius:0}
+.drawer .gcard a+a{border-top:1px solid #FFFFFF14}
+.drawer a{padding:11px 12px;font-size:16px}
+.drawer a.on{color:var(--lime)}
+.drawer a.on::after{background-color:#DFFB5126}
+.drawer a.go2{background:var(--lime);color:var(--ink);font-family:var(--h);font-weight:800;font-size:17px;padding:15px 16px;margin-bottom:2px}
+.drawer a.go2::after{background:#0D0D0D14 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%230D0D0D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='m9 6 6 6-6 6'/%3E%3C/svg%3E") no-repeat center/16px}
+.drawer .legal{margin-top:auto;padding:14px 12px calc(6px + env(safe-area-inset-bottom,0px));border-top:1px solid #2A2A2E;display:flex;flex-wrap:wrap;gap:10px 16px}
+.drawer .legal a{color:#9A9AA0;font-size:13px;font-weight:600;padding:0;display:inline}
+.drawer .legal a::after{display:none}
 @keyframes slide{from{transform:translateX(-100%)}}
 @keyframes fade{from{opacity:0}}
 
 /* ===== Common ===== */
-section{display:flex;flex-direction:column;gap:18px}
+section{display:flex;flex-direction:column;gap:20px}
 .eyebrow{align-self:flex-start;display:inline-flex;align-items:center;gap:9px;background:var(--dark);color:var(--lime);border-radius:999px;padding:8px 15px 8px 12px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 8px 20px #0D0D0D1F}
 .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px #DFFB5133}
 .title{font-family:var(--h);font-size:clamp(26px,7.4vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
@@ -84,8 +101,8 @@ section{display:flex;flex-direction:column;gap:18px}
 .btn.lime{background:var(--lime);color:var(--ink);box-shadow:0 10px 26px #C9E63B66}
 .btn.dark{background:var(--dark);color:var(--lime);box-shadow:0 10px 26px #0D0D0D33}
 .btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor;opacity:.92}
-.btn.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,transparent,#FFFFFF8C,transparent);transform:skewX(-20deg);animation:shine 4s 1.6s ease-in-out infinite}
-@keyframes shine{0%{left:-60%}30%,100%{left:130%}}
+.btn.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,transparent,#FFFFFF8C,transparent);transform:skewX(-20deg);animation:shine 2s 1s ease-in-out infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
 .dot{position:relative;width:8px;height:8px;border-radius:50%;background:#22C55E;flex:none}
 .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.8s cubic-bezier(0,0,.2,1) infinite}
 @keyframes ping{75%,100%{transform:scale(2.6);opacity:0}}
@@ -128,6 +145,18 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .hero.b .ctas{display:flex;flex-direction:column;gap:10px}
 .hero.b .btn.ghost{color:#fff;border-color:#FFFFFF3D}
 .hero.b .trust{color:#C8C8CC}
+.hero.b .vbox{position:relative;border-radius:20px;overflow:hidden;border:1px solid #FFFFFF1F;background:#000;aspect-ratio:16/9;box-shadow:0 14px 34px #00000066}
+.hero.b .vbox video{width:100%;height:100%;object-fit:cover;display:block}
+.vsound{position:absolute;left:50%;top:42%;white-space:nowrap;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;background:var(--lime);color:var(--ink);font:800 14px var(--h);padding:6px 16px 6px 6px;box-shadow:0 8px 24px #00000066;cursor:pointer}
+.vsound i{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center}.vsound svg{width:18px;height:18px}
+.vnote{position:absolute;left:50%;top:61%;transform:translateX(-50%);white-space:nowrap;background:#000000A6;color:#E5E5E7;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:600}
+.vbox.sound .vsound,.vbox.sound .vnote{display:none}
+.vsound,.vnote{z-index:2}
+.hero.b .join2{justify-content:space-between;padding:16px 20px;text-align:left;min-height:74px;gap:12px;flex-wrap:nowrap}
+.hero.b .join2 .jt{min-width:0;flex:0 1 auto}
+.join2 .jt{display:flex;flex-direction:column;white-space:nowrap;line-height:1.2}
+.join2 .jp{font-family:var(--b,Inter),sans-serif;font-weight:700;font-size:13px;opacity:.75;margin-top:2px}
+.join2 i{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;flex:none;margin:0}.join2 i svg{width:18px;height:18px}
 .hero.b .trust svg{color:var(--lime)}
 
 /* C: headline + the latest VIP ticket */
@@ -178,6 +207,11 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .honest b{display:block;font-family:var(--h);font-size:16.5px;font-weight:800;letter-spacing:-.01em}
 .honest span{display:block;color:var(--ink2);font-size:14px;line-height:1.5;margin-top:2px}
 .dayinfo{margin-top:14px;background:#FFFFFF0D;border:1px solid #FFFFFF14;border-radius:14px;padding:12px 14px;font-size:14px;color:#E4E4E7;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.dayinfo.hint{display:inline-flex;align-self:flex-start;width:auto;justify-content:flex-start;color:#D4D4D8;
+  font-weight:600;border-radius:999px;padding:9px 15px;background:#FFFFFF0D;border:1px solid #FFFFFF1A}
+.dayinfo.hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);flex:none;
+  animation:hintdot 1.9s ease-in-out infinite}                      /* A2, his pick 20 Nov */
+@keyframes hintdot{0%,100%{box-shadow:0 0 0 4px #DFFB5126}50%{box-shadow:0 0 0 9px #DFFB510F}}
 .dayinfo button{border:0;background:var(--lime);color:var(--ink);font-weight:800;font-size:13px;border-radius:10px;padding:8px 12px;flex:none}
 
 /* ===== Latest results gallery ===== */
@@ -211,10 +245,14 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .picker .flag{font-size:32px;line-height:1;flex:none}
 .picker .nm{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
 .picker .nm b{font-size:17px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.picker .nm small{color:var(--sub);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.picker .nm small{color:var(--sub);font-size:13px;line-height:1.3}
 .picker .chg{flex:none;font-size:13px;font-weight:800;background:var(--dark);color:var(--lime);border-radius:999px;padding:8px 13px}
 .price{background:var(--dark);color:#fff;padding:24px 20px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
 .price::after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#DFFB5133,transparent 70%)}
+/* B3 (his pick 20 Nov): the glow sits behind the price, with a small VIP badge over it */
+.price::before{content:"";position:absolute;left:-40px;bottom:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,#DFFB5140,transparent 68%)}
+.price>*{position:relative}
+.price .vip{align-self:flex-start;background:var(--lime);color:var(--ink);font-family:var(--h);font-weight:800;font-size:11px;letter-spacing:.12em;border-radius:999px;padding:4px 11px;margin-bottom:2px}
 .price .lbl{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA0}
 .price .row1{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .price .big{font-family:var(--h);font-size:clamp(42px,12vw,56px);font-weight:800;letter-spacing:-.035em;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums}
@@ -275,6 +313,21 @@ body[data-hero="a"] .hero[data-v="a"],body[data-hero="b"] .hero[data-v="b"],body
 .soc svg{width:22px;height:22px}
 .soc small{color:#9A9AA0;font-weight:500;font-size:13px;overflow-wrap:anywhere;text-align:right}
 .soc.off{display:none}
+.socials{display:grid;gap:10px;background:none;padding:0;color:var(--ink);border-radius:0}
+.socials .soc{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:14px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:16px;font-weight:800;font-size:15.5px;color:var(--ink);text-decoration:none}
+.socials .soc svg{width:26px;height:26px;padding:0;background:none;border-radius:0}
+.socials .soc small{color:var(--sub);font-size:13px;font-weight:600;text-align:right;margin:0}
+.socials .soc.off{display:none}
+/* 5.2: icons only (no @names). Each icon opens its own link; the name under it stays for screen readers. */
+/* 5.4 (his word 20 Nov 15:20): JUST THE LOGOS, one row, nothing else */
+.socials.icons{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;gap:10px;background:none;padding:2px 0 0}
+.socials.icons .soc{position:relative;display:grid;place-items:center;width:60px;height:60px;padding:0;
+  border-radius:50%;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 20px #0D0D0D0D}
+.socials.icons .soc svg{width:28px;height:28px}
+.socials.icons .soc i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.socials.icons .soc:active{transform:scale(.95)}
+.socials.icons .soc.off{display:none}
+.socials.icons .soc .sb{position:absolute;right:8px;top:8px;background:var(--lime);color:var(--ink);font-family:var(--h);font-size:10px;font-weight:800;line-height:1;padding:3px 5px;border-radius:7px}
 footer{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;color:var(--dim);font-size:12.5px;line-height:1.6;padding-bottom:10px}
 footer .flinks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px}
 footer .flinks button{border:0;background:none;padding:0;font-weight:700;color:var(--ink2);font-size:13px}
@@ -284,15 +337,33 @@ footer .brand img{position:absolute;left:50%;top:50%;width:58px;transform:transl
 /* ===== Sticky pay bar (always on) ===== */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:15;padding:10px var(--padR) calc(10px + env(safe-area-inset-bottom,0px)) var(--padL);
   background:rgba(17,17,17,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;box-shadow:0 -10px 30px #0D0D0D26;
-  animation:barIn .5s 1.4s cubic-bezier(.2,.8,.2,1) both}
+  transform:translateY(0);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.bar.hid{transform:translateY(110%)}
+body.nobar .fab{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.fab{transition:bottom .4s cubic-bezier(.2,.8,.2,1)}
 @keyframes barIn{from{transform:translateY(110%)}}
 body.lock .bar{visibility:hidden}
-.bar .in{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.bar .in{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:10px}
 .bar .flag{font-size:26px;line-height:1;flex:none;border:0;background:none;padding:0}
+.curbtn{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid #FFFFFF26;background:#FFFFFF14;color:#fff;border-radius:999px;padding:7px 10px 7px 9px;font-size:13px;font-weight:800;line-height:1}
+.curbtn span{font-size:17px;line-height:1;display:flex;align-items:center}
+.fl{width:22px;height:16px;border-radius:3px;display:block;box-shadow:0 0 0 1px #0000001F inset}
+.fe{line-height:1}
+.picker .flag .fl,.curlist .f .fl,.list .f .fl{width:26px;height:19px}
+.curbtn svg{width:14px;height:14px;opacity:.8}
+.curbtn:active{transform:scale(.96)}
+.curlist button{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;width:100%;border:0;background:none;padding:15px 10px;border-bottom:1px solid var(--line);text-align:left;font-weight:700}
+.curlist button:last-child{border-bottom:0}
+.curlist button.on{background:#DFFB5133;border-radius:14px}
+.curlist .f{font-size:22px}
+.curlist .c{font-weight:800;font-variant-numeric:tabular-nums}
 .bar .p{flex:1;display:flex;flex-direction:column;line-height:1.2;min-width:0;border:0;background:none;padding:0;text-align:left;color:#fff}
-.bar .p b{font-family:var(--h);font-size:19px;font-weight:800;color:var(--lime);font-variant-numeric:tabular-nums;white-space:nowrap}
-.bar .p span{font-size:12px;color:#C8C8CC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar .btn{min-height:50px;padding:0 22px;font-size:16px;flex:none;box-shadow:none}
+.bar .p{flex:1 1 auto;min-width:0}
+.bar .p b{font-family:var(--h);font-size:27px;font-weight:800;color:var(--lime);font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.02;display:block}
+.bar .p b.lg{font-size:23px}
+.bar .p b.xl{font-size:20px}
+.bar .p span{display:block;font-size:12px;color:#C8C8CC;white-space:nowrap;margin-top:1px}
+.bar .btn{min-height:50px;padding:0 18px;font-size:16px;flex:none;box-shadow:none}
 
 /* ===== Sheets and viewer ===== */
 .sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}
@@ -349,6 +420,10 @@ body.lock .fab{visibility:hidden}
 .chat .who small{display:flex;align-items:center;gap:6px;color:#4ADE80;font-size:12px;font-weight:600}
 .chat .who small i{width:7px;height:7px;border-radius:50%;background:#22C55E}
 .chat .cx{width:36px;height:36px;border-radius:11px;border:0;background:#FFFFFF12;color:#fff;font-size:16px}
+.chat .lang{display:inline-flex;align-items:center;gap:4px;border:1px solid #FFFFFF1F;background:#FFFFFF0A;color:#fff;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700;flex:none}
+.langbox{position:absolute;right:56px;top:58px;z-index:3;background:#17181A;border:1px solid #FFFFFF1F;border-radius:14px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;box-shadow:0 18px 40px #00000073}
+.langbox button{border:0;background:none;color:#fff;text-align:left;padding:9px 10px;border-radius:9px;font-size:13px;font-weight:600}
+.langbox button:hover{background:#FFFFFF14}
 .msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:radial-gradient(#FFFFFF08 1px,transparent 1px) 0 0/18px 18px}
 .msg{max-width:86%;padding:11px 14px;border-radius:16px;font-size:14px;line-height:1.5;animation:up .3s ease}
 .msg.bot{align-self:flex-start;background:#1C1D1F;border:1px solid #FFFFFF12;border-bottom-left-radius:6px}
@@ -382,6 +457,60 @@ body.lock .fab{visibility:hidden}
 @keyframes tilt{from{opacity:0;transform:rotate(-8deg) translateY(30px)}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}
   .rv,.cal button,.lg img{opacity:1!important;transform:none!important;clip-path:none!important}}
+.join2 .jl{display:inline-flex;align-items:center;gap:8px}.join2 .cr{width:22px;height:22px;flex:none}
+.join2 .jt{position:relative;padding-left:30px;margin-left:0}
+.join2 .jt .cr{position:absolute;left:-12px;top:1px;bottom:1px;height:calc(100% - 2px);width:auto;aspect-ratio:30/34}
+.vsound{background:#F4F6EA;color:#0D0D0D;box-shadow:0 8px 22px #00000073}
+.vsound i{background:#0D0D0D;color:#F4F6EA}
+.lead.short{font-size:16px;line-height:1.5;color:#C8C8CC}.lead.short b{color:#fff;font-weight:700}
+.hero.b .proof{background:#FFFFFF0A;border:1px solid #FFFFFF1F;border-radius:20px;overflow:hidden}
+.hero.b .stats.inpanel{gap:0;padding:14px 0 12px}
+.hero.b .stats.inpanel a{background:none;border:0;border-radius:0;padding:0 8px;align-items:center;text-align:center;border-right:1px solid #FFFFFF1A}
+.hero.b .stats.inpanel a:last-child{border-right:0}
+.hero.b .recl{display:flex;align-items:center;justify-content:center;gap:8px;border-top:1px solid #FFFFFF1A;padding:14px;color:var(--lime);font:700 15px var(--h);text-decoration:none}
+.hero.b .recl svg{width:17px;height:17px}
+.hero.b .trust{justify-content:center}
+
+.hero.b .l7{padding:14px 14px 12px}
+.hero.b .l7h{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;font-weight:700;color:#C8C8CC;margin-bottom:10px;letter-spacing:.02em}
+.hero.b .l7r b{font:800 17px var(--h);color:var(--lime)}
+.hero.b .l7d{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.hero.b .dd{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hero.b .dd i{font-style:normal;width:100%;text-align:center;border-radius:10px;padding:8px 0;font:800 12.5px var(--h);color:#0D0D0D}
+.hero.b .dd small{font-size:9.5px;color:#8E8E93;font-weight:600}
+.hero.b .dd.w i{background:#16A34A;color:#fff}.hero.b .dd.p i{background:#F2B544}.hero.b .dd.x i{background:#E5484D;color:#fff}
+.hero.b .yd{display:flex;align-items:center;gap:12px;padding:16px 16px 10px}
+.hero.b .yd .ck{width:40px;height:40px;border-radius:50%;background:#16A34A;display:grid;place-items:center;flex:none}.hero.b .yd .ck svg{width:22px;height:22px}.hero.b .yd .ck path{stroke:#fff}
+.hero.b .yd small{display:block;font-size:12px;color:#8E8E93;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.hero.b .yd b{display:block;font:800 19px var(--h);color:#fff;letter-spacing:-.02em}
+.hero.b .ys{display:flex;justify-content:space-between;padding:4px 16px 14px;font-size:12.5px;color:#B5B5BA;font-weight:600}
+.hero.b .ys b{font:800 14px var(--h);color:var(--lime)}
+
+.hero.b .stats.t3 a{align-items:flex-start}
+.hero.b .stats .ic{font-style:normal;width:30px;height:30px;border-radius:10px;background:#DFFB511F;color:var(--lime);display:grid;place-items:center;margin-bottom:8px}.hero.b .stats .ic svg{width:17px;height:17px}
+.hero.b .stats.t4 a{background:#F4F6EA;border-color:#F4F6EA}
+.hero.b .stats.t4 b{color:#0D0D0D}.hero.b .stats.t4 span{color:#55584C;font-weight:600}
+.hero.b .stats.t4 a.s1 b{color:#15803D}
+.hero.b .btn.ghost.cr4{gap:8px}.hero.b .btn.ghost.cr4 svg{width:17px;height:17px}
+.hero.b .rec5{border-top:1px solid #FFFFFF1A;padding-top:16px;display:flex;flex-direction:column;gap:14px}
+.hero.b .stats.t5{gap:0}
+.hero.b .stats.t5 a{background:none;border:0;border-radius:0;padding:0 4px;align-items:center;text-align:center}
+.hero.b .stats.t5 b{font-size:30px}
+.hero.b .stats.t5 a+a{border-left:1px solid #FFFFFF1A}
+.hero.b .recl2{display:flex;align-items:center;justify-content:center;gap:8px;background:#DFFB5114;border:1px solid #DFFB5133;border-radius:14px;padding:13px;color:var(--lime);font:700 15px var(--h);text-decoration:none}
+.hero.b .recl2 svg{width:17px;height:17px}
+.hero.b .stats.t4 a{background:var(--lime);border-color:var(--lime)}
+.hero.b .stats.t4 b,.hero.b .stats.t4 a.s1 b{color:#0D0D0D;font-size:24px}
+.hero.b .stats.t4 span{color:#1F2610;font-weight:700;font-size:12px;white-space:nowrap}
+.hero.b .stats.t4 span{white-space:nowrap;font-size:12px}
+.hero.b .stats.t4 a{background:#2C2D2A;border-color:#3A3B37}.hero.b .stats.t4 b,.hero.b .stats.t4 a.s1 b{color:var(--lime)}.hero.b .stats.t4 span{color:#C8C8CC;font-weight:600}
+.hero.b .stats.t4 a{background:#FFFFFF0D;border:1px solid #FFFFFF14}.hero.b .stats.t4 b,.hero.b .stats.t4 a.s1 b{color:var(--lime)}.hero.b .stats.t4 span{color:#B5B5BA;font-weight:600}
+.bstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:2px 0 14px}
+.bstats button{display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:#FFFFFF0D;border:1px solid #FFFFFF14;border-radius:16px;padding:12px 10px;color:inherit;font:inherit;cursor:pointer}
+.bstats b{font-family:var(--h);font-size:24px;font-weight:800;color:var(--lime);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.bstats span{font-size:12px;font-weight:600;color:#B5B5BA;margin-top:2px;white-space:nowrap}
+.taphint{font-size:13px;font-weight:600;color:#C8C8CC;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.taphint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px #DFFB5126}
 </style>
 </head>
 <body data-hero="b">
@@ -392,7 +521,7 @@ body.lock .fab{visibility:hidden}
     </button>
     <div class="mid">Vision Premium</div>
     <a class="brand" href="#" aria-label="Match Vision, Back To Top">
-      <span class="lg"><img class="lm" src="logo-m.png" alt=""><img class="lv" src="logo-v.png" alt=""><img class="ld" src="logo-dot.png" alt="Match Vision"></span>
+      <span class="lg"><img class="lm" src="data:image/png;base64,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" alt=""><img class="lv" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAABNCAMAAABDqnwdAAAAkFBMVEVYaCd2nzCapDoRGB82TyW70EmdrkOxxkiRoj2epUx1dW7I3Uxomkr//1W5z0v/AADj/VF//wCZZjOrv0W//z8AAADe+lDn/VMXFxYnJyfV6k42OBUzNDFTWSy0yEd5fTXF2Ux+fgHO5E51hzAA/wD//////30oKA9JSSdbWxqWp0LI3Eze+k9oaS3//wCouUXpQOn3AAAAMHRSTlMUESEJDqZZbUkVA68aA9MB0wIFgQQA/v4LBu8MBg6NCLQC1CkBAQILCghOydAKAW3A+mwKAAAEIElEQVR42sWa63LiMAyFnUsp0HbvwnbsNAVacmET3v/tViYhF9vp7sxix8zADPzwx5GsIxkILLGad31d3yYLoLzvP/QFi8EAnNrVdK+n7y+hVxgu5S1G6eHb7+n69lR/bZZQhsCFGusVsiXClAuS0N100QMRsW8Yjo8ahdnpMBdIveWMguheeZAeTGGikvmBkaNnYKlNmFUrjB9lZKcMwhT52RDmHGW5JxgOPYrabmUKU0G8SNHLIjNj3uAHeIHhcqwLlCiMBkOT8KP0AcP7p+5EZZGWMXRHHwYGdzBFWddlWsoRmoDKCFKy+WDOYZhFpADeDJhXKPuT7wpGMLJeVdUqBNkfJwLVzsiYYCOcw4TwRFVGnCPe6cJQggeLMNnYQ10VuqSFUZu1wghYm8KQTAxhdASzgVVXXWE/nGszYy5onNI9zCvtYG47FBAawhzidHz+iatK26qA5fW2Q2bJmAvKxV3nzDMckw4mIt13b456U0XPRXhtKzh3CfMC63Zj+oQ7XPfKusCNWHqHdAtzuoUEw9Qe3VQXhqrPalBliIFTGLh5EG7YumBtFabudHEJs4Xn3aCM2klsjTYcHbKcmIUjmA080r5ZqbldmOTYsCmLG5jBEFUC45ZyHxjCvLaN7zVG0iHMex8ThEkZQ6cyhSFNrJm6E5hsMCH1/RnLm9QiTBCZw6YLx+51wD0JY0WfQ4MwacBHrY87ZU5wHsGgMiLW23D6CPubMJw7VGYLwzFGmBot8mI4JLYOgymhH7iaKMPRbHRtngJiCHOBYmSQWIXVGOECZmzPKkzEIgxT1Yd5SGAhBiEwN7IY9PkEjaCEyUDlCqZvHzqY0JhP6FluJ3dZ7mAyFRU6wJyYMbhVmNN92XUK8zJudTFTURiqD9epLUgOYL7CuNqiMvBFFyaMBJ+57ru7SY4nNfrYVOZwLRiT3AfM1BNRGW0+ocmzQBg/yqTReHe60ucTrDwF8wSzh2ycMrQyhCHlHMvdYdJJVaF0pQvzeG1w/MBMRzWa6EfpEJOcgyeYQr+0o7pDCgaeYDbmQD0VBnIAXzC/LHfO0+tn4Q/GclE2rnfnYVTyAMN48pky66tDeoKROBd8EqQ3iMEfTGDMR7pDeoQh8ynTOiT4g9kDmU8ZvJdvCo8wgXmfOXHIGvzC0NkwJSRnPmEIbGaVoT//ljF3hhEQzuUMPdR/Fea+MMUnMKp18KzMxgqDx/rAy4h7hckhmFFGOSQDzzBHOwz+uCKZbxiWHewwFX7mHSa1wqBDzk4E7mCEtMHQ3boR/8ByVxiZx5EV5gFi5h+GgAVGGYH0DqOuNZ+ozSHxWHuHwRJs9jP4A23GYAGYGEc4y1+YMHsXCFMKD4m+zrGK0QIwjJHgOFlBkLYovmHu0A/ddzXb/XRtm+Vg/mv9AUUIiuteYV7XAAAAAElFTkSuQmCC" alt=""><img class="ld" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAjCAMAAAAT1/wYAAAAkFBMVEUAAAD+/v7///8cHBw4ODj39/cnJydLS0vp6enx8fHU1NTc3NxpaWl/f3+ZmZmnp6exsbHKysrn5+fu7u7w8PD09PRVVVWqqn+xsbHi4uIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADShSqVAAAAMHRSTlMA/QEKCcsJCWqUM0sGCwcRJzFNhXWwDAYXNgAAAAAAAAAAAAAAAAAAAAAAAAAAAABYV0arAAAAkUlEQVR42u2SORIDIQwERwhYYO/Lx/8/6qUo7E0RoemAbBqpNECj0Wj8PbrTXBEf7PXwQ6zogCWsDCs0DNgMEZnj2kSSn7FT4pwmVZ5XcJTxKBcoNdKPIBmgvwlc3QZxh8oJ9nLBiOUm2CQlhv/mzVNwRqtfJgtWwRnBjPlM/4dY6vIJYn/fzh89RPlUpnwR4APp+AMg7B83PgAAAABJRU5ErkJggg==" alt="Match Vision"></span>
     </a>
   </div>
 </header>
@@ -400,19 +529,17 @@ body.lock .fab{visibility:hidden}
 <div class="drawer" id="drawer" hidden>
   <div class="shade" data-close></div>
   <nav class="panel" aria-label="Menu">
-    <div class="head"><img src="logo.png" alt="Match Vision"><button class="x" data-close aria-label="Close Menu">✕</button></div>
-    <a href="#join">Join Vision Premium</a>
-    <a href="#record">Our VIP Record</a>
-    <a href="#results">Latest VIP Results</a>
-    <a href="#why">What You Get</a>
-    <a href="#how">How It Works</a>
-    <a href="#faq">Questions And Answers</a>
-    <a href="#contact">Follow And Contact Us</a>
-    <div class="sep"></div>
-    <a class="small" href="#terms" data-open="t-terms">Terms And Conditions</a>
-    <a class="small" href="#terms" data-open="t-refund">Refund Policy</a>
-    <a class="small" href="#terms" data-open="t-play">Responsible Play (18+)</a>
-    <a class="small" href="#terms" data-open="t-privacy">Privacy</a>
+    <div class="head"><img src="data:image/png;base64,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" alt="Match Vision" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'lw',textContent:'MV.'}))"><button class="x" data-close aria-label="Close Menu">✕</button></div>
+    <a class="go2" href="#join">Join Vision Premium</a>
+    <div class="grp">Results</div>
+    <div class="gcard"><a href="#results">Recent VIP wins</a><a href="#record">Our VIP record</a></div>
+    <div class="grp">About</div>
+    <div class="gcard"><a href="#why">What you get</a><a href="#how">How it works</a><a href="#faq">Questions and answers</a></div>
+    <div class="grp">Contact</div>
+    <div class="gcard"><a href="#contact">Follow and contact us</a></div>
+    <div class="legal">
+      <a href="#terms" data-open="t-terms">Terms</a><a href="#terms" data-open="t-refund">Refunds</a><a href="#terms" data-open="t-play">Responsible play (18+)</a><a href="#terms" data-open="t-privacy">Privacy</a>
+    </div>
   </nav>
 </div>
 
@@ -430,20 +557,19 @@ body.lock .fab{visibility:hidden}
   </section>
 
   <!-- Hero B: dark card -->
-  <section class="hero b" data-v="b">
+    <section class="hero b" data-v="b">
     <div class="card">
       <div class="chip"><span class="dot"></span>Vision Premium · Private VIP Room</div>
-      <h1>Football Picks With <em>Proof You Can Check</em> Before You Pay</h1>
-      <p class="lead">Our Few Strongest Picks Every Morning Before Kick-Off. Every VIP Result Is Shown, Wins And Losses.</p>
-      <div class="stats">
-        <a class="s1" href="#record" data-rec="all"><b data-k="rate">–</b><span>VIP Picks Won</span></a>
-        <a class="s2" href="#record" data-rec="perfect"><b data-k="perfect">–</b><span>Perfect VIP Days</span></a>
-        <a class="s3" href="#join"><b>30</b><span>Seats Only</span></a>
+      <h1>Stop Guessing. <em>Get Our Top Safest Picks</em> Every Day.</h1>
+      <div class="vbox" id="vbox">
+        <video id="vvid" muted autoplay loop playsinline preload="none" poster="video/poster.jpg" data-src="video/vision-premium.mp4"></video>
+        <button class="vsound" id="vsound" type="button"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4Z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></i>Tap For Sound</button>
+        <div class="vnote" id="vnote">Playing On Mute · Starts Over With Sound</div>
       </div>
       <div class="ctas">
-        <a class="btn lime shine" href="#join">Join Vision Premium <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn ghost" href="#record">See Our VIP Record</a>
+        <a class="btn lime shine join2" href="#join"><span class="jt"><svg class="cr" viewBox="0 0 30 34" aria-hidden="true"><path fill="currentColor" d="M1 8.5 8.2 15.6 15 2.5l6.8 13.1L29 8.5l-2.6 18.6H3.6L1 8.5Z"/><rect x="3.6" y="29.2" width="22.8" height="3.8" rx="1.9" fill="currentColor"/></svg>Join Vision Premium<small class="jp" id="heroPrice">$20 / Month</small></span><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
       </div>
+      <p class="lead short">Every Morning, Our Top Picks Land Before Kick-Off. <b>Every Result Shown.</b></p>
       <div class="trust"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg>Secure Payment</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>30 Days Access</span></div>
     </div>
   </section>
@@ -461,45 +587,43 @@ body.lock .fab{visibility:hidden}
   </section>
 
   <!-- VIP record -->
+  <!-- Recent VIP wins -->
+  <section id="results">
+    <h2 class="title">Recent Wins From The VIP Room</h2>
+    <div class="rail" id="rail"></div>
+    <div class="railnav"><button id="railPrev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m15 6-6 6 6 6"/></svg></button><div class="dots" id="dots"></div><button id="railNext" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></button></div>
+  </section>
+
   <section id="record">
-    <span class="eyebrow">Our VIP Record</span>
-    <h2 class="title">Every Vision Premium Day, Wins And Losses</h2>
+    <h2 class="title">Every VIP Day, Wins And Losses</h2>
     <div class="kpis">
       <button class="kpi" data-rec="all"><b data-k="won">–</b><span>VIP Picks Won</span></button>
       <button class="kpi main" data-rec="all"><b data-k="rate">–</b><span>Win Rate</span></button>
       <button class="kpi" data-rec="perfect"><b data-k="perfect">–</b><span>Perfect Days</span></button>
     </div>
     <div class="board" id="board">
-      <div class="t"><b>Vision Premium</b><span id="calRange">Loading…</span></div>
+      <div class="t"><b id="calRange">Loading…</b></div>
       <div class="cal" id="cal"></div>
       <div class="key"><span><i style="background:var(--win)"></i>All Picks Won</span><span><i style="background:var(--part)"></i>Some Picks Won</span><span><i style="background:var(--loss)"></i>None Won</span></div>
-      <div class="dayinfo" id="dayinfo" hidden><span id="dayText"></span><button id="dayOpen" hidden>See Card</button></div>
+      <div class="dayinfo hint" id="dayinfo"><span id="dayText">Tap any day to see its real VIP card</span></div>
     </div>
-    <div class="honest"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg></span><p><b>Tap Any Day To See Its Result</b><span>We Never Hide A Losing Day. Every VIP Result Is Posted, Wins And Losses.</span></p></div>
   </section>
 
-  <!-- Latest results -->
-  <section id="results">
-    <span class="eyebrow">Latest VIP Results</span>
-    <h2 class="title">Real Cards From The VIP Room</h2>
-    <div class="rail" id="rail"></div>
-    <div class="railnav"><button id="railPrev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m15 6-6 6 6 6"/></svg></button><div class="dots" id="dots"></div><button id="railNext" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg></button></div>
-  </section>
 
   <!-- Join -->
   <section id="join">
-    <span class="eyebrow">Join Vision Premium</span>
     <h2 class="title">Join In 3 Simple Steps</h2>
     <div class="checkout">
       <div class="step">
         <div class="step-h"><i>1</i>Select Your Country</div>
         <button class="picker" id="picker" aria-haspopup="dialog">
-          <span class="flag" id="p-flag">🇺🇸</span>
+          <span class="flag" id="p-flag"><svg class="fl" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="15" fill="#fff"/><g fill="#B22234"><rect width="21" height="1.15"/><rect y="2.3" width="21" height="1.15"/><rect y="4.6" width="21" height="1.15"/><rect y="6.9" width="21" height="1.15"/><rect y="9.2" width="21" height="1.15"/><rect y="11.5" width="21" height="1.15"/><rect y="13.8" width="21" height="1.15"/></g><rect width="9" height="8.05" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.6" cy="1.4" r=".5"/><circle cx="4.5" cy="1.4" r=".5"/><circle cx="7.4" cy="1.4" r=".5"/><circle cx="3" cy="3.3" r=".5"/><circle cx="5.9" cy="3.3" r=".5"/><circle cx="1.6" cy="5.2" r=".5"/><circle cx="4.5" cy="5.2" r=".5"/><circle cx="7.4" cy="5.2" r=".5"/><circle cx="3" cy="7" r=".5"/><circle cx="5.9" cy="7" r=".5"/></g></svg></span>
           <span class="nm"><b id="p-name">United States</b><small id="p-cur">Prices In US Dollar (USD)</small></span>
           <span class="chg">Change</span>
         </button>
       </div>
       <div class="price">
+        <span class="vip">VIP</span>
         <div class="lbl">Step 2 · Your Price</div>
         <div class="row1"><div class="big" id="amt">$20</div><div class="per">For 30 Days</div></div>
         <div class="usd" id="usd">In US Dollars</div>
@@ -522,10 +646,9 @@ body.lock .fab{visibility:hidden}
 
   <!-- FAQ -->
   <section id="faq">
-    <span class="eyebrow">Questions And Answers</span>
     <h2 class="title">Everything You Need To Know</h2>
     <div class="acc" id="faqList">
-      <details><summary>How Much Is Vision Premium?</summary><div class="body"><p>$20 For 30 Days. Select Your Country Above To See The Price In Your Own Money. In Ghana It Is GH₵ 250.</p></div></details>
+      <details><summary>How Much Is Vision Premium?</summary><div class="body"><p>$20 For 30 Days, The Same Price For Everyone. Select Your Country Above To See About How Much That Is In Your Own Money.</p></div></details>
       <details><summary>How Do I Pay?</summary><div class="body"><p>Select Your Country, Choose How To Pay And Tap Pay. In Ghana You Pay By Mobile Money. More Ways To Pay Are Coming Soon.</p></div></details>
       <details><summary>When Do I Get My Join Link?</summary><div class="body"><p>As Soon As Your Payment Is Confirmed (Usually Within 30 Minutes). Your Link Works Once, For You Only.</p></div></details>
       <details><summary>When Do The Picks Come?</summary><div class="body"><p>Every Day Around 05:00 Ghana Time (GMT), Before Kick-Off.</p></div></details>
@@ -573,7 +696,6 @@ body.lock .fab{visibility:hidden}
 
   <!-- Terms -->
   <section id="terms" class="terms">
-    <span class="eyebrow">The Rules</span>
     <h2 class="title">Terms, Refunds And Privacy</h2>
     <div class="acc">
       <details id="t-terms"><summary>Terms And Conditions</summary><div class="body"><ol>
@@ -614,29 +736,29 @@ body.lock .fab{visibility:hidden}
 
   <!-- Contact -->
   <section id="contact">
-    <span class="eyebrow">Follow And Contact Us</span>
-    <div class="socials">
-      <a class="soc" href="https://t.me/MatchVision707Bot" target="_blank" rel="noopener"><svg viewBox="0 0 100 74" aria-hidden="true"><path fill="#DFFB51" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#DFFB51"/></svg>VIP Help<small>@MatchVision707Bot</small></a>
-      <a class="soc" href="https://t.me/matchvision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg>Telegram<small>Free Channel</small></a>
-      <a class="soc" href="https://www.youtube.com/@MatchVision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg>YouTube<small>@MatchVision707</small></a>
-      <a class="soc" href="https://www.tiktok.com/@matchvision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>TikTok<small>@matchvision707</small></a>
-      <a class="soc" href="https://www.tiktok.com/@scorevision707" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#DFFB51" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg>Score Vision<small>@scorevision707</small></a>
-      <a class="soc off" id="wa" href="#" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>WhatsApp<small>Add Number</small></a>
+    <h2 class="title">Follow and contact us</h2>
+    <div class="socials icons">
+      <a class="soc" href="https://t.me/MatchVision707Bot" target="_blank" rel="noopener" aria-label="VIP Help on Telegram"><svg viewBox="0 0 100 74" aria-hidden="true"><path fill="#0D0D0D" d="M0 18 25 40 50 0 75 40 100 18 88 61H12z"/><rect x="10" y="65" width="80" height="9" rx="3" fill="#0D0D0D"/></svg><i>VIP Help</i></a>
+      <a class="soc" href="https://t.me/matchvision707" target="_blank" rel="noopener" aria-label="Match Vision free channel on Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2aabee" d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1 .2-1.6L20.5 3.1c.9-.3 1.7.2 1.4 1.2Z"/></svg><i>Telegram</i></a>
+      <a class="soc" href="https://www.youtube.com/@MatchVision707" target="_blank" rel="noopener" aria-label="Match Vision on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8Z"/><path fill="#fff" d="m9.8 15.1 5.8-3.1-5.8-3.1z"/></svg><i>YouTube</i></a>
+      <a class="soc" href="https://www.tiktok.com/@matchvision707" target="_blank" rel="noopener" aria-label="Match Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0D0D0D" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><i>TikTok</i></a>
+      <a class="soc sv" href="https://www.tiktok.com/@scorevision707" target="_blank" rel="noopener" aria-label="Score Vision on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#6B8A0E" d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.1a7.5 7.5 0 0 1-4-1.2v6.4a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V3h3.2Z"/></svg><i>Score Vision</i></a>
+      <a class="soc off" id="wa" href="#" aria-disabled="true" aria-label="Match Vision on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg><i>WhatsApp</i></a>
     </div>
   </section>
 
   <footer>
-    <a class="brand" href="#" aria-label="Back To Top"><img src="logo.png" alt="Match Vision"></a>
+    <a class="brand" href="#" aria-label="Back To Top"><img src="data:image/png;base64,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" alt="Match Vision" fetchpriority="high" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'lw',textContent:'MV.'}))"></a>
     <div class="flinks"><button data-goto="t-terms">Terms</button><button data-goto="t-refund">Refunds</button><button data-goto="t-play">Responsible Play</button><button data-goto="t-privacy">Privacy</button><button data-goto="faq">FAQ</button></div>
     <div>18+ Only. Predictions Are Based On Data And Analysis. No Outcome Is Guaranteed.</div>
-    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 4.2</div>
+    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 5.8</div>
   </footer>
 </main>
 
-<div class="bar" id="bar">
+<div class="bar hid" id="bar">
   <div class="in">
-    <button class="flag" id="barFlag" aria-label="Change Country">🇺🇸</button>
-    <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 Days · United States</span></button>
+    <button class="curbtn" id="curbtn" aria-haspopup="dialog" aria-label="Change Currency"><span id="curflag"><svg class="fl" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="15" fill="#fff"/><g fill="#B22234"><rect width="21" height="1.15"/><rect y="2.3" width="21" height="1.15"/><rect y="4.6" width="21" height="1.15"/><rect y="6.9" width="21" height="1.15"/><rect y="9.2" width="21" height="1.15"/><rect y="11.5" width="21" height="1.15"/><rect y="13.8" width="21" height="1.15"/></g><rect width="9" height="8.05" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.6" cy="1.4" r=".5"/><circle cx="4.5" cy="1.4" r=".5"/><circle cx="7.4" cy="1.4" r=".5"/><circle cx="3" cy="3.3" r=".5"/><circle cx="5.9" cy="3.3" r=".5"/><circle cx="1.6" cy="5.2" r=".5"/><circle cx="4.5" cy="5.2" r=".5"/><circle cx="7.4" cy="5.2" r=".5"/><circle cx="3" cy="7" r=".5"/><circle cx="5.9" cy="7" r=".5"/></g></svg></span><b id="curcode">USD</b><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg></button>
+    <button class="p" id="barPrice" aria-label="Change Country"><b id="baramt">$20</b><span id="barsub">30 days</span></button>
     <a class="btn lime" id="barPay" href="#join">Pay Now</a>
   </div>
 </div>
@@ -652,6 +774,15 @@ body.lock .fab{visibility:hidden}
   </div>
 </div>
 
+<div class="sheet" id="cursheet" hidden role="dialog" aria-modal="true" aria-labelledby="cur-t">
+  <div class="shade" data-close></div>
+  <div class="box">
+    <div class="grab"></div>
+    <div class="sh"><b id="cur-t">Choose your currency</b><button data-close aria-label="Close">✕</button></div>
+    <div class="list curlist" id="curlist"></div>
+  </div>
+</div>
+
 <div class="sheet" id="recsheet" hidden role="dialog" aria-modal="true" aria-labelledby="rec-t">
   <div class="shade" data-close></div>
   <div class="box">
@@ -664,10 +795,11 @@ body.lock .fab{visibility:hidden}
 
 <button class="fab" id="fab" aria-label="Ask Us A Question"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg><span class="badge">1</span></button>
 <div class="chat" id="chat" hidden role="dialog" aria-label="Vision Premium Help">
-  <div class="ch"><span class="av"><img src="logo.png" alt=""></span><div class="who"><b>Vision Premium Help</b><small><i></i>Online · Answers In Seconds</small></div><button class="cx" id="chatX" aria-label="Close Chat">✕</button></div>
+  <div class="ch"><span class="av"><img src="data:image/png;base64,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" alt=""></span><div class="who"><b>Vision Premium Help</b><small><i></i>Online · Answers In Seconds</small></div><button class="lang" id="langbtn" aria-label="Change Language">🌐 <b id="langcode">EN</b> ▾</button><button class="cx" id="chatX" aria-label="Close Chat">✕</button></div>
+  <div class="langbox" id="langbox" hidden></div>
   <div class="msgs" id="msgs"></div>
   <div class="chips" id="chips"></div>
-  <form class="cin" id="cform"><input id="cq" autocomplete="off" placeholder="Ask Anything About Vision Premium" aria-label="Your Question"><button aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12l-11.5 1.9z"/></svg></button></form>
+  <form class="cin" id="cform"><input id="cq" autocomplete="off" placeholder="Ask me anything…" aria-label="Your Question"><button aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12l-11.5 1.9z"/></svg></button></form>
 </div>
 
 <div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="VIP Result">
@@ -680,8 +812,14 @@ body.lock .fab{visibility:hidden}
 <script>
 /* ===== SETTINGS PHILIP CAN CHANGE ===== */
 const MVA = 'https://kwabenaphill.github.io/matchvision-app/';   // live data (results, pictures) comes from the Match Vision app site
-const USD_PRICE = 20;                        // price for everyone outside Ghana, in US dollars
-const FIXED = { GH: 250 };                    // countries with their own fixed price in their own money (Ghana GH₵ 250)
+const USD_PRICE = 20;                        // the one price: 20 US dollars for 30 days
+// 5.2 (Philip 20 Nov): HIS OWN round price per currency. No live rate, no messy decimals. Change a number here
+// and the whole page follows it (big price, bar, Join button, chat answers). A currency that is NOT in this list
+// still follows today's rate and is rounded.
+const PRICES = { USD: 20, NGN: 30000, GHS: 250, KES: 2600, ZAR: 360, GBP: 16, EUR: 18 };
+// The small currency switcher next to the price in the bottom bar (first one = the default for a new visitor).
+const SWITCH = [['US', 'USD'], ['NG', 'NGN'], ['GH', 'GHS'], ['KE', 'KES'], ['ZA', 'ZAR'], ['GB', 'GBP'], ['EU', 'EUR']];
+const FIXED = {};                    // one country, one fixed price (not used now: PRICES does it per currency)
 const BOT = 'https://t.me/MatchVision707Bot';
 const HERO = 'b';                             // default hero style: 'a' light, 'b' dark card, 'c' latest VIP ticket
 // Payment methods. live: true = can be used now. link: '' = the payment goes through the VIP bot for now.
@@ -707,7 +845,7 @@ $('yr').textContent = new Date().getFullYear();
 // ---------- Countries and money ----------
 const C = [
  ['US','United States','USD',1,'p'],['GB','United Kingdom','GBP',0.79,'p'],['GH','Ghana','GHS',15,'p'],['NG','Nigeria','NGN',1500,'p'],
- ['KE','Kenya','KES',130,'p'],['ZA','South Africa','ZAR',18,'p'],['CA','Canada','CAD',1.4,'p'],
+ ['KE','Kenya','KES',130,'p'],['ZA','South Africa','ZAR',18,'p'],['EU','Europe','EUR',0.9,'p'],['CA','Canada','CAD',1.4,'p'],
  ['DZ','Algeria','DZD',135],['AO','Angola','AOA',910],['AR','Argentina','ARS',1400],['AU','Australia','AUD',1.53],['AT','Austria','EUR',0.9],
  ['BH','Bahrain','BHD',0.376],['BD','Bangladesh','BDT',122],['BE','Belgium','EUR',0.9],['BJ','Benin','XOF',590],['BW','Botswana','BWP',13.6],
  ['BR','Brazil','BRL',5.5],['BF','Burkina Faso','XOF',590],['BI','Burundi','BIF',2950],['CM','Cameroon','XAF',590],['CN','China','CNY',7.2],
@@ -736,7 +874,19 @@ function methodsFor(code) {
 }
 const titleCase = function (s) { return String(s).replace(/\b([a-z])/g, function (m) { return m.toUpperCase(); }); };
 const NAMES = {}; try { const dn = new Intl.DisplayNames(['en'], { type: 'currency' }); C.forEach(function (c) { NAMES[c[2]] = titleCase(dn.of(c[2])); }); } catch (e) {}
-const curName = function (c) { return NAMES[c] || c; };
+const CURNAMES = { USD: 'US Dollar', NGN: 'Nigerian Naira', GHS: 'Ghanaian Cedi', KES: 'Kenyan Shilling',
+  ZAR: 'South African Rand', GBP: 'British Pound', EUR: 'Euro', CAD: 'Canadian Dollar', AUD: 'Australian Dollar',
+  INR: 'Indian Rupee', TZS: 'Tanzanian Shilling', UGX: 'Ugandan Shilling', ZMW: 'Zambian Kwacha',
+  XOF: 'West African Franc', XAF: 'Central African Franc', EGP: 'Egyptian Pound', MAD: 'Moroccan Dirham',
+  AED: 'UAE Dirham', SAR: 'Saudi Riyal', BRL: 'Brazilian Real', MXN: 'Mexican Peso', PHP: 'Philippine Peso',
+  PKR: 'Pakistani Rupee', BDT: 'Bangladeshi Taka', TRY: 'Turkish Lira', RWF: 'Rwandan Franc', MWK: 'Malawian Kwacha',
+  MZN: 'Mozambican Metical', BWP: 'Botswana Pula', NAD: 'Namibian Dollar', ETB: 'Ethiopian Birr',
+  CDF: 'Congolese Franc', SLL: 'Sierra Leonean Leone', GMD: 'Gambian Dalasi', LRD: 'Liberian Dollar' };
+const curName = function (c) { return CURNAMES[c] || (NAMES[c] && NAMES[c] !== c ? NAMES[c] : c); };
+// 5.7 (Philip 20 Nov): Windows does not draw flag emojis (it shows "US"), Android does. So the flags that sit
+// next to the price are drawn here as pictures: the same on every phone, laptop and browser.
+const FLAGSVG = {"US": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"15\" fill=\"#fff\"/><g fill=\"#B22234\"><rect width=\"21\" height=\"1.15\"/><rect y=\"2.3\" width=\"21\" height=\"1.15\"/><rect y=\"4.6\" width=\"21\" height=\"1.15\"/><rect y=\"6.9\" width=\"21\" height=\"1.15\"/><rect y=\"9.2\" width=\"21\" height=\"1.15\"/><rect y=\"11.5\" width=\"21\" height=\"1.15\"/><rect y=\"13.8\" width=\"21\" height=\"1.15\"/></g><rect width=\"9\" height=\"8.05\" fill=\"#3C3B6E\"/><g fill=\"#fff\"><circle cx=\"1.6\" cy=\"1.4\" r=\".5\"/><circle cx=\"4.5\" cy=\"1.4\" r=\".5\"/><circle cx=\"7.4\" cy=\"1.4\" r=\".5\"/><circle cx=\"3\" cy=\"3.3\" r=\".5\"/><circle cx=\"5.9\" cy=\"3.3\" r=\".5\"/><circle cx=\"1.6\" cy=\"5.2\" r=\".5\"/><circle cx=\"4.5\" cy=\"5.2\" r=\".5\"/><circle cx=\"7.4\" cy=\"5.2\" r=\".5\"/><circle cx=\"3\" cy=\"7\" r=\".5\"/><circle cx=\"5.9\" cy=\"7\" r=\".5\"/></g></svg>", "NG": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"15\" fill=\"#fff\"/><rect width=\"7\" height=\"15\" fill=\"#008751\"/><rect x=\"14\" width=\"7\" height=\"15\" fill=\"#008751\"/></svg>", "GH": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"5\" fill=\"#CE1126\"/><rect y=\"5\" width=\"21\" height=\"5\" fill=\"#FCD116\"/><rect y=\"10\" width=\"21\" height=\"5\" fill=\"#006B3F\"/><path fill=\"#000\" d=\"M10.5 5.2l.85 2.6h2.73l-2.21 1.6.84 2.6-2.21-1.61-2.21 1.61.84-2.6-2.21-1.6h2.73z\"/></svg>", "KE": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"4.3\" fill=\"#000\"/><rect y=\"4.3\" width=\"21\" height=\"1\" fill=\"#fff\"/><rect y=\"5.3\" width=\"21\" height=\"4.4\" fill=\"#BB0000\"/><rect y=\"9.7\" width=\"21\" height=\"1\" fill=\"#fff\"/><rect y=\"10.7\" width=\"21\" height=\"4.3\" fill=\"#006600\"/><ellipse cx=\"10.5\" cy=\"7.5\" rx=\"2.1\" ry=\"4.2\" fill=\"#fff\"/><ellipse cx=\"10.5\" cy=\"7.5\" rx=\"1.4\" ry=\"3.4\" fill=\"#BB0000\"/><rect x=\"10.1\" y=\"3.6\" width=\".8\" height=\"7.8\" fill=\"#000\"/></svg>", "ZA": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"7.5\" fill=\"#DE3831\"/><rect y=\"7.5\" width=\"21\" height=\"7.5\" fill=\"#002395\"/><path d=\"M0 0l9 7.5L0 15z\" fill=\"#fff\"/><path d=\"M0 1.7l7 5.8-7 5.8z\" fill=\"#000\"/><path d=\"M0 4.9h21v5.2H0z\" fill=\"none\"/><path d=\"M6.2 5.1h14.8v4.8H6.2L2.2 7.5z\" fill=\"#007A4D\" stroke=\"#fff\" stroke-width=\".9\"/><path d=\"M6.6 5.9h14.4v3.2H6.6L3.6 7.5z\" fill=\"#007A4D\"/></svg>", "GB": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"15\" fill=\"#012169\"/><path d=\"M0 0l21 15M21 0L0 15\" stroke=\"#fff\" stroke-width=\"3\"/><path d=\"M0 0l21 15M21 0L0 15\" stroke=\"#C8102E\" stroke-width=\"1.8\"/><path d=\"M10.5 0v15M0 7.5h21\" stroke=\"#fff\" stroke-width=\"5\"/><path d=\"M10.5 0v15M0 7.5h21\" stroke=\"#C8102E\" stroke-width=\"3\"/></svg>", "EU": "<svg class=\"fl\" viewBox=\"0 0 21 15\" aria-hidden=\"true\"><rect width=\"21\" height=\"15\" fill=\"#003399\"/><g fill=\"#FFCC00\"><circle cx=\"10.5\" cy=\"3.9\" r=\".62\"/><circle cx=\"12.3\" cy=\"4.37\" r=\".62\"/><circle cx=\"13.6\" cy=\"5.7\" r=\".62\"/><circle cx=\"14.1\" cy=\"7.5\" r=\".62\"/><circle cx=\"13.6\" cy=\"9.3\" r=\".62\"/><circle cx=\"12.3\" cy=\"10.63\" r=\".62\"/><circle cx=\"10.5\" cy=\"11.1\" r=\".62\"/><circle cx=\"8.7\" cy=\"10.63\" r=\".62\"/><circle cx=\"7.4\" cy=\"9.3\" r=\".62\"/><circle cx=\"6.9\" cy=\"7.5\" r=\".62\"/><circle cx=\"7.4\" cy=\"5.7\" r=\".62\"/><circle cx=\"8.7\" cy=\"4.37\" r=\".62\"/></g></svg>"};
+function flagHTML(code) { return FLAGSVG[code] || '<span class="fe">' + flag(code) + '</span>'; }
 const flag = function (code) { return code === 'XX' ? '🌐' : String.fromCodePoint.apply(null, code.split('').map(function (ch) { return 127397 + ch.charCodeAt(0); })); };
 const rates = {}; C.forEach(function (c) { rates[c[2]] = c[3]; });
 function nice(v) {
@@ -756,6 +906,7 @@ function money(v, cur) {
 }
 function priceOf(c) {
   if (FIXED[c[0]] !== undefined) return { text: money(FIXED[c[0]], c[2]), fixed: true };
+  if (PRICES[c[2]] !== undefined) return { text: money(PRICES[c[2]], c[2]), fixed: true };   // 5.2: his own round price
   const v = c[2] === 'USD' ? USD_PRICE : nice(USD_PRICE * (rates[c[2]] || 1));
   return { text: money(v, c[2]), fixed: false };
 }
@@ -769,13 +920,20 @@ const ICON = {
 function payLink() { const m = method && METHODS[method]; return (m && m.link) || BOT; }
 function render() {
   const p = priceOf(cur);
-  $('p-flag').textContent = flag(cur[0]); $('barFlag').textContent = flag(cur[0]);
+  $('p-flag').innerHTML = flagHTML(cur[0]);
   $('p-name').textContent = cur[1];
-  $('p-cur').textContent = 'Prices In ' + curName(cur[2]) + ' (' + cur[2] + ')';
+  $('p-cur').textContent = cur[2] === 'USD' ? 'Price in US dollars' : p.text + ' in ' + curName(cur[2]);
   const amt = $('amt'); amt.textContent = p.text; amt.classList.remove('flip'); void amt.offsetWidth; amt.classList.add('flip');
-  $('usd').textContent = p.fixed ? 'Ghana Price, In Ghana Cedis' : (cur[2] === 'USD' ? 'In US Dollars' : 'About $' + USD_PRICE + ' USD, Shown In ' + curName(cur[2]));
-  $('fine').textContent = p.fixed ? 'One Fixed Price For Everyone In Ghana.' : cur[2] === 'USD' ? 'One Price For 30 Days Of Vision Premium.' : 'Rounded To A Friendly Number. The Exact Amount Is Shown Before You Confirm.';
-  $('baramt').textContent = p.text; $('barsub').textContent = '30 Days · ' + cur[1];
+  if ($('heroPrice')) $('heroPrice').textContent = p.text + ' / 30 days';
+  $('usd').textContent = cur[2] === 'USD' ? 'In US dollars' : '≈ $' + USD_PRICE + ' USD';
+  $('fine').textContent = cur[2] === 'USD' ? 'One price for 30 days of Vision Premium.'
+    : p.fixed ? 'One price for everyone: $' + USD_PRICE + ', shown here in your own money.'
+    : 'One price for everyone: $' + USD_PRICE + '. Your amount follows today\'s rate and is shown before you confirm.';
+  const amtEl = $('baramt');
+  amtEl.textContent = p.text;                      // 5.8: long money (KES 2,600) shrinks instead of being cut off
+  amtEl.className = p.text.length >= 9 ? 'xl' : p.text.length >= 7 ? 'lg' : '';
+  $('barsub').textContent = '30 days';
+  $('curflag').innerHTML = flagHTML(cur[0]); $('curcode').textContent = cur[2];
   const list = methodsFor(cur[0]);
   if (!method || list.indexOf(method) < 0 || !METHODS[method].live) method = list.filter(function (k) { return METHODS[k].live; })[0] || null;
   $('methods').innerHTML = list.map(function (k) {
@@ -790,6 +948,27 @@ function render() {
   $('safetext').textContent = (m && m.link) ? 'Secure Checkout. Your Private VIP Link Comes Right After Payment.' : 'You Finish This Payment With Our VIP Assistant. Your Private Link Comes Right After It Is Confirmed.';
   try { localStorage.setItem('vp-cc', cur[0]); } catch (e) {}
 }
+
+(function () { const box = $('vbox'), v = $('vvid'); if (!box || !v) return;
+  let inView = true, loaded = false;
+  function load() {                              // 5.4: the film only downloads when he reaches it (882 KB saved)
+    if (loaded || !v.dataset.src) return;
+    loaded = true;
+    const s = document.createElement('source');
+    s.src = v.dataset.src; s.type = 'video/mp4';
+    v.appendChild(s); v.load();
+  }
+  function on() { load(); box.classList.add('sound'); v.loop = false; v.muted = false; v.controls = true; try { v.currentTime = 0; } catch (e) {} v.play().catch(function () {}); }
+  $('vsound').addEventListener('click', on);
+  v.addEventListener('click', function () { if (!box.classList.contains('sound')) on(); });
+  v.addEventListener('ended', function () { box.classList.remove('sound'); v.controls = false; v.muted = true; v.loop = true; if (inView) v.play().catch(function () {}); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+    inView = es[0].isIntersecting;
+    if (!inView) v.pause();
+    else if (!box.classList.contains('sound')) { load(); v.play().catch(function () {}); }
+  }, { threshold: .25 }).observe(box);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); });
+})();
 $('methods').addEventListener('click', function (e) {
   const b = e.target.closest('.m'); if (!b || b.classList.contains('soon')) return;
   method = b.dataset.m; render();
@@ -801,7 +980,7 @@ function lock(on) { locks = Math.max(0, locks + (on ? 1 : -1)); document.body.cl
 
 // ---------- Country sheet ----------
 const sheet = $('sheet'), q = $('q');
-function row(c) { return '<button type="button" data-cc="' + c[0] + '"' + (c === cur ? ' class="on"' : '') + '><span class="f">' + flag(c[0]) + '</span><span class="n">' + c[1] + '</span><span class="c">' + priceOf(c).text + '</span></button>'; }
+function row(c) { return '<button type="button" data-cc="' + c[0] + '"' + (c === cur ? ' class="on"' : '') + '><span class="f">' + flagHTML(c[0]) + '</span><span class="n">' + c[1] + '</span><span class="c">' + (c[2] === 'USD' ? '$' + USD_PRICE : '≈ ' + priceOf(c).text) + '</span></button>'; }
 function fill() {
   const t = q.value.trim().toLowerCase(); let h = '';
   if (!t) {
@@ -815,7 +994,26 @@ function fill() {
 }
 function openSheet() { fill(); sheet.hidden = false; lock(true); }
 function closeSheet() { if (sheet.hidden) return; sheet.hidden = true; lock(false); q.value = ''; }
-[$('picker'), $('barFlag'), $('barPrice')].forEach(function (b) { b.addEventListener('click', openSheet); });
+[$('picker'), $('barPrice')].forEach(function (b) { b.addEventListener('click', openSheet); });
+
+// ---------- 5.2: the small currency switcher (7 currencies, his own prices) ----------
+const cursheet = $('cursheet');
+function fillCur() {
+  $('curlist').innerHTML = SWITCH.map(function (x) {
+    const c = C.find(function (y) { return y[0] === x[0]; }); if (!c) return '';
+    return '<button type="button" data-cc="' + c[0] + '"' + (c[2] === cur[2] ? ' class="on"' : '') + '>' +
+      '<span class="f">' + flagHTML(c[0]) + '</span><span class="n">' + c[2] + ' · ' + curName(c[2]) + '</span>' +
+      '<span class="c">' + priceOf(c).text + '</span></button>';
+  }).join('');
+}
+function openCur() { fillCur(); cursheet.hidden = false; lock(true); }
+function closeCur() { if (cursheet.hidden) return; cursheet.hidden = true; lock(false); }
+$('curbtn').addEventListener('click', openSheet);   // 5.8 (his word): every country, with the search
+cursheet.addEventListener('click', function (e) {
+  if (e.target.closest('[data-close]') || e.target === cursheet) return closeCur();
+  const b = e.target.closest('button[data-cc]'); if (!b) return;
+  cur = C.find(function (c) { return c[0] === b.dataset.cc; }) || C[0]; method = null; render(); closeCur();
+});
 q.addEventListener('input', fill);
 $('list').addEventListener('click', function (e) {
   const b = e.target.closest('button[data-cc]'); if (!b) return;
@@ -826,7 +1024,25 @@ sheet.addEventListener('click', function (e) { if (e.target.closest('[data-close
 // ---------- Menu ----------
 const drawer = $('drawer'), menu = $('menu');
 function setMenu(open) { if (drawer.hidden === !open) return; drawer.hidden = !open; menu.setAttribute('aria-expanded', String(open)); lock(open); }
-menu.addEventListener('click', function () { setMenu(true); });
+menu.addEventListener('click', function () { setMenu(true); markMenu(); });
+// 5.2: swipe the menu to the left to close it
+(function () { let x0 = null;
+  drawer.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  drawer.addEventListener('touchend', function (e) {
+    if (x0 !== null && e.changedTouches[0].clientX - x0 < -55) setMenu(false);
+    x0 = null;
+  }, { passive: true });
+})();
+// 5.2: the part of the page he is on is lime in the menu
+function markMenu() {
+  const links = [].slice.call(drawer.querySelectorAll('a[href^="#"]:not(.go2)'));
+  let on = null;
+  links.forEach(function (a) {
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el && el.getBoundingClientRect().top <= 140) on = a;
+  });
+  links.forEach(function (a) { a.classList.toggle('on', a === on); });
+}
 drawer.addEventListener('click', function (e) {
   if (e.target.closest('[data-close]')) return setMenu(false);
   const a = e.target.closest('a'); if (!a) return;
@@ -843,7 +1059,23 @@ document.addEventListener('click', function (e) { const b = e.target.closest('[d
 
 // ---------- Header line on scroll ----------
 const topbar = $('top');
-addEventListener('scroll', function () { topbar.classList.toggle('scrolled', scrollY > 24); }, { passive: true });
+let lastY = 0, hideOn = 140;                      // 5.2: more room on the screen, the header comes back at once
+addEventListener('scroll', function () {
+  const y = Math.max(0, scrollY);
+  topbar.classList.toggle('scrolled', y > 24);
+  if (y < hideOn || !drawer.hidden) topbar.classList.remove('up');
+  else if (y > lastY + 6) topbar.classList.add('up');
+  else if (y < lastY - 6) topbar.classList.remove('up');
+  lastY = y;
+}, { passive: true });
+// Pay bar: hidden while the top Join button is on screen (or below it), shows once they scroll past it
+(function () { const j = document.querySelector('.hero.b .join2'), joinSec = $('join'), bar = $('bar'); if (!bar) return;
+  function seen(el) { if (!el) return false; const r = el.getBoundingClientRect(); return r.top < innerHeight - 40 && r.bottom > 70; }
+  function chk() {                                  // 5.2: no double pay button - the bar goes while a payment is in view
+    const hide = (j && j.getBoundingClientRect().bottom > 0) || seen(joinSec);
+    bar.classList.toggle('hid', hide); document.body.classList.toggle('nobar', hide);
+  }
+  addEventListener('scroll', chk, { passive: true }); addEventListener('resize', chk); chk(); })();
 
 // ---------- Image viewer ----------
 let shots = [], vi = 0;
@@ -876,15 +1108,19 @@ function markCard() {
   [].slice.call(document.querySelectorAll('#dots i')).forEach(function (d, i) { d.classList.toggle('on', i === best); });
 }
 let rq = 0; $('rail').addEventListener('scroll', function () { cancelAnimationFrame(rq); rq = requestAnimationFrame(markCard); }, { passive: true });
-['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { $('rail').addEventListener(ev, function () { pausedUntil = Date.now() + 7000; }, { passive: true }); });
-$('railPrev').addEventListener('click', function () { pausedUntil = Date.now() + 7000; goCard(cardAt - 1); });
-$('railNext').addEventListener('click', function () { pausedUntil = Date.now() + 7000; goCard(cardAt + 1); });
-$('dots').addEventListener('click', function (e) { const d = e.target.closest('i'); if (d) { pausedUntil = Date.now() + 7000; goCard(+d.dataset.i); } });
+['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { $('rail').addEventListener(ev, function () { pausedUntil = Date.now() + 4000; }, { passive: true }); });
+$('railPrev').addEventListener('click', function () { pausedUntil = Date.now() + 4000; goCard(cardAt - 1); });
+$('railNext').addEventListener('click', function () { pausedUntil = Date.now() + 4000; goCard(cardAt + 1); });
+$('dots').addEventListener('click', function (e) { const d = e.target.closest('i'); if (d) { pausedUntil = Date.now() + 4000; goCard(+d.dataset.i); } });
 function startAuto() {
   if (auto || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let seen = false;
-  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; }, { threshold: .4 }).observe($('rail'));
-  auto = setInterval(function () { if (seen && Date.now() > pausedUntil && document.visibilityState === 'visible' && viewer.hidden) goCard(cardAt + 1); }, 3500);
+  let kick = null;
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+    const was = seen; seen = es[0].isIntersecting;
+    if (seen && !was) { clearTimeout(kick); kick = setTimeout(function () { if (seen && Date.now() > pausedUntil && viewer.hidden) goCard(cardAt + 1); }, 500); }
+  }, { threshold: .4 }).observe($('rail'));
+  auto = setInterval(function () { if (seen && Date.now() > pausedUntil && document.visibilityState === 'visible' && viewer.hidden) goCard(cardAt + 1); }, 1500);
 }
 $('heroTicket').addEventListener('click', function () { openViewer(0); });
 
@@ -927,6 +1163,7 @@ function showRecord(list) {
   document.querySelectorAll('[data-k="won"]').forEach(function (el) { countUp(el, W, ''); });
   document.querySelectorAll('[data-k="rate"]').forEach(function (el) { countUp(el, Math.round(W * 100 / N), '%'); });
   document.querySelectorAll('[data-k="perfect"]').forEach(function (el) { countUp(el, perfect, ''); });
+  document.querySelectorAll('[data-k="days"]').forEach(function (el) { countUp(el, days.length, ''); });
   const last = days.slice(-28);
   $('calRange').textContent = 'Last ' + last.length + ' VIP Days';
   let k = 0;
@@ -943,17 +1180,16 @@ function showRecord(list) {
   $('cal').addEventListener('click', function (e) {
     const b = e.target.closest('button[data-i]'); if (!b) return;
     const r = days[+b.dataset.i];
-    $('dayinfo').hidden = false;
-    $('dayText').textContent = words(r.date) + ': ' + r.won + ' Of ' + r.of + ' VIP Picks Won' + (r.odds ? ' · Total Odds ' + r.odds.toFixed(2) : '');
-    const si = shots.findIndex(function (s) { return s.date === r.date; });
-    $('dayOpen').hidden = si < 0; $('dayOpen').onclick = function () { openViewer(si); };
+    const si = shots.findIndex(function (s) { return s.date === r.date; });   // 5.2: the card opens straight away,
+    if (si >= 0) openViewer(si);                                             // and the hint box never changes
   });
-  $('rail').innerHTML = withImg.map(function (r, i) {
+  const wins = withImg.map(function (r, v) { return { r: r, v: v }; }).filter(function (x) { return x.r.won === x.r.of; });
+  $('rail').innerHTML = wins.map(function (x, i) { const r = x.r;
     const c = r.won === r.of ? '' : r.won === 0 ? 'll' : 'pp';  // green, red or amber
-    return '<button type="button" class="shot" data-s="' + i + '"><img loading="lazy" src="' + MVA + r.img + '" alt="Vision Premium ' + words(r.date) + '"><div>' + words(r.date) + '<span class="' + c + '">' + r.won + '/' + r.of + ' Won</span></div></button>';
-  }).join('') || '<p class="lead">Our Latest VIP Cards Show Here.</p>';
-  $('rail').onclick = function (e) { const b = e.target.closest('.shot'); if (!b) return; if (+b.dataset.s !== cardAt) { pausedUntil = Date.now() + 7000; goCard(+b.dataset.s); } else openViewer(+b.dataset.s); };
-  $('dots').innerHTML = withImg.map(function (_, i) { return '<i data-i="' + i + '"></i>'; }).join('');
+    return '<button type="button" class="shot" data-s="' + i + '" data-v="' + x.v + '"><img loading="lazy" src="' + MVA + r.img + '" alt="Vision Premium ' + words(r.date) + '"><div>' + words(r.date) + '<span class="' + c + '">' + r.won + '/' + r.of + ' Won</span></div></button>';
+  }).join('') || '<p class="lead">Our Recent VIP Wins Show Here.</p>';
+  $('rail').onclick = function (e) { const b = e.target.closest('.shot'); if (!b) return; if (+b.dataset.s !== cardAt) { pausedUntil = Date.now() + 4000; goCard(+b.dataset.s); } else openViewer(+b.dataset.v); };
+  $('dots').innerHTML = wins.map(function (_, i) { return '<i data-i="' + i + '"></i>'; }).join('');
   setTimeout(function () { goCard(0, false); markCard(); startAuto(); }, 60);
   recDays = days;
   if (withImg[0]) { $('heroImg').src = MVA + withImg[0].img; $('heroTag').textContent = 'Latest VIP Result · ' + withImg[0].won + '/' + withImg[0].of + ' Won'; }
@@ -995,49 +1231,483 @@ $('faqMore').addEventListener('click', function () {
   this.textContent = all ? 'Show Fewer Questions' : 'Show All Questions';
 });
 
-// ---------- Help chat: answers from this page, or hands over to the team ----------
+// ---------- Help chat 5.2 (Philip 20 Nov, #1795169729980): many more answers, grouped by topic,
+// word matching that forgives typos and extra words, 12 languages (it answers in the language he writes in),
+// and the pick time in GMT plus his own country. Nothing here posts or pays: it only answers. ----------
 const chat = $('chat'), fab = $('fab');
-const ANS = [
-  [/price|cost|how much|pay how much|\$|cedi|naira|pound|euro|amount|fee/i, function () { const p = priceOf(cur); return 'Vision Premium Is ' + p.text + ' For 30 Days In ' + cur[1] + (cur[2] === 'USD' || cur[0] === 'GH' ? '.' : ' (About $' + USD_PRICE + ' USD).') + ' Change Your Country In Step 1 To See Your Own Money.'; }, 'pay'],
-  [/how (do|can) i pay|payment|momo|mobile money|card|visa|mastercard|google pay|apple pay|bank|mpesa|m-pesa/i, function () { return 'Select Your Country, Choose How To Pay And Tap Pay. In Ghana You Pay By Mobile Money; Elsewhere By Card. Google Pay, Apple Pay And Bank Transfer Are Coming Soon.'; }, 'pay'],
-  [/when|time|morning|what time|kick/i, function () { return 'The VIP Picks Are Posted In The Room Every Day Around 05:00 Ghana Time (GMT), Before Kick-Off.'; }],
-  [/guarantee|sure|100|fixed|never lose|always win|lose|loss/i, function () { return 'No Prediction Is Ever Guaranteed And Losing Days Can Happen. We Post Our Strongest Picks And Show Every Result Honestly, Wins And Losses. See Our VIP Record Above.'; }, 'record'],
-  [/refund|money back/i, function () { return 'Ask Within 24 Hours Of Paying If You Have Not Joined The Room Yet, And We Refund In Full. After You Join, Payments Are Not Refunded, But If A Problem Is On Our Side We Add Free Days.'; }, 'refund'],
-  [/link|join link|not work|expired|invite/i, function () { return 'Your Private Join Link Comes As Soon As Your Payment Is Confirmed (Usually Within 30 Minutes). It Works Once, For You Only. If It Does Not Work, Message Us And We Send A New One.'; }, 'talk'],
-  [/long|days|month|renew|one.?time|cancel/i, function () { return 'One Payment Gives You 30 Days In The Room. Nothing Renews By Itself: We Remind You Before It Ends And You Pay Again To Stay.'; }],
-  [/what do i get|picks|how many|odds|games|leagues/i, function () { return 'Every Day You Get Our Safest VIP Picks: 1 To 7 Short Games, Usually About 2 To 4 Total Odds, Posted In A Private Room Before Kick-Off.'; }],
-  [/record|result|win rate|proof|won/i, function () { let W = 0, N = 0; recDays.forEach(function (r) { W += r.won; N += r.of; }); return N ? 'So Far ' + W + ' Of ' + N + ' VIP Picks Won (' + Math.round(W * 100 / N) + '%) Over ' + recDays.length + ' Days. Every Day Is In Our Record, Wins And Losses.' : 'Every VIP Day Is In Our Record Above, Wins And Losses.'; }, 'record'],
-  [/telegram|need telegram|app/i, function () { return 'Yes, Vision Premium Is A Private Telegram Room, So You Need Telegram (Free) To Join.'; }],
-  [/safe|scam|trust|real|legit/i, function () { return 'Vision Premium Is Run By The Match Vision Team, The Same Team Behind Our Daily YouTube Predictions. Every VIP Result Is Shown Above, And Every Payment Is Recorded With Its Reference.'; }, 'record'],
-  [/human|person|admin|talk|speak|contact|help|message/i, function () { return 'Of Course. Tap Below To Message The Match Vision Team Directly. We Reply As Soon As We Can.'; }, 'talk']
+const LANGS = [['en', 'EN', 'English'], ['fr', 'FR', 'Français'], ['es', 'ES', 'Español'], ['pt', 'PT', 'Português'],
+  ['ar', 'AR', 'العربية'], ['sw', 'SW', 'Kiswahili'], ['ha', 'HA', 'Hausa'], ['yo', 'YO', 'Yorùbá'],
+  ['ig', 'IG', 'Igbo'], ['pcm', 'PCM', 'Pidgin'], ['de', 'DE', 'Deutsch'], ['hi', 'HI', 'हिन्दी']];
+let lang = 'en', chatCC = null;
+try { const s = localStorage.getItem('vp-lang'); if (s && LANGS.some(function (l) { return l[0] === s; })) lang = s; } catch (e) {}
+
+// Time zones for the countries people ask about most (real zones, so summer time is handled).
+const TZ = { NG: 'Africa/Lagos', GH: 'Africa/Accra', KE: 'Africa/Nairobi', ZA: 'Africa/Johannesburg', TZ: 'Africa/Dar_es_Salaam',
+  UG: 'Africa/Kampala', RW: 'Africa/Kigali', ZM: 'Africa/Lusaka', ZW: 'Africa/Harare', MW: 'Africa/Blantyre',
+  MZ: 'Africa/Maputo', BW: 'Africa/Gaborone', NA: 'Africa/Windhoek', CM: 'Africa/Douala', CI: 'Africa/Abidjan',
+  SN: 'Africa/Dakar', ML: 'Africa/Bamako', BF: 'Africa/Ouagadougou', NE: 'Africa/Niamey', TG: 'Africa/Lome',
+  BJ: 'Africa/Porto-Novo', GN: 'Africa/Conakry', SL: 'Africa/Freetown', LR: 'Africa/Monrovia', GM: 'Africa/Banjul',
+  CD: 'Africa/Kinshasa', ET: 'Africa/Addis_Ababa', EG: 'Africa/Cairo', MA: 'Africa/Casablanca', DZ: 'Africa/Algiers',
+  TN: 'Africa/Tunis', GB: 'Europe/London', IE: 'Europe/Dublin', FR: 'Europe/Paris', DE: 'Europe/Berlin',
+  ES: 'Europe/Madrid', IT: 'Europe/Rome', PT: 'Europe/Lisbon', NL: 'Europe/Amsterdam', BE: 'Europe/Brussels',
+  CH: 'Europe/Zurich', AT: 'Europe/Vienna', SE: 'Europe/Stockholm', NO: 'Europe/Oslo', DK: 'Europe/Copenhagen',
+  FI: 'Europe/Helsinki', PL: 'Europe/Warsaw', RO: 'Europe/Bucharest', GR: 'Europe/Athens', TR: 'Europe/Istanbul',
+  UA: 'Europe/Kyiv', US: 'America/New_York', CA: 'America/Toronto', MX: 'America/Mexico_City', BR: 'America/Sao_Paulo',
+  AR: 'America/Argentina/Buenos_Aires', CO: 'America/Bogota', JM: 'America/Jamaica', TT: 'America/Port_of_Spain',
+  IN: 'Asia/Kolkata', PK: 'Asia/Karachi', BD: 'Asia/Dhaka', PH: 'Asia/Manila', ID: 'Asia/Jakarta', MY: 'Asia/Kuala_Lumpur',
+  SG: 'Asia/Singapore', CN: 'Asia/Shanghai', JP: 'Asia/Tokyo', KR: 'Asia/Seoul', HK: 'Asia/Hong_Kong',
+  AE: 'Asia/Dubai', SA: 'Asia/Riyadh', QA: 'Asia/Qatar', KW: 'Asia/Kuwait', BH: 'Asia/Bahrain', OM: 'Asia/Muscat',
+  IL: 'Asia/Jerusalem', LB: 'Asia/Beirut', AU: 'Australia/Sydney', NZ: 'Pacific/Auckland' };
+
+function pickTime(code) {                              // 05:00 GMT shown in that country's own clock
+  const tz = TZ[code]; if (!tz) return null;
+  const d = new Date(); d.setUTCHours(5, 0, 0, 0);
+  try { return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: tz, hour12: false }).format(d); }
+  catch (e) { return null; }
+}
+const CC_WORDS = { NG: ['nigeria', 'naija', 'lagos', 'abuja'], GH: ['ghana', 'accra', 'kumasi'], KE: ['kenya', 'nairobi'],
+  ZA: ['south africa', 'joburg', 'johannesburg', 'cape town'], TZ: ['tanzania'], UG: ['uganda'], RW: ['rwanda'],
+  ZM: ['zambia'], ZW: ['zimbabwe'], MW: ['malawi'], MZ: ['mozambique'], CM: ['cameroon', 'cameroun'],
+  CI: ['ivory coast', "cote d'ivoire", 'cote divoire'], SN: ['senegal'], CD: ['congo'], ET: ['ethiopia'],
+  EG: ['egypt'], MA: ['morocco', 'maroc'], DZ: ['algeria'], GB: ['uk', 'england', 'britain', 'london', 'united kingdom', 'scotland'],
+  US: ['usa', 'united states', 'america', 'new york'], CA: ['canada'], FR: ['france', 'paris'], DE: ['germany', 'deutschland'],
+  ES: ['spain', 'espana'], IT: ['italy', 'italia'], PT: ['portugal'], NL: ['netherlands', 'holland'], BE: ['belgium'],
+  SE: ['sweden'], NO: ['norway'], TR: ['turkey', 'turkiye'], IN: ['india'], PK: ['pakistan'], BD: ['bangladesh'],
+  PH: ['philippines'], ID: ['indonesia'], MY: ['malaysia'], AE: ['dubai', 'uae', 'emirates'], SA: ['saudi'],
+  QA: ['qatar'], BR: ['brazil', 'brasil'], MX: ['mexico'], AU: ['australia'], JM: ['jamaica'] };
+
+const T = {   // every button and line of the chat, in each language
+  en: { greet: 'Hi 👋 Welcome to Vision Premium. Ask me anything about the price, payment, picks or your join link.',
+    ph: 'Ask me anything…', none: 'I do not have that one yet. Tap below and the Match Vision team will answer you.',
+    pay: 'Go to payment', rec: 'See our VIP record', ref: 'Refund policy', talk: 'Message the team', human: 'Talk to a human',
+    chips: ['How much is it?', 'How do I pay?', 'When do the picks come?', 'Are the picks guaranteed?', 'Can I get a refund?', 'Talk to a human'] },
+  fr: { greet: 'Bonjour 👋 Bienvenue dans Vision Premium. Posez vos questions sur le prix, le paiement, les pronostics ou votre lien.',
+    ph: 'Posez votre question…', none: "Je n'ai pas encore cette réponse. Touchez ci-dessous, l'équipe Match Vision vous répondra.",
+    pay: 'Aller au paiement', rec: 'Voir notre historique VIP', ref: 'Politique de remboursement', talk: "Écrire à l'équipe", human: 'Parler à une personne',
+    chips: ['Quel est le prix ?', 'Comment payer ?', 'À quelle heure arrivent les pronostics ?', 'Les pronostics sont-ils garantis ?', 'Puis-je être remboursé ?', 'Parler à une personne'] },
+  es: { greet: 'Hola 👋 Bienvenido a Vision Premium. Pregúntame por el precio, el pago, los pronósticos o tu enlace.',
+    ph: 'Pregúntame lo que quieras…', none: 'Todavía no tengo esa respuesta. Toca abajo y el equipo de Match Vision te responde.',
+    pay: 'Ir al pago', rec: 'Ver nuestro historial VIP', ref: 'Política de reembolso', talk: 'Escribir al equipo', human: 'Hablar con una persona',
+    chips: ['¿Cuánto cuesta?', '¿Cómo pago?', '¿A qué hora llegan los pronósticos?', '¿Están garantizados?', '¿Puedo pedir reembolso?', 'Hablar con una persona'] },
+  pt: { greet: 'Olá 👋 Bem-vindo ao Vision Premium. Pergunte sobre o preço, o pagamento, os palpites ou o seu link.',
+    ph: 'Pergunte o que quiser…', none: 'Ainda não tenho essa resposta. Toque abaixo e a equipa Match Vision responde.',
+    pay: 'Ir para o pagamento', rec: 'Ver o nosso histórico VIP', ref: 'Política de reembolso', talk: 'Falar com a equipa', human: 'Falar com uma pessoa',
+    chips: ['Quanto custa?', 'Como pago?', 'A que horas chegam os palpites?', 'São garantidos?', 'Posso ser reembolsado?', 'Falar com uma pessoa'] },
+  ar: { greet: 'مرحبا 👋 أهلا بك في Vision Premium. اسألني عن السعر أو الدفع أو التوقعات أو رابط الدخول.',
+    ph: 'اسألني أي شيء…', none: 'ليس لدي هذا الجواب بعد. اضغط بالأسفل وفريق Match Vision سيرد عليك.',
+    pay: 'الذهاب إلى الدفع', rec: 'سجل نتائجنا', ref: 'سياسة الاسترجاع', talk: 'مراسلة الفريق', human: 'التحدث مع شخص',
+    chips: ['كم السعر؟', 'كيف أدفع؟', 'متى تصل التوقعات؟', 'هل التوقعات مضمونة؟', 'هل يمكن استرجاع المال؟', 'التحدث مع شخص'] },
+  sw: { greet: 'Habari 👋 Karibu Vision Premium. Niulize kuhusu bei, malipo, utabiri au kiungo chako.',
+    ph: 'Niulize chochote…', none: 'Sina jibu hilo bado. Bonyeza hapa chini na timu ya Match Vision itakujibu.',
+    pay: 'Nenda kwenye malipo', rec: 'Ona rekodi yetu ya VIP', ref: 'Sera ya kurudishiwa pesa', talk: 'Tuma ujumbe kwa timu', human: 'Ongea na mtu',
+    chips: ['Bei ni kiasi gani?', 'Nalipaje?', 'Utabiri unakuja saa ngapi?', 'Je, utabiri una uhakika?', 'Naweza kurudishiwa pesa?', 'Ongea na mtu'] },
+  ha: { greet: 'Sannu 👋 Barka da zuwa Vision Premium. Tambaye ni game da kudi, biya, hasashe ko hanyar shiga.',
+    ph: 'Tambaye ni komai…', none: 'Ban san wannan ba tukuna. Danna kasa, tawagar Match Vision za ta amsa maka.',
+    pay: 'Je zuwa biya', rec: 'Duba tarihin VIP', ref: 'Dokar mayar da kudi', talk: 'Aika sako ga tawaga', human: 'Yi magana da mutum',
+    chips: ['Nawa ne kudin?', 'Yaya zan biya?', 'Yaushe hasashe ke zuwa?', 'Hasashe tabbatacce ne?', 'Ana iya mayar min da kudi?', 'Yi magana da mutum'] },
+  yo: { greet: 'Pẹlẹ o 👋 Kaabo si Vision Premium. Bi mi nipa owo, isanwo, asọtẹlẹ tabi ọna abawọle rẹ.',
+    ph: 'Bi mi ni ohunkohun…', none: 'Mi o ni idahun yẹn sibẹsibẹ. Tẹ ni isalẹ, ẹgbẹ Match Vision yoo dahun fun ọ.',
+    pay: 'Lọ si isanwo', rec: 'Wo akọọlẹ VIP wa', ref: 'Eto ipadabọ owo', talk: 'Fi ifiranṣẹ ranṣẹ si ẹgbẹ', human: 'Ba eniyan sọrọ',
+    chips: ['Elo ni?', 'Bawo ni mo ṣe le san?', 'Igba wo ni asọtẹlẹ de?', 'Ṣe asọtẹlẹ daju?', 'Ṣe mo le gba owo mi pada?', 'Ba eniyan sọrọ'] },
+  ig: { greet: 'Ndewo 👋 Nnọọ na Vision Premium. Jụọ m gbasara ọnụahịa, ịkwụ ụgwọ, amụma ma ọ bụ njikọ gị.',
+    ph: 'Jụọ m ihe ọbụla…', none: 'Enwebeghị m azịza ahụ. Pịa n’okpuru, ndị otu Match Vision ga-aza gị.',
+    pay: 'Gaa na ịkwụ ụgwọ', rec: 'Lee ndekọ VIP anyị', ref: 'Iwu nkweghachi ego', talk: 'Zigara ndị otu ozi', human: 'Gwa mmadụ okwu',
+    chips: ['Ego ole ka ọ bụ?', 'Kedu ka m ga-esi kwụọ?', 'Kedu mgbe amụma na-abịa?', 'Amụma ọ bụ ihe ejisiri ike?', 'Enwere m ike ịnata ego m?', 'Gwa mmadụ okwu'] },
+  pcm: { greet: 'How far 👋 Welcome to Vision Premium. Ask me anything about price, payment, picks or your join link.',
+    ph: 'Ask me anything…', none: 'I no get that one yet. Tap below make Match Vision team answer you.',
+    pay: 'Go pay', rec: 'See our VIP record', ref: 'Refund policy', talk: 'Message the team', human: 'Talk to person',
+    chips: ['How much be the price?', 'How I go pay?', 'Wetin time picks dey come?', 'The picks sure?', 'I fit collect my money back?', 'Talk to person'] },
+  de: { greet: 'Hallo 👋 Willkommen bei Vision Premium. Frag mich zu Preis, Zahlung, Tipps oder deinem Link.',
+    ph: 'Frag mich alles…', none: 'Diese Antwort habe ich noch nicht. Tippe unten, das Match-Vision-Team meldet sich.',
+    pay: 'Zur Zahlung', rec: 'Unsere VIP-Bilanz ansehen', ref: 'Rückerstattung', talk: 'Team anschreiben', human: 'Mit einem Menschen sprechen',
+    chips: ['Was kostet es?', 'Wie bezahle ich?', 'Wann kommen die Tipps?', 'Sind die Tipps garantiert?', 'Bekomme ich Geld zurück?', 'Mit einem Menschen sprechen'] },
+  hi: { greet: 'नमस्ते 👋 Vision Premium में आपका स्वागत है। कीमत, भुगतान, टिप्स या अपने लिंक के बारे में पूछें।',
+    ph: 'कुछ भी पूछें…', none: 'यह जवाब अभी मेरे पास नहीं है। नीचे दबाएं, Match Vision टीम आपको जवाब देगी।',
+    pay: 'भुगतान पर जाएं', rec: 'हमारा VIP रिकॉर्ड देखें', ref: 'रिफंड नीति', talk: 'टीम को संदेश भेजें', human: 'किसी व्यक्ति से बात करें',
+    chips: ['कीमत कितनी है?', 'मैं कैसे भुगतान करूं?', 'टिप्स कब आते हैं?', 'क्या टिप्स की गारंटी है?', 'क्या रिफंड मिलेगा?', 'किसी व्यक्ति से बात करें'] }
+};
+
+// Every answer, by topic. {P} = the price in his money, {U} = 20, {T} = the pick time line.
+const KB = [
+  { id: 'price', act: 'pay', w: ['price', 'cost', 'how much', 'fee', 'amount', 'charge', 'much is', 'pay how much', 'prix', 'combien', 'precio', 'cuanto', 'preco', 'quanto', 'سعر', 'كم', 'bei', 'kiasi', 'nawa', 'kudin', 'elo', 'ego ole', 'preis', 'kostet', 'कीमत', 'कितना', 'naira', 'cedi', 'shilling', 'rand', 'pound', 'euro', 'dollar'],
+    a: { en: 'Vision Premium is {P} for 30 days (that is ${U} USD). One price for everyone, shown in your own money.',
+      fr: 'Vision Premium coûte {P} pour 30 jours (soit {U} $ US). Un seul prix pour tous, affiché dans votre monnaie.',
+      es: 'Vision Premium cuesta {P} por 30 días (unos {U} $ USD). Un precio para todos, en tu propia moneda.',
+      pt: 'O Vision Premium custa {P} por 30 dias (cerca de {U} $ USD). Um preço para todos, na sua moeda.',
+      ar: 'اشتراك Vision Premium هو {P} لمدة 30 يوما (حوالي {U} دولار). سعر واحد للجميع بعملتك.',
+      sw: 'Vision Premium ni {P} kwa siku 30 (sawa na dola {U}). Bei moja kwa kila mtu, kwa pesa yako.',
+      ha: 'Vision Premium shine {P} na kwana 30 (kusan dala {U}). Kudi daya ga kowa, da kudin ka.',
+      yo: 'Vision Premium jẹ {P} fun ọjọ 30 (nkan bi {U} dọla). Owo kan naa fun gbogbo eniyan.',
+      ig: 'Vision Premium bụ {P} maka ụbọchị 30 (ihe dị ka dollar {U}). Otu ọnụahịa maka onye ọbụla.',
+      pcm: 'Vision Premium na {P} for 30 days (na about ${U}). Na one price for everybody, for your own money.',
+      de: 'Vision Premium kostet {P} für 30 Tage (rund {U} USD). Ein Preis für alle, in deiner Währung.',
+      hi: 'Vision Premium 30 दिनों के लिए {P} है (लगभग {U} USD)। सबके लिए एक ही कीमत, आपकी मुद्रा में।' } },
+  { id: 'currency', w: ['currency', 'my money', 'change money', 'monnaie', 'moneda', 'moeda', 'عملة', 'sarafu', 'kudin kasata', 'währung', 'मुद्रा', 'switch currency', 'convert'],
+    a: { en: 'Tap the currency button next to the price and pick yours. The price stays the same, ${U} for 30 days.',
+      fr: 'Touchez le bouton de devise à côté du prix et choisissez la vôtre. Le prix reste {U} $ pour 30 jours.',
+      es: 'Toca el botón de moneda junto al precio y elige la tuya. El precio sigue siendo {U} $ por 30 días.',
+      pt: 'Toque no botão de moeda ao lado do preço e escolha a sua. O preço continua {U} $ por 30 dias.',
+      ar: 'اضغط زر العملة بجانب السعر واختر عملتك. السعر يبقى {U} دولار لمدة 30 يوما.',
+      sw: 'Bonyeza kitufe cha sarafu kando ya bei na uchague yako. Bei ni ile ile, dola {U} kwa siku 30.',
+      ha: 'Danna maballin kudi kusa da farashin ka zabi naka. Kudin ya kasance dala {U} na kwana 30.',
+      yo: 'Tẹ bọtini owo nitosi idiyele ki o yan tirẹ. Owo naa ko yipada, {U} dọla fun ọjọ 30.',
+      ig: 'Pịa bọtịnụ ego dị n’akụkụ ọnụahịa ma họrọ nke gị. Ọnụahịa ka bụ dollar {U} maka ụbọchị 30.',
+      pcm: 'Tap the currency button near the price pick your own. The price still be ${U} for 30 days.',
+      de: 'Tippe auf den Währungsknopf neben dem Preis und wähle deine. Der Preis bleibt {U} USD für 30 Tage.',
+      hi: 'कीमत के पास मुद्रा बटन दबाएं और अपनी चुनें। कीमत वही रहती है, {U} USD 30 दिनों के लिए।' } },
+  { id: 'discount', w: ['discount', 'cheaper', 'promo', 'coupon', 'free trial', 'trial', 'reduction', 'descuento', 'desconto', 'خصم', 'punguzo', 'rangwame', 'ẹdinwo', 'mbelata', 'rabatt', 'छूट'],
+    a: { en: 'The price is the same for everyone, ${U} for 30 days. We do not run discount codes or free trials.',
+      fr: "Le prix est le même pour tous, {U} $ pour 30 jours. Pas de code promo ni d'essai gratuit.",
+      es: 'El precio es igual para todos, {U} $ por 30 días. No hay códigos de descuento ni pruebas gratis.',
+      pt: 'O preço é igual para todos, {U} $ por 30 dias. Não temos códigos de desconto nem testes grátis.',
+      ar: 'السعر واحد للجميع، {U} دولار لمدة 30 يوما. لا توجد أكواد خصم ولا تجربة مجانية.',
+      sw: 'Bei ni sawa kwa wote, dola {U} kwa siku 30. Hakuna punguzo wala majaribio ya bure.',
+      ha: 'Kudin daya ne ga kowa, dala {U} na kwana 30. Babu rangwame ko gwaji kyauta.',
+      yo: 'Owo naa jẹ kanna fun gbogbo eniyan, {U} dọla fun ọjọ 30. A ko ni ẹdinwo tabi idanwo ọfẹ.',
+      ig: 'Ọnụahịa bụ otu maka onye ọbụla, dollar {U} maka ụbọchị 30. Anyị enweghị mbelata ma ọ bụ nnwale n’efu.',
+      pcm: 'The price na the same for everybody, ${U} for 30 days. We no dey do discount or free trial.',
+      de: 'Der Preis ist für alle gleich, {U} USD für 30 Tage. Keine Rabattcodes, keine Gratis-Tests.',
+      hi: 'कीमत सबके लिए एक जैसी है, {U} USD 30 दिनों के लिए। कोई छूट कोड या फ्री ट्रायल नहीं है।' } },
+  { id: 'howpay', act: 'pay', w: ['how do i pay', 'how to pay', 'payment', 'pay', 'momo', 'mobile money', 'card', 'visa', 'mastercard', 'google pay', 'apple pay', 'bank', 'mpesa', 'm-pesa', 'transfer', 'payer', 'paiement', 'pagar', 'pago', 'pagamento', 'دفع', 'الدفع', 'lipa', 'malipo', 'biya', 'san owo', 'ịkwụ ụgwọ', 'bezahlen', 'zahlung', 'भुगतान'],
+    a: { en: 'Pick your country, choose how to pay, then tap Pay. Card works everywhere, mobile money in Ghana, M-Pesa in Kenya. Google Pay, Apple Pay and bank transfer are coming.',
+      fr: 'Choisissez votre pays, le moyen de paiement, puis touchez Payer. La carte marche partout, mobile money au Ghana, M-Pesa au Kenya.',
+      es: 'Elige tu país, el método de pago y toca Pagar. La tarjeta funciona en todas partes, mobile money en Ghana, M-Pesa en Kenia.',
+      pt: 'Escolha o seu país, a forma de pagamento e toque em Pagar. O cartão funciona em todo o lado, mobile money no Gana, M-Pesa no Quénia.',
+      ar: 'اختر بلدك ثم طريقة الدفع واضغط ادفع. البطاقة تعمل في كل مكان، والمحفظة في غانا، وM-Pesa في كينيا.',
+      sw: 'Chagua nchi yako, njia ya malipo, kisha bonyeza Lipa. Kadi inafanya kazi kila mahali, M-Pesa Kenya.',
+      ha: 'Zabi kasarka, zabi hanyar biya, sannan ka danna Biya. Katin yana aiki ko’ina, mobile money a Ghana.',
+      yo: 'Yan orilẹ-ede rẹ, yan ọna isanwo, lẹhinna tẹ San. Kaadi n ṣiṣẹ nibi gbogbo, mobile money ni Ghana.',
+      ig: 'Họrọ obodo gị, họrọ otu ị ga-esi kwụọ, pịa Kwụọ. Kaadị na-arụ ọrụ ebe niile, mobile money na Ghana.',
+      pcm: 'Pick your country, choose how you wan pay, then tap Pay. Card dey work everywhere, momo for Ghana, M-Pesa for Kenya.',
+      de: 'Wähle dein Land, die Zahlungsart und tippe auf Bezahlen. Karte geht überall, Mobile Money in Ghana, M-Pesa in Kenia.',
+      hi: 'अपना देश चुनें, भुगतान का तरीका चुनें और Pay दबाएं। कार्ड हर जगह चलता है।' } },
+  { id: 'payfail', act: 'talk', w: ['failed', 'did not work', 'not work', 'declined', 'error', 'problem paying', 'echec', 'echoue', 'fallo', 'falhou', 'فشل', 'imeshindwa', 'bai yi aiki ba', 'ko ṣiṣẹ', 'adaghị', 'fehler', 'विफल'],
+    a: { en: 'If your payment did not go through, nothing was taken from you. Try again, or send us the payment message and we check it for you.',
+      fr: "Si le paiement n'est pas passé, rien ne vous a été prélevé. Réessayez ou envoyez-nous le message de paiement.",
+      es: 'Si el pago no se completó, no se te cobró nada. Inténtalo otra vez o envíanos el mensaje del pago.',
+      pt: 'Se o pagamento não passou, nada lhe foi cobrado. Tente de novo ou envie-nos a mensagem do pagamento.',
+      ar: 'إذا لم تتم عملية الدفع فلم يُخصم منك شيء. أعد المحاولة أو أرسل لنا رسالة الدفع.',
+      sw: 'Kama malipo hayakufanikiwa, hukukatwa chochote. Jaribu tena au tutumie ujumbe wa malipo.',
+      ha: 'Idan biyan bai yi nasara ba, ba a dauki komai daga gare ka ba. Sake gwadawa ko ka aiko mana sakon biya.',
+      yo: 'Ti isanwo ko ba ṣaṣeyọri, won ko gba owo kankan lọwọ rẹ. Gbiyanju lẹẹkansi tabi fi ifiranṣẹ isanwo ranṣẹ si wa.',
+      ig: 'Ọ bụrụ na ịkwụ ụgwọ agaghị nke ọma, e wepụghị ego ọbụla. Nwaa ọzọ ma ọ bụ zitere anyị ozi ịkwụ ụgwọ.',
+      pcm: 'If your payment no enter, dem no collect anything from you. Try again or send us the payment message.',
+      de: 'Wenn die Zahlung nicht durchging, wurde dir nichts abgebucht. Versuche es erneut oder schick uns die Zahlungsnachricht.',
+      hi: 'अगर भुगतान पूरा नहीं हुआ तो आपसे कुछ नहीं लिया गया। फिर कोशिश करें या हमें भुगतान संदेश भेजें।' } },
+  { id: 'proof', act: 'talk', w: ['proof', 'screenshot', 'receipt', 'sent money', 'i paid', 'have paid', 'preuve', 'recu', 'comprobante', 'pague', 'comprovativo', 'إثبات', 'دفعت', 'uthibitisho', 'nimelipa', 'shaida', 'na biya', 'ẹri', 'mo ti san', 'akwụkwọ', 'akwụọla m', 'nachweis', 'bezahlt', 'प्रमाण', 'भुगतान कर दिया'],
+    a: { en: 'After paying, send the payment screenshot to our VIP assistant. We confirm it, usually within 30 minutes, and your private link follows.',
+      fr: "Après le paiement, envoyez la capture à notre assistant VIP. Nous confirmons, en général sous 30 minutes, puis vous recevez votre lien privé.",
+      es: 'Después de pagar, envía la captura a nuestro asistente VIP. Lo confirmamos, normalmente en 30 minutos, y llega tu enlace privado.',
+      pt: 'Depois de pagar, envie o comprovativo ao nosso assistente VIP. Confirmamos, normalmente em 30 minutos, e o seu link privado chega.',
+      ar: 'بعد الدفع أرسل صورة الإيصال إلى مساعد VIP. نؤكدها عادة خلال 30 دقيقة ثم يصلك رابطك الخاص.',
+      sw: 'Baada ya kulipa, tuma picha ya malipo kwa msaidizi wetu wa VIP. Tunathibitisha ndani ya dakika 30 na kiungo chako kinafuata.',
+      ha: 'Bayan biya, aika hoton biyan zuwa mataimakin VIP dinmu. Muna tabbatarwa cikin minti 30 sannan hanyar shiga ta zo.',
+      yo: 'Lẹhin isanwo, fi aworan isanwo ranṣẹ si oluranlọwọ VIP wa. A fọwọsi laarin iṣẹju 30 ati ọna abawọle rẹ yoo de.',
+      ig: 'Mgbe ị kwụchara, zitere onye enyemaka VIP anyị foto ịkwụ ụgwọ. Anyị na-akwado ya n’ime nkeji 30.',
+      pcm: 'After you pay, send the payment screenshot to our VIP assistant. We go confirm am, normally within 30 minutes.',
+      de: 'Schicke nach der Zahlung den Beleg an unseren VIP-Assistenten. Wir bestätigen meist innerhalb von 30 Minuten.',
+      hi: 'भुगतान के बाद स्क्रीनशॉट हमारे VIP सहायक को भेजें। हम आमतौर पर 30 मिनट में पुष्टि करते हैं।' } },
+  { id: 'join', act: 'talk', w: ['join link', 'link', 'invite', 'how do i join', 'get in', 'entry', 'lien', 'rejoindre', 'enlace', 'unirme', 'entrar', 'رابط', 'انضمام', 'kiungo', 'kujiunga', 'hanyar shiga', 'shiga', 'ọna abawọle', 'darapọ', 'njikọ', 'sonye', 'beitreten', 'लिंक', 'शामिल'],
+    a: { en: 'Your private join link comes as soon as your payment is confirmed, usually within 30 minutes. It works for you only.',
+      fr: 'Votre lien privé arrive dès que le paiement est confirmé, en général sous 30 minutes. Il ne marche que pour vous.',
+      es: 'Tu enlace privado llega en cuanto se confirma el pago, normalmente en 30 minutos. Solo funciona para ti.',
+      pt: 'O seu link privado chega assim que o pagamento é confirmado, normalmente em 30 minutos. Funciona só para si.',
+      ar: 'يصلك رابطك الخاص فور تأكيد الدفع، عادة خلال 30 دقيقة، ويعمل لك وحدك.',
+      sw: 'Kiungo chako binafsi kinakuja mara malipo yanapothibitishwa, kwa kawaida ndani ya dakika 30. Ni chako peke yako.',
+      ha: 'Hanyar shiga taka na zuwa da zarar an tabbatar da biya, yawanci cikin minti 30. Naka kadai ne.',
+      yo: 'Ọna abawọle aladani rẹ de ni kete ti a ba fọwọsi isanwo, nigbagbogbo laarin iṣẹju 30. O ṣiṣẹ fun ọ nikan.',
+      ig: 'Njikọ nzuzo gị na-abịa ozugbo akwadoro ịkwụ ụgwọ gị, ọtụtụ mgbe n’ime nkeji 30.',
+      pcm: 'Your private join link dey come once dem confirm your payment, normally within 30 minutes. Na you alone e dey work for.',
+      de: 'Dein privater Link kommt, sobald die Zahlung bestätigt ist, meist innerhalb von 30 Minuten. Er gilt nur für dich.',
+      hi: 'भुगतान की पुष्टि होते ही आपका निजी लिंक आ जाता है, आमतौर पर 30 मिनट में। यह केवल आपके लिए काम करता है।' } },
+  { id: 'nolink', act: 'talk', w: ['no link', 'did not get', 'not received', 'expired', 'link not working', 'pas recu', 'no recibi', 'nao recebi', 'لم يصل', 'sijapata', 'ban samu ba', 'ko gba', 'enwetaghị', 'nicht erhalten', 'नहीं मिला'],
+    a: { en: 'If your link did not arrive or does not open, message us and we send a new one straight away.',
+      fr: "Si votre lien n'est pas arrivé ou ne s'ouvre pas, écrivez-nous et nous en envoyons un nouveau tout de suite.",
+      es: 'Si tu enlace no llegó o no abre, escríbenos y te enviamos uno nuevo enseguida.',
+      pt: 'Se o link não chegou ou não abre, escreva-nos e enviamos um novo de imediato.',
+      ar: 'إذا لم يصلك الرابط أو لم يفتح، راسلنا وسنرسل رابطا جديدا فورا.',
+      sw: 'Kama kiungo hakikufika au hakifunguki, tuandikie na tutakutumia kipya mara moja.',
+      ha: 'Idan hanyar shiga ba ta zo ba ko ba ta budewa, ka aiko mana sako mu tura sabuwa nan take.',
+      yo: 'Ti ọna abawọle rẹ ko ba de tabi ko ṣii, kọ si wa a o fi tuntun ranṣẹ lẹsẹkẹsẹ.',
+      ig: 'Ọ bụrụ na njikọ gị erughị ma ọ bụ emeghereghị, zitere anyị ozi, anyị ezitere gị nke ọhụrụ ozugbo.',
+      pcm: 'If your link no land or e no dey open, message us we go send new one sharp sharp.',
+      de: 'Wenn dein Link nicht ankam oder nicht öffnet, schreib uns, wir schicken sofort einen neuen.',
+      hi: 'अगर लिंक नहीं आया या नहीं खुलता, हमें संदेश करें, हम तुरंत नया भेजेंगे।' } },
+  { id: 'telegram', w: ['telegram', 'need telegram', 'app', 'whatsapp', 'where do i get', 'room', 'groupe', 'grupo', 'تيليجرام', 'programu', 'manhaja', 'ohun elo', 'ngwa', 'दूत'],
+    a: { en: 'Vision Premium is a private room. Telegram is free and takes a minute to set up, and after joining you choose where you want the picks.',
+      fr: 'Vision Premium est un salon privé. Telegram est gratuit et prêt en une minute, et après vous choisissez où recevoir les pronostics.',
+      es: 'Vision Premium es una sala privada. Telegram es gratis y se configura en un minuto; luego eliges dónde recibir los pronósticos.',
+      pt: 'O Vision Premium é uma sala privada. O Telegram é grátis e leva um minuto a instalar; depois escolhe onde quer receber os palpites.',
+      ar: 'Vision Premium غرفة خاصة. تيليجرام مجاني ويجهز خلال دقيقة، وبعد الانضمام تختار أين تستلم التوقعات.',
+      sw: 'Vision Premium ni chumba binafsi. Telegram ni bure na inachukua dakika moja, kisha unachagua mahali pa kupokea utabiri.',
+      ha: 'Vision Premium daki ne na sirri. Telegram kyauta ne kuma minti daya kawai, sannan ka zabi inda kake son hasashen.',
+      yo: 'Vision Premium jẹ yara aladani. Telegram jẹ ọfẹ ati iṣẹju kan ni, lẹhinna o yan ibi ti o fẹ gba asọtẹlẹ.',
+      ig: 'Vision Premium bụ ụlọ nzuzo. Telegram bụ n’efu, nkeji otu ka ọ na-ewe, mgbe ahụ ị na-ahọrọ ebe ị chọrọ amụma.',
+      pcm: 'Vision Premium na private room. Telegram dey free and e take one minute, after you join you go choose where you want the picks.',
+      de: 'Vision Premium ist ein privater Raum. Telegram ist kostenlos und in einer Minute eingerichtet; danach wählst du, wo du die Tipps bekommst.',
+      hi: 'Vision Premium एक निजी रूम है। Telegram मुफ्त है और एक मिनट में तैयार हो जाता है।' } },
+  { id: 'when', w: ['when', 'what time', 'time do', 'morning', 'kick off', 'kickoff', 'hour', 'quand', 'heure', 'cuando', 'hora', 'quando', 'متى', 'الساعة', 'lini', 'saa ngapi', 'yaushe', 'lokaci', 'igba wo', 'akoko', 'mgbe', 'oge', 'wann', 'uhrzeit', 'कब', 'समय'],
+    a: { en: 'VIP picks are posted every day around 05:00 GMT, before kick-off. Tell me your country and I will show you the time where you are.',
+      fr: "Les pronostics VIP sont publiés chaque jour vers 05:00 GMT, avant le coup d'envoi. Dites-moi votre pays et je vous donne l'heure chez vous.",
+      es: 'Los pronósticos VIP se publican cada día sobre las 05:00 GMT, antes del inicio. Dime tu país y te digo la hora donde estás.',
+      pt: 'Os palpites VIP são publicados todos os dias por volta das 05:00 GMT, antes do início. Diga-me o seu país e digo-lhe a hora aí.',
+      ar: 'تنشر توقعات VIP يوميا حوالي الساعة 05:00 بتوقيت جرينتش قبل المباريات. أخبرني ببلدك لأقول لك الوقت عندك.',
+      sw: 'Utabiri wa VIP huwekwa kila siku saa 05:00 GMT, kabla ya mechi. Niambie nchi yako nikuambie saa ya kwako.',
+      ha: 'Ana saka hasashen VIP kowace rana kusan 05:00 GMT, kafin wasa. Gaya mini kasarka in gaya maka lokacin ku.',
+      yo: 'A n fi asọtẹlẹ VIP sita lojoojumọ ni nkan bi 05:00 GMT, ṣaaju ere. Sọ orilẹ-ede rẹ fun mi ki n sọ akoko ibẹ.',
+      ig: 'A na-etinye amụma VIP kwa ụbọchị n’ihe dị ka 05:00 GMT, tupu egwuregwu. Gwa m obodo gị ka m gwa gị oge.',
+      pcm: 'VIP picks dey drop every day around 05:00 GMT, before kick-off. Tell me your country make I give you the time for your side.',
+      de: 'VIP-Tipps kommen täglich gegen 05:00 GMT, vor Anpfiff. Sag mir dein Land, dann nenne ich dir die Uhrzeit bei dir.',
+      hi: 'VIP टिप्स हर दिन लगभग 05:00 GMT पर आते हैं, मैच से पहले। अपना देश बताएं, मैं आपके यहां का समय बता दूंगा।' } },
+  { id: 'howmany', w: ['how many picks', 'how many games', 'number of picks', 'combien de pronostics', 'cuantos', 'quantos', 'كم توقع', 'utabiri mangapi', 'hasashe nawa', 'melo', 'ole', 'wie viele', 'कितने'],
+    a: { en: '1 to 7 picks a day, our safest ones only. Fewer picks, longer checks.',
+      fr: '1 à 7 pronostics par jour, uniquement les plus sûrs. Moins de pronostics, plus de vérifications.',
+      es: 'De 1 a 7 pronósticos al día, solo los más seguros. Menos pronósticos, más comprobaciones.',
+      pt: 'De 1 a 7 palpites por dia, só os mais seguros. Menos palpites, mais verificações.',
+      ar: 'من 1 إلى 7 توقعات يوميا، الأكثر أمانا فقط. توقعات أقل وفحص أطول.',
+      sw: 'Utabiri 1 hadi 7 kwa siku, salama zaidi tu. Utabiri mchache, ukaguzi mrefu.',
+      ha: 'Hasashe 1 zuwa 7 a rana, mafi aminci kawai. Kadan amma an duba sosai.',
+      yo: 'Asọtẹlẹ 1 si 7 lojumọ, eyi ti o ni aabo julọ nikan.',
+      ig: 'Amụma 1 ruo 7 kwa ụbọchị, naanị nke kacha dị mma.',
+      pcm: '1 to 7 picks per day, na only the safest ones. Small picks, plenty checking.',
+      de: '1 bis 7 Tipps am Tag, nur die sichersten. Weniger Tipps, längere Prüfung.',
+      hi: 'दिन में 1 से 7 टिप्स, केवल सबसे सुरक्षित। कम टिप्स, ज्यादा जांच।' } },
+  { id: 'odds', w: ['odds', 'total odds', 'cote', 'cuota', 'odd', 'probabilidade', 'احتمال', 'الاحتمالات', 'odds gani', 'quote', 'ऑड्स'],
+    a: { en: 'Total odds are usually about 2 to 4. Never huge odds, because the aim is to win, not to dream.',
+      fr: 'La cote totale est en général entre 2 et 4. Jamais de grosses cotes: le but est de gagner.',
+      es: 'La cuota total suele estar entre 2 y 4. Nunca cuotas enormes: el objetivo es ganar.',
+      pt: 'As odds totais costumam estar entre 2 e 4. Nunca odds enormes: o objetivo é ganhar.',
+      ar: 'مجموع الاحتمالات عادة بين 2 و4. لا نلعب احتمالات ضخمة لأن الهدف هو الربح.',
+      sw: 'Jumla ya odds huwa kati ya 2 na 4. Hatuchezi odds kubwa, lengo ni kushinda.',
+      ha: 'Jimillar odds yawanci tsakanin 2 zuwa 4. Ba babban odds ba, manufa ita ce nasara.',
+      yo: 'Apapọ odds maa n wa laarin 2 si 4. A ko lo odds nla, ete ni lati jere.',
+      ig: 'Ngụkọta odds na-abụkarị n’etiti 2 na 4. Anyị anaghị eji nnukwu odds egwu.',
+      pcm: 'Total odds dey usually between 2 and 4. We no dey chase big odds, we wan win.',
+      de: 'Die Gesamtquote liegt meist zwischen 2 und 4. Keine Riesenquoten, das Ziel ist zu gewinnen.',
+      hi: 'कुल ऑड्स आमतौर पर 2 से 4 के बीच होते हैं। बहुत बड़े ऑड्स नहीं, लक्ष्य जीतना है।' } },
+  { id: 'markets', w: ['market', 'what kind of picks', 'type of pick', 'over', 'under', 'btts', 'handicap', 'marche', 'mercado', 'سوق', 'soko', 'kasuwa', 'ọja', 'ahia', 'markt', 'बाजार'],
+    a: { en: 'A pick can be any market the bookmakers price: team to win, over or under goals, win either half, handicaps and more. We pick the safest one of each match.',
+      fr: 'Un pronostic peut être tout marché proposé: victoire, plus ou moins de buts, gagner une mi-temps, handicaps. Nous prenons le plus sûr de chaque match.',
+      es: 'Un pronóstico puede ser cualquier mercado disponible: victoria, más o menos goles, ganar alguna parte, hándicaps. Elegimos el más seguro de cada partido.',
+      pt: 'Um palpite pode ser qualquer mercado disponível: vitória, mais ou menos golos, vencer uma parte, handicaps. Escolhemos o mais seguro de cada jogo.',
+      ar: 'يمكن أن يكون التوقع أي سوق متاح: الفوز، أكثر أو أقل من الأهداف، الفوز بشوط، الهانديكاب. نختار الأكثر أمانا في كل مباراة.',
+      sw: 'Utabiri unaweza kuwa soko lolote: timu kushinda, magoli zaidi au chini, kushinda kipindi, handicap. Tunachagua salama zaidi.',
+      ha: 'Hasashe na iya zama kowane kasuwa: nasara, kwallaye sama ko kasa, nasara a rabi, handicap. Muna zabar mafi aminci.',
+      yo: 'Asọtẹlẹ le jẹ ọja eyikeyi: iṣẹgun, goolu ju tabi din, iṣẹgun ni idaji, handicap. A yan eyi ti o ni aabo julọ.',
+      ig: 'Amụma nwere ike ịbụ ahịa ọbụla: mmeri, goolu karịrị ma ọ bụ erughị, mmeri na ọkara, handicap.',
+      pcm: 'Any market wey bookies price fit be the pick: team to win, over or under goals, win either half, handicap. We dey pick the safest one.',
+      de: 'Ein Tipp kann jeder angebotene Markt sein: Sieg, über/unter Tore, Halbzeitsieg, Handicap. Wir nehmen den sichersten pro Spiel.',
+      hi: 'टिप कोई भी मार्केट हो सकता है: जीत, ओवर/अंडर गोल, कोई हाफ जीतना, हैंडिकैप। हम हर मैच का सबसे सुरक्षित चुनते हैं।' } },
+  { id: 'record', act: 'record', w: ['record', 'result', 'results', 'win rate', 'proof', 'won', 'history', 'historique', 'resultat', 'resultado', 'historial', 'نتائج', 'سجل', 'matokeo', 'rekodi', 'sakamako', 'tarihi', 'abajade', 'akọọlẹ', 'nsonaazụ', 'ndekọ', 'bilanz', 'ergebnisse', 'रिकॉर्ड', 'नतीजे'],
+    a: { en: 'So far {W} of {N} VIP picks won ({R}%) over {D} days. Every VIP day is in our record, wins and losses.',
+      fr: 'Jusqu\'ici {W} pronostics VIP gagnés sur {N} ({R}%) en {D} jours. Chaque journée est dans notre historique, victoires et défaites.',
+      es: 'Hasta ahora {W} de {N} pronósticos VIP ganados ({R}%) en {D} días. Cada día está en nuestro historial, ganados y perdidos.',
+      pt: 'Até agora {W} de {N} palpites VIP ganhos ({R}%) em {D} dias. Cada dia está no nosso histórico, ganhos e perdidos.',
+      ar: 'حتى الآن {W} من {N} توقعات VIP ناجحة ({R}%) خلال {D} يوما. كل يوم مسجل عندنا، الربح والخسارة.',
+      sw: 'Hadi sasa utabiri {W} kati ya {N} umeshinda ({R}%) kwa siku {D}. Kila siku iko kwenye rekodi yetu.',
+      ha: 'Zuwa yanzu {W} daga {N} na hasashen VIP sun yi nasara ({R}%) cikin kwana {D}. Kowace rana tana cikin tarihinmu.',
+      yo: 'Titi di isisiyi {W} ninu {N} asọtẹlẹ VIP ti jere ({R}%) ni ọjọ {D}. Gbogbo ọjọ wa ninu akọọlẹ wa.',
+      ig: 'Ruo ugbu a {W} n’ime {N} amụma VIP emeriela ({R}%) n’ime ụbọchị {D}. Ụbọchị ọbụla dị na ndekọ anyị.',
+      pcm: 'Till now {W} out of {N} VIP picks don win ({R}%) for {D} days. Every day dey our record, win or loss.',
+      de: 'Bisher {W} von {N} VIP-Tipps gewonnen ({R}%) in {D} Tagen. Jeder Tag steht in unserer Bilanz, Siege und Niederlagen.',
+      hi: 'अब तक {D} दिनों में {N} में से {W} VIP टिप्स जीते ({R}%)। हर दिन हमारे रिकॉर्ड में है।' } },
+  { id: 'guarantee', act: 'record', w: ['guarantee', 'guaranteed', 'sure', '100', 'fixed', 'never lose', 'always win', 'lose', 'loss', 'garanti', 'garantizado', 'garantido', 'مضمون', 'uhakika', 'tabbaci', 'daju', 'ejisiri ike', 'garantie', 'गारंटी'],
+    a: { en: 'No prediction is ever guaranteed and losing days happen. We post our strongest picks and show every result honestly, wins and losses.',
+      fr: "Aucun pronostic n'est garanti et il y a des jours perdants. Nous publions nos meilleurs pronostics et montrons tous les résultats.",
+      es: 'Ningún pronóstico está garantizado y hay días perdedores. Publicamos nuestros mejores pronósticos y mostramos todos los resultados.',
+      pt: 'Nenhum palpite é garantido e há dias perdidos. Publicamos os nossos melhores palpites e mostramos todos os resultados.',
+      ar: 'لا يوجد توقع مضمون وهناك أيام خاسرة. ننشر أقوى توقعاتنا ونعرض كل النتائج بصدق.',
+      sw: 'Hakuna utabiri wenye uhakika na siku za kupoteza zipo. Tunaweka utabiri bora na kuonyesha matokeo yote.',
+      ha: 'Babu hasashe da yake da cikakken tabbaci, akwai ranakun rashin nasara. Muna nuna dukkan sakamako a gaskiya.',
+      yo: 'Ko si asọtẹlẹ ti o daju patapata, ọjọ ipadanu wa. A n fi gbogbo abajade han ni otitọ.',
+      ig: 'Ọ dịghị amụma ejisiri ike, ụbọchị mfu na-adị. Anyị na-egosi nsonaazụ niile n’eziokwu.',
+      pcm: 'No prediction dey 100% sure, losing days dey happen. We dey post our strongest picks and show every result, win or loss.',
+      de: 'Keine Prognose ist garantiert, Verlusttage gibt es. Wir posten unsere stärksten Tipps und zeigen jedes Ergebnis ehrlich.',
+      hi: 'कोई भी भविष्यवाणी गारंटी नहीं है और हारने वाले दिन आते हैं। हम हर नतीजा ईमानदारी से दिखाते हैं।' } },
+  { id: 'refund', act: 'refund', w: ['refund', 'money back', 'remboursement', 'rembourser', 'reembolso', 'استرجاع', 'استرداد', 'kurudishiwa', 'mayar da kudi', 'owo pada', 'nkweghachi', 'rückerstattung', 'वापसी', 'रिफंड'],
+    a: { en: 'Ask within 24 hours of paying if you have not joined the room yet and we refund in full. After you join, payments are not refunded, but if the problem is on our side we add free days.',
+      fr: "Demandez dans les 24 heures après le paiement, si vous n'avez pas encore rejoint le salon, et nous remboursons tout. Après, pas de remboursement, mais si l'erreur vient de nous, nous ajoutons des jours gratuits.",
+      es: 'Pídelo dentro de 24 horas tras pagar, si aún no has entrado en la sala, y devolvemos todo. Después no hay reembolso, pero si el fallo es nuestro añadimos días gratis.',
+      pt: 'Peça nas 24 horas após o pagamento, se ainda não entrou na sala, e devolvemos tudo. Depois não há reembolso, mas se a falha for nossa damos dias grátis.',
+      ar: 'اطلب خلال 24 ساعة من الدفع إذا لم تدخل الغرفة بعد ونعيد المبلغ كاملا. بعد الدخول لا يوجد استرجاع، لكن إذا كان الخطأ منا نضيف أياما مجانية.',
+      sw: 'Omba ndani ya saa 24 baada ya kulipa, kama bado hujajiunga na chumba, nasi turudisha pesa zote. Baada ya kujiunga hakuna marejesho, lakini tukikosea tunaongeza siku za bure.',
+      ha: 'Ka nema cikin sa’o’i 24 bayan biya, idan ba ka shiga dakin ba tukuna, mu mayar da kudin duka. Bayan shiga babu mayarwa, amma idan kuskurenmu ne mukan kara kwanaki kyauta.',
+      yo: 'Beere laarin wakati 24 lẹhin isanwo, ti o ko ba ti wọ yara naa, a o da owo pada ni kikun.',
+      ig: 'Rịọ n’ime awa 24 mgbe ị kwụchara ụgwọ, ma ọ bụrụ na ị banyebeghị n’ụlọ ahụ, anyị ga-enyeghachi ego niile.',
+      pcm: 'Ask within 24 hours after you pay, if you never enter the room, we go refund everything. After you join, no refund, but if na our fault we go add free days.',
+      de: 'Melde dich innerhalb von 24 Stunden nach der Zahlung, wenn du dem Raum noch nicht beigetreten bist, dann erstatten wir voll. Danach keine Erstattung, bei unserem Fehler gibt es Gratis-Tage.',
+      hi: 'भुगतान के 24 घंटे के भीतर कहें, अगर आप अभी तक रूम में नहीं आए हैं, तो पूरा रिफंड मिलेगा।' } },
+  { id: 'trust', act: 'record', w: ['safe', 'scam', 'trust', 'real', 'legit', 'fake', 'who are you', 'arnaque', 'fiable', 'estafa', 'confiar', 'golpe', 'نصب', 'موثوق', 'udanganyifu', 'kuaminika', 'yaudara', 'amintacce', 'igbekele', 'ntụkwasị obi', 'betrug', 'seriös', 'भरोसा', 'धोखा'],
+    a: { en: 'Vision Premium is run by the Match Vision team, the same team behind the daily YouTube predictions. Every payment is recorded with its reference and every VIP day is shown above.',
+      fr: "Vision Premium est géré par l'équipe Match Vision, celle des pronostics quotidiens sur YouTube. Chaque paiement est enregistré et chaque journée VIP est affichée.",
+      es: 'Vision Premium lo lleva el equipo de Match Vision, el mismo de los pronósticos diarios en YouTube. Cada pago queda registrado y cada día VIP se muestra arriba.',
+      pt: 'O Vision Premium é gerido pela equipa Match Vision, a mesma dos palpites diários no YouTube. Cada pagamento fica registado e cada dia VIP está acima.',
+      ar: 'يدير Vision Premium فريق Match Vision نفسه صاحب توقعات يوتيوب اليومية. كل عملية دفع مسجلة وكل يوم VIP معروض أعلاه.',
+      sw: 'Vision Premium inaendeshwa na timu ya Match Vision, hiyo hiyo ya utabiri wa kila siku YouTube. Kila malipo yanarekodiwa.',
+      ha: 'Tawagar Match Vision ce ke gudanar da Vision Premium, su ne ke yin hasashen YouTube na kullum. Ana rubuta kowane biya.',
+      yo: 'Ẹgbẹ Match Vision ni o n ṣakoso Vision Premium, ẹgbẹ kanna ti o n ṣe asọtẹlẹ YouTube lojoojumọ.',
+      ig: 'Ndị otu Match Vision na-elekọta Vision Premium, otu ndị ahụ na-eme amụma YouTube kwa ụbọchị.',
+      pcm: 'Na Match Vision team dey run Vision Premium, the same team wey dey do the daily YouTube predictions. Every payment get reference.',
+      de: 'Vision Premium wird vom Match-Vision-Team betrieben, demselben Team der täglichen YouTube-Prognosen. Jede Zahlung wird mit Referenz erfasst.',
+      hi: 'Vision Premium को Match Vision टीम चलाती है, वही टीम जो रोज YouTube पर भविष्यवाणी करती है।' } },
+  { id: 'renew', w: ['renew', 'how long', 'days left', 'subscription', 'cancel', 'expire', 'renouveler', 'duree', 'renovar', 'cuanto dura', 'renovar assinatura', 'تجديد', 'كم يوم', 'kuongeza', 'muda gani', 'sabuntawa', 'kwana nawa', 'tunse', 'ogologo', 'verlängern', 'wie lange', 'नवीनीकरण', 'कितने दिन'],
+    a: { en: 'One payment gives you 30 days in the room. Nothing renews by itself: we remind you before it ends and you pay again to stay.',
+      fr: 'Un paiement vous donne 30 jours dans le salon. Rien ne se renouvelle tout seul: nous vous prévenons avant la fin.',
+      es: 'Un pago te da 30 días en la sala. Nada se renueva solo: te avisamos antes de que termine.',
+      pt: 'Um pagamento dá 30 dias na sala. Nada se renova sozinho: avisamos antes de acabar.',
+      ar: 'دفعة واحدة تعطيك 30 يوما في الغرفة. لا يوجد تجديد تلقائي، ونذكرك قبل الانتهاء.',
+      sw: 'Malipo moja yanakupa siku 30 chumbani. Hakuna kujirudia: tunakukumbusha kabla ya kuisha.',
+      ha: 'Biya daya na ba ka kwana 30 a daki. Babu sabuntawa ta atomatik, muna tunatar da kai kafin ya kare.',
+      yo: 'Isanwo kan fun ọ ni ọjọ 30 ninu yara naa. Ko si isọdọtun laifọwọyi, a o ranti ọ ṣaaju ki o to pari.',
+      ig: 'Otu ịkwụ ụgwọ na-enye gị ụbọchị 30 n’ụlọ ahụ. Ọ dịghị ihe na-emeghachi onwe ya.',
+      pcm: 'One payment give you 30 days inside the room. Nothing dey renew by itself, we go remind you before e finish.',
+      de: 'Eine Zahlung gibt dir 30 Tage im Raum. Nichts verlängert sich automatisch, wir erinnern dich vorher.',
+      hi: 'एक भुगतान आपको रूम में 30 दिन देता है। कुछ भी अपने आप रिन्यू नहीं होता।' } },
+  { id: 'human', act: 'talk', w: ['human', 'person', 'admin', 'talk', 'speak', 'contact', 'help', 'support', 'message', 'humain', 'parler', 'persona', 'hablar', 'pessoa', 'falar', 'شخص', 'تحدث', 'mtu', 'ongea', 'mutum', 'magana', 'eniyan', 'sọrọ', 'mmadụ', 'okwu', 'mensch', 'sprechen', 'व्यक्ति', 'बात'],
+    a: { en: 'Of course. Tap below to message the Match Vision team. We reply as soon as we can.',
+      fr: "Bien sûr. Touchez ci-dessous pour écrire à l'équipe Match Vision. Nous répondons dès que possible.",
+      es: 'Claro. Toca abajo para escribir al equipo de Match Vision. Respondemos lo antes posible.',
+      pt: 'Claro. Toque abaixo para falar com a equipa Match Vision. Respondemos assim que possível.',
+      ar: 'بالتأكيد. اضغط بالأسفل لمراسلة فريق Match Vision وسنرد في أقرب وقت.',
+      sw: 'Bila shaka. Bonyeza hapa chini kutuma ujumbe kwa timu ya Match Vision.',
+      ha: 'Hakika. Danna kasa don aika sako ga tawagar Match Vision.',
+      yo: 'Dajudaju. Tẹ ni isalẹ lati fi ifiranṣẹ ranṣẹ si ẹgbẹ Match Vision.',
+      ig: 'N’ezie. Pịa n’okpuru iji zitere ndị otu Match Vision ozi.',
+      pcm: 'No wahala. Tap below make you message the Match Vision team.',
+      de: 'Klar. Tippe unten, um dem Match-Vision-Team zu schreiben.',
+      hi: 'बिल्कुल। नीचे दबाकर Match Vision टीम को संदेश भेजें।' } }
 ];
-const CHIPS = [['How Much Is It?', 'How much is it?'], ['How Do I Pay?', 'How do I pay?'], ['When Do Picks Come?', 'When do the picks come?'], ['Are Picks Guaranteed?', 'Are the picks guaranteed?'], ['Refunds', 'Can I get a refund?'], ['Talk To The Team', 'I want to talk to a person']];
+
+function norm(t) {
+  return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+}
+function near(a, b) {                                  // one typo is still a match (short words must be exact)
+  if (a === b) return true;
+  if (a.length < 5 || Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, bad = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++bad > 1) return false;
+    if (a.length > b.length) i++; else if (a.length < b.length) j++; else { i++; j++; }
+  }
+  return bad + (a.length - i) + (b.length - j) <= 1;
+}
+function hits(text, words) {
+  const t = ' ' + norm(text) + ' ', ws = t.trim().split(' ');
+  let n = 0;
+  words.forEach(function (w) {
+    const k = norm(w);
+    if (!k) return;
+    if (k.indexOf(' ') >= 0) { if (t.indexOf(' ' + k + ' ') >= 0) n += 2; return; }
+    if (t.indexOf(' ' + k + ' ') >= 0) { n += 1; return; }
+    if (ws.some(function (x) { return near(x, k); })) n += 1;   // one typo still counts
+  });
+  return n;
+}
+const LANGHINT = { en: ['how', 'what', 'when', 'can', 'the', 'price', 'pay', 'refund', 'picks', 'much', 'do', 'is', 'are', 'my', 'your'],
+  fr: ['combien', 'comment', 'je', 'vous', 'quand', 'prix', 'paiement', 'pronostic', 'bonjour', 'merci'],
+  es: ['cuanto', 'como', 'puedo', 'cuando', 'precio', 'pago', 'gracias', 'hola'],
+  pt: ['quanto', 'como', 'posso', 'quando', 'preco', 'pagamento', 'obrigado', 'ola'],
+  sw: ['bei', 'naweza', 'lini', 'asante', 'habari', 'malipo', 'kiasi'],
+  ha: ['nawa', 'yaya', 'yaushe', 'nagode', 'sannu', 'kudin', 'biya'],
+  yo: ['elo', 'bawo', 'igba', 'ese', 'pele', 'owo', 'san'],
+  ig: ['ego', 'kedu', 'mgbe', 'daalu', 'ndewo', 'ugwo'],
+  pcm: ['abeg', 'wetin', 'dey', 'wahala', 'sabi', 'na', 'make', 'fit'],
+  de: ['wie', 'viel', 'kostet', 'wann', 'danke', 'hallo', 'bezahlen', 'kann'] };
+function detect(text) {
+  const t = norm(text);
+  if (/[؀-ۿ]/.test(text)) return 'ar';
+  if (/[ऀ-ॿ]/.test(text)) return 'hi';
+  let best = null, score = 0;
+  Object.keys(LANGHINT).forEach(function (k) {
+    const n = hits(t, LANGHINT[k]) * (k === 'en' ? 0.5 : 1);      // a local word beats a plain English one
+    if (n > score) { score = n; best = k; }
+  });
+  return score >= 1 ? best : null;
+}
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('vp-lang', l); } catch (e) {}
+  const L = LANGS.find(function (x) { return x[0] === l; });
+  $('langcode').textContent = L ? L[1] : 'EN';
+  $('cq').placeholder = T[l].ph;
+  $('chips').innerHTML = T[l].chips.map(function (c) { return '<button type="button" data-q="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
+}
+function fill(s) {
+  const p = priceOf(cur);
+  let W = 0, N = 0;
+  recDays.forEach(function (r) { W += r.won; N += r.of; });
+  return String(s).replace('{P}', p.text).replace(/\{U\}/g, USD_PRICE)
+    .replace('{W}', W).replace('{N}', N).replace('{R}', N ? Math.round(W * 100 / N) : 0).replace('{D}', recDays.length);
+}
 function action(kind) {
-  if (kind === 'pay') return '<button class="act" data-act="pay">Go To Payment</button>';
-  if (kind === 'record') return '<button class="act" data-act="record">See Our VIP Record</button>';
-  if (kind === 'refund') return '<button class="act" data-act="refund">Refund Policy</button>';
-  if (kind === 'talk') return '<a class="act" href="' + BOT + '" target="_blank" rel="noopener">Message The Team</a>' + (WA ? '<a class="act" href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>' : '');
+  const t = T[lang];
+  if (kind === 'pay') return '<button class="act" data-act="pay">' + esc(t.pay) + '</button>';
+  if (kind === 'record') return '<button class="act" data-act="record">' + esc(t.rec) + '</button>';
+  if (kind === 'refund') return '<button class="act" data-act="refund">' + esc(t.ref) + '</button>';
+  if (kind === 'talk') return '<a class="act" href="' + BOT + '" target="_blank" rel="noopener">' + esc(t.talk) + '</a>' +
+    (WA ? '<a class="act" href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a>' : '');
   return '';
 }
 function say(html, who) { const m = document.createElement('div'); m.className = 'msg ' + (who || 'bot'); m.innerHTML = html; $('msgs').appendChild(m); $('msgs').scrollTop = 1e9; return m; }
 function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function countryIn(text) {
+  const t = ' ' + norm(text) + ' ';
+  let found = null;
+  Object.keys(CC_WORDS).forEach(function (cc) {
+    CC_WORDS[cc].forEach(function (w) { if (t.indexOf(' ' + norm(w) + ' ') >= 0) found = cc; });
+  });
+  if (!found) {
+    C.forEach(function (c) { if (c[0] !== 'XX' && t.indexOf(' ' + norm(c[1]) + ' ') >= 0) found = c[0]; });
+  }
+  return found;
+}
 function ask(text) {
-  text = String(text || '').trim(); if (!text) return;
+  text = String(text || '').trim();
+  if (!text) return;
   say(esc(text), 'me');
+  const d = detect(text);
+  if (d && d !== lang) setLang(d);
   const t = say('<span class="typing"><i></i><i></i><i></i></span>');
   setTimeout(function () {
-    const hit = ANS.find(function (a) { return a[0].test(text); });
-    t.innerHTML = hit ? esc(hit[1]()) + '<br>' + action(hit[2]) : 'I Do Not Have An Answer For That Yet. Tap Below And The Match Vision Team Will Reply To You Directly.<br>' + action('talk');
+    const cc = countryIn(text);
+    if (cc) chatCC = cc;
+    let best = null, score = 0;
+    KB.forEach(function (k) { const n = hits(text, k.w); if (n > score) { score = n; best = k; } });
+    // a country on its own, right after the "when" answer: just give the time there
+    if (cc && (!best || score < 1 || best.id === 'when')) {
+      const hm = pickTime(cc), name = (C.find(function (c) { return c[0] === cc; }) || [,''])[1] || '';
+      if (hm) {
+        t.innerHTML = esc(fill(KB.find(function (k) { return k.id === 'when'; }).a[lang])) +
+          '<br><b>' + esc(hm + ' ' + (lang === 'fr' ? 'chez vous' : lang === 'es' ? 'en ' + name : lang === 'pt' ? 'em ' + name :
+            lang === 'de' ? 'bei dir' : lang === 'sw' ? name : 'in ' + name)) + '</b>';
+        $('msgs').scrollTop = 1e9;
+        return;
+      }
+    }
+    if (best && score >= 1) {
+      let a = fill(best.a[lang] || best.a.en);
+      if (best.id === 'when' && chatCC) {
+        const hm = pickTime(chatCC);
+        if (hm) a += ' — ' + hm + ' ' + ((C.find(function (c) { return c[0] === chatCC; }) || [,''])[1] || '');
+      }
+      t.innerHTML = esc(a) + (best.act ? '<br>' + action(best.act) : '');
+    } else {
+      t.innerHTML = esc(T[lang].none) + '<br>' + action('talk');
+    }
     $('msgs').scrollTop = 1e9;
-  }, 650);
+  }, 600);
 }
 let greeted = false;
 function openChat() {
   chat.hidden = false; fab.querySelector('.badge').hidden = true;
   if (!greeted) {
     greeted = true;
-    say('Hi 👋 Welcome To <b>Vision Premium</b>. Ask Me Anything About The Price, Payment, Picks Or Your Join Link.');
-    $('chips').innerHTML = CHIPS.map(function (c) { return '<button type="button" data-q="' + esc(c[1]) + '">' + c[0] + '</button>'; }).join('');
+    const b = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (LANGS.some(function (l) { return l[0] === b; })) lang = b;
+    setLang(lang);
+    say(esc(T[lang].greet));
   }
   if (matchMedia('(min-width: 700px)').matches) $('cq').focus();
 }
@@ -1046,6 +1716,19 @@ fab.addEventListener('click', function () { chat.hidden ? openChat() : closeChat
 $('chatX').addEventListener('click', closeChat);
 $('chips').addEventListener('click', function (e) { const b = e.target.closest('button'); if (b) ask(b.dataset.q); });
 $('cform').addEventListener('submit', function (e) { e.preventDefault(); ask($('cq').value); $('cq').value = ''; });
+$('langbtn').addEventListener('click', function () {
+  const box = $('langbox');
+  if (!box.innerHTML) {
+    box.innerHTML = LANGS.map(function (l) { return '<button type="button" data-l="' + l[0] + '">' + l[2] + '</button>'; }).join('');
+  }
+  box.hidden = !box.hidden;
+});
+$('langbox').addEventListener('click', function (e) {
+  const b = e.target.closest('button[data-l]'); if (!b) return;
+  setLang(b.dataset.l); $('langbox').hidden = true;
+  say(esc(T[lang].greet));
+});
+
 $('msgs').addEventListener('click', function (e) {
   const b = e.target.closest('[data-act]'); if (!b) return;
   closeChat();
@@ -1055,13 +1738,31 @@ $('msgs').addEventListener('click', function (e) {
 });
 addEventListener('scroll', function () { fab.classList.toggle('show', scrollY > 500); }, { passive: true });
 
-// The laptop sends the record inside feed.json every day (vip_record). Until then, vip.json next to this page is used.
-fetch(MVA + 'feed.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (f) {
-  if (f && Array.isArray(f.vip_record) && f.vip_record.length) return f.vip_record;
-  throw new Error('no vip record in the feed');
-}).catch(function () {
-  return fetch(MVA + 'join/vip.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) { return j.days; });
-}).then(showRecord).catch(function () { $('calRange').textContent = 'Shows When You Are Online'; });
+// 5.4: the record FIRST from join/vip.json (2 KB), so the days, the cards and the numbers are there in a second
+// even on phone data. feed.json (about 700 KB) is only read afterwards, quietly, in case it is newer.
+function newest(d) { return (d && d.length) ? String(d[0].date || '') : ''; }
+let shown = '';
+fetch(MVA + 'join/vip.json', { cache: 'no-store' })
+  .then(function (r) { return r.json(); })
+  .then(function (j) {
+    const d = (j && j.days) || [];
+    if (!d.length) throw new Error('empty');
+    shown = newest(d);
+    showRecord(d);
+  })
+  .catch(function () { $('calRange').textContent = 'Loading…'; })
+  .finally(function () {
+    const later = function () {
+      fetch(MVA + 'feed.json', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (f) {
+          const d = (f && f.vip_record) || [];
+          if (d.length && newest(d) !== shown) { shown = newest(d); showRecord(d); }
+        })
+        .catch(function () { if (!shown) $('calRange').textContent = 'Shows When You Are Online'; });
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(later, { timeout: 6000 }); else setTimeout(later, 3000);
+  });
 </script>
 </body>
 </html>
