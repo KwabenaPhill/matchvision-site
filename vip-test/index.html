@@ -1573,11 +1573,12 @@ function hits(text, words) {
     if (!k) return;
     if (k.indexOf(' ') >= 0) { if (t.indexOf(' ' + k + ' ') >= 0) n += 2; return; }
     if (t.indexOf(' ' + k + ' ') >= 0) { n += 1; return; }
-    if (ws.some(function (x) { return near(x, k); })) n += 0.5;
+    if (ws.some(function (x) { return near(x, k); })) n += 1;   // one typo still counts
   });
   return n;
 }
-const LANGHINT = { fr: ['combien', 'comment', 'je', 'vous', 'quand', 'prix', 'paiement', 'pronostic', 'bonjour', 'merci'],
+const LANGHINT = { en: ['how', 'what', 'when', 'can', 'the', 'price', 'pay', 'refund', 'picks', 'much', 'do', 'is', 'are', 'my', 'your'],
+  fr: ['combien', 'comment', 'je', 'vous', 'quand', 'prix', 'paiement', 'pronostic', 'bonjour', 'merci'],
   es: ['cuanto', 'como', 'puedo', 'cuando', 'precio', 'pago', 'gracias', 'hola'],
   pt: ['quanto', 'como', 'posso', 'quando', 'preco', 'pagamento', 'obrigado', 'ola'],
   sw: ['bei', 'naweza', 'lini', 'asante', 'habari', 'malipo', 'kiasi'],
@@ -1592,7 +1593,7 @@ function detect(text) {
   if (/[ऀ-ॿ]/.test(text)) return 'hi';
   let best = null, score = 0;
   Object.keys(LANGHINT).forEach(function (k) {
-    const n = hits(t, LANGHINT[k]);
+    const n = hits(t, LANGHINT[k]) * (k === 'en' ? 0.9 : 1);      // a local word beats a plain English one
     if (n > score) { score = n; best = k; }
   });
   return score >= 1 ? best : null;
