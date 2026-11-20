@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pay bar · 3 previews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Sora:wght@700;800&display=swap">
+<style>
+:root{--bg:#F3F7E4;--ink:#0D0D0D;--sub:#55594B;--line:#0D0D0D17;--dark:#111111;--lime:#DFFB51;
+  --f:"Inter",system-ui,sans-serif;--h:"Sora","Inter",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);padding:0 16px 60px}
+.wrap{max-width:520px;margin:0 auto}
+h1{font-family:var(--h);font-size:26px;letter-spacing:-.03em;margin:20px 0 4px}
+p.n{color:var(--sub);font-size:14.5px;margin:0 0 18px}
+h2{font-family:var(--h);font-size:17px;margin:26px 0 8px;display:flex;align-items:center;gap:8px}
+h2 b{background:var(--dark);color:#fff;border-radius:999px;padding:4px 11px;font-size:12px;letter-spacing:.08em}
+.note{color:var(--sub);font-size:13.5px;margin:8px 0 0}
+/* the real bar */
+.bar{display:flex;align-items:center;gap:12px;background:var(--dark);color:#fff;border-radius:18px;padding:11px 12px}
+.bar .btn{background:var(--lime);color:var(--ink);font-family:var(--h);font-weight:800;font-size:16px;border-radius:999px;
+  min-height:50px;padding:0 22px;display:grid;place-items:center;flex:none;margin-left:auto}
+.p b{display:block;font-family:var(--h);font-size:27px;font-weight:800;color:var(--lime);line-height:1.02;font-variant-numeric:tabular-nums}
+.p span{display:block;font-size:12px;color:#C8C8CC;margin-top:1px}
+/* 1: tall tab, flag on top, USD under it, same height as the price */
+.tab1{display:grid;justify-items:center;gap:2px;border:1px solid #FFFFFF26;background:#FFFFFF14;border-radius:14px;
+  padding:7px 11px;min-height:52px;align-content:center;flex:none}
+.tab1 .f{font-size:20px;line-height:1}
+.tab1 b{font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.tab1 i{font-style:normal;font-size:9px;opacity:.6;margin-top:-1px}
+/* 2: the same tab, bigger */
+.tab2{display:grid;justify-items:center;gap:3px;border:1px solid #FFFFFF2E;background:#FFFFFF1A;border-radius:16px;
+  padding:9px 14px;min-height:60px;align-content:center;flex:none}
+.tab2 .f{font-size:24px;line-height:1}
+.tab2 b{font-size:14px;font-weight:800}
+/* 3: small tab, one line */
+.tab3{display:inline-flex;align-items:center;gap:6px;border:1px solid #FFFFFF26;background:#FFFFFF14;border-radius:999px;
+  padding:8px 11px;flex:none}
+.tab3 .f{font-size:17px;line-height:1}
+.tab3 b{font-size:12.5px;font-weight:800}
+.tab3 i{font-style:normal;font-size:10px;opacity:.7}
+.pick{background:#DFFB5147;border:1px solid #0D0D0D14;border-radius:14px;padding:12px 14px;font-size:14px;margin-top:26px}
+.logo{display:block;margin:26px auto 0;width:96px;height:48px;object-fit:contain;background:var(--dark);border-radius:14px;padding:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>The USD tab: 3 previews</h1>
+<p class="n">This is the real bottom bar at your phone size. Tell me <b>1</b>, <b>2</b> or <b>3</b> and I put it on the page.</p>
+
+<h2><b>1</b> Flag on top, USD under it</h2>
+<div class="bar">
+  <div class="tab1"><span class="f">🇺🇸</span><b>USD</b><i>▾</i></div>
+  <div class="p"><b>$20</b><span>30 days</span></div>
+  <div class="btn">Pay Now</div>
+</div>
+<p class="note">The tab is exactly as tall as the price next to it. Flag above, the money name under it.</p>
+
+<h2><b>2</b> The same, bigger</h2>
+<div class="bar">
+  <div class="tab2"><span class="f">🇺🇸</span><b>USD</b></div>
+  <div class="p"><b>$20</b><span>30 days</span></div>
+  <div class="btn">Pay Now</div>
+</div>
+<p class="note">Bigger flag and bigger letters, a taller tab. Strongest to see, takes a bit more room.</p>
+
+<h2><b>3</b> Small tab, one line</h2>
+<div class="bar">
+  <div class="tab3"><span class="f">🇺🇸</span><b>USD</b><i>▾</i></div>
+  <div class="p"><b>$20</b><span>30 days</span></div>
+  <div class="btn">Pay Now</div>
+</div>
+<p class="note">The quiet one: flag and USD side by side in a small pill, so the $20 stands out most.</p>
+
+<div class="pick">My pick: <b>1</b>. It gives the tab the same height as the price, so the bar looks like one clean line.</div>
+<img class="logo" alt="Match Vision" src="data:image/png;base64,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">
+</div>
+</body>
+</html>
