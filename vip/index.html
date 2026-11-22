@@ -567,6 +567,10 @@ footer{margin-bottom:calc(-150px - env(safe-area-inset-bottom,0px));padding-bott
 /* VIP19 terms: style 5 One card + icons */
 .terms .acc{gap:0;background:#fff;border:1px solid #0D0D0D12;border-radius:18px;overflow:hidden}.terms .acc details{border:0;border-radius:0}.terms .acc details+details{border-top:1px solid #0D0D0D0F}.terms #t-terms summary::before{content:"";flex:none;width:28px;height:28px;border-radius:9px;background:#DFFB51 url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230D0D0D%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M7%203h7l5%205v13H7zM14%203v5h5M10%2013h6M10%2017h6%22/%3E%3C/svg%3E") no-repeat center/15.400000000000002px;margin-right:4px}.terms #t-refund summary::before{content:"";flex:none;width:28px;height:28px;border-radius:9px;background:#DFFB51 url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230D0D0D%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%2012a8%208%200%201%200%202.3-5.6M4%204v4h4%22/%3E%3C/svg%3E") no-repeat center/15.400000000000002px;margin-right:4px}.terms #t-privacy summary::before{content:"";flex:none;width:28px;height:28px;border-radius:9px;background:#DFFB51 url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230D0D0D%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2214%22%20height%3D%2210%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22M8%2011V8a4%204%200%200%201%208%200v3%22/%3E%3C/svg%3E") no-repeat center/15.400000000000002px;margin-right:4px}.terms summary{justify-content:flex-start}.terms summary::after{margin-left:auto}.terms .badge18{width:28px;height:28px;margin-right:4px}.terms summary::after{content:"";background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%238A8F7A%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22m6%209%206%206%206-6%22/%3E%3C/svg%3E") no-repeat center/18px;width:22px;height:22px}.terms details[open] summary::after{content:"";background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%238A8F7A%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22m6%209%206%206%206-6%22/%3E%3C/svg%3E") no-repeat center/18px;transform:rotate(180deg)}
 .terms .badge18{margin-right:16px}
+/* 6.5.1 Join button fits on every phone (long money like CDF 46,000) */
+.hero.b .join2{gap:10px;padding:14px 16px 14px 18px}.hero.b .join2 .jt{flex:1 1 auto;min-width:0;font-size:clamp(14px,4.3vw,18px);padding-left:40px}.hero.b .join2 .jt .cr{left:0;height:30px}.hero.b .join2 i{flex:none}.hero.b .join2 .jp{max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:clip}@media (max-width:340px){.hero.b .join2 .jt{padding-left:0}.hero.b .join2 .jt .cr{display:none}}
+/* 6.5.1 follow buttons: dark style */
+.socials.icons .soc{background:#111;border-color:#111;box-shadow:0 8px 20px #0D0D0D26}.socials.icons .soc[aria-label$="TikTok"] path,.socials.icons .soc[aria-label$=" X"] path{fill:#fff}
 /* VIP20 what you get: style 1 One dark card */
 #why .feats{gap:0;background:#111;border-radius:22px;padding:6px 16px;color:#fff}#why .feat{background:none;border:0;border-radius:0;padding:16px 0}#why .feat+.feat{border-top:1px solid #FFFFFF14}#why .feat svg{background:#DFFB51;color:#0D0D0D;width:40px;height:40px;padding:10px}#why .feat span{color:#A1A1AA}#why .feat:hover{transform:none;box-shadow:none}
 /* VIP21 questions: style 2 One card + lime ? */
@@ -812,7 +816,7 @@ footer{margin-bottom:calc(-150px - env(safe-area-inset-bottom,0px));padding-bott
     <div class="flinks"><button data-goto="t-terms">Terms</button><button data-goto="t-refund">Refunds</button><button data-goto="t-play">Responsible Play</button><button data-goto="t-privacy">Privacy</button><button data-goto="faq">FAQ</button></div>
     <div><span class="b18">18+</span>18+ only. Predictions are based on data and analysis. No outcome is guaranteed.</div>
     <button class="up" type="button" id="backtop">Back to top ↑</button>
-    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 6.5</div>
+    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 6.5.1</div>
   </footer>
 </main>
 
@@ -890,12 +894,12 @@ const METHODS = {
   mobile:{ name: 'Mobile Money',         sub: 'Your Mobile Money wallet',                live: false, link: '', icon: 'phone' },
   mpesa: { name: 'M-Pesa',               sub: 'Pay from your M-Pesa',                    live: false, link: '', icon: 'phone' },
   card:  { name: 'Debit Or Credit Card', sub: 'Visa, Mastercard',                        live: true,  link: '', icon: 'card' },
-  ghcard:{ name: 'Debit Or Credit Card', sub: 'Visa, Mastercard',                        live: false, link: '', icon: 'card' },
+  ghcard:{ name: 'Debit Or Credit Card', sub: 'Visa, Mastercard',                        live: true,  link: '', icon: 'card' },
   gpay:  { name: 'Google Pay',           sub: 'Fast pay on Android',                     live: false, link: '', icon: 'wallet' },
   apay:  { name: 'Apple Pay',            sub: 'Fast pay on iPhone',                      live: false, link: '', icon: 'wallet' },
   bank:  { name: 'Bank Transfer',        sub: 'Pay from your bank app',                  live: false, link: '', icon: 'bank' }
 };
-const SHOW_SOON = false;   // 6.5 (Philip 22 Nov): only the ways to pay that work now are shown; true = show the 'Soon' ones again
+const SHOW_SOON = true;    // 6.5.1 (Philip 22 Nov 11:17): every way to pay is shown, the ones not ready yet say Soon; false = only the working ones
 const WA = '';   // WhatsApp number with country code, digits only (Philip adds it)
 /* ====================================== */
 
@@ -988,7 +992,8 @@ function fitText(el, max, min) {
   if (!el || !el.parentElement) return;
   const box = el.parentElement;
   const cs = getComputedStyle(box);
-  const room = box.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+  const es = getComputedStyle(el);                // 6.5.1: the price pill has its own padding, so it is taken off too
+  const room = box.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0) - (parseFloat(es.paddingLeft) || 0) - (parseFloat(es.paddingRight) || 0) - 2;
   if (room <= 10) return;                          // not on the screen yet: leave it as it is
   let inner = el.querySelector('.fitin');
   if (!inner) {
@@ -1009,7 +1014,7 @@ function fitText(el, max, min) {
 function fitPrices() {
   fitText($('baramt'), 27, 14);                    // the bottom bar
   fitText($('amt'), 44, 24);                       // step 2, the big price
-  fitText($('heroPrice'), 17, 12);                 // under Join Vision Premium
+  fitText($('heroPrice'), 17, 10);                 // under Join Vision Premium
 }
 addEventListener('resize', fitPrices);
 addEventListener('scroll', function () { fitPrices(); }, { passive: true });
@@ -1043,7 +1048,7 @@ function render() {
   const m = method && METHODS[method];
   $('paytext').textContent = m ? 'Pay ' + p.text + ' With ' + (method === 'card' ? 'Card' : m.name) : 'Pay ' + p.text;
   $('paybtn').href = payLink();
-  $('safetext').textContent = (m && m.link) ? 'Secure checkout. Your private VIP link comes right after payment.' : 'You finish this payment with our VIP assistant. Your private link comes right after it is confirmed.';
+  $('safetext').textContent = (m && m.link) ? 'Secure checkout. Your private VIP link comes right after payment.' : 'Our VIP assistant confirms it and sends your private link.';
   try { localStorage.setItem('vp-cc', cur[0]); } catch (e) {}
 }
 
