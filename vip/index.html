@@ -816,7 +816,7 @@ footer{margin-bottom:calc(-150px - env(safe-area-inset-bottom,0px));padding-bott
     <div class="flinks"><button data-goto="t-terms">Terms</button><button data-goto="t-refund">Refunds</button><button data-goto="t-play">Responsible Play</button><button data-goto="t-privacy">Privacy</button><button data-goto="faq">FAQ</button></div>
     <div><span class="b18">18+</span>18+ only. Predictions are based on data and analysis. No outcome is guaranteed.</div>
     <button class="up" type="button" id="backtop">Back to top ↑</button>
-    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 6.5.1</div>
+    <div>© <span id="yr">2026</span> Match Vision · Vision Premium · Page 6.5.2</div>
   </footer>
 </main>
 
@@ -908,6 +908,22 @@ const qs = new URLSearchParams(location.search);
 document.body.dataset.hero = /^[abc]$/.test(qs.get('hero') || '') ? qs.get('hero') : HERO;
 $('yr').textContent = new Date().getFullYear();
 $('backtop').addEventListener('click', function () { scrollTo({ top: 0, behavior: 'smooth' }); });
+// 6.5.2 (Philip 23 Nov): a phone that kept an old copy of the page gets the newest one by itself.
+// The page asks the server for its own newest copy (never from the cache); if the version differs it reloads once.
+const PAGE_VERSION = '6.5.2';
+(function () {
+  try {
+    fetch(location.pathname + '?fresh=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+      const m = t && t.match(/const PAGE_VERSION = '([0-9.]+)'/);
+      if (!m || m[1] === PAGE_VERSION) return;
+      let done = '';
+      try { done = sessionStorage.getItem('mvFresh') || ''; } catch (e) {}
+      if (done === m[1]) return;
+      try { sessionStorage.setItem('mvFresh', m[1]); } catch (e) {}
+      location.reload();
+    }).catch(function () {});
+  } catch (e) {}
+})();
 
 // ---------- Countries and money ----------
 const C = [
